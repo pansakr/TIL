@@ -26,3 +26,5 @@
 * 계층 간에 호출을 하고 데이터를 주고 받으며 협력하며 전체 웹 서비스를 구성
 
 스프링 부트
+
+<img src=https://user-images.githubusercontent.com/118809108/221333061-a1e7b0b5-c09c-4ae6-9e31-61f9e62bc8f9.JPG>
