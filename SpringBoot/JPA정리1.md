@@ -11,7 +11,18 @@
 
 ### JPA(Java Persistence API)
 
--   ORM의 한 종류로 자바에서 제공하는 API이다. JPA는 인터페이스고 이를 구현한 대표적인 오픈소스가 HIbernate 이다.
+-   자바에서 제공하는 ORM기술에 대한 API 표준 명세이다. 
+-   즉 JPA는 ORM 기술의 인터페이스를 모아둔 것이고, JPA를 사용하려면 이를 구현한 ORM 표준 프레임워크를 선택해야한다.
+-   대표적인 오픈소스 ORM 프레임워크가 Hibernate 이다.
+
+### Hibernate
+
+* JPA라는 인터페이스의 구현체이다.
+
+### Spring Data JPA
+
+* Spring에서 제공하는 라이브러리로 JPA를 쉽게 사용할 수 있게 도와준다.
+* Spring Data JPA 라이브러리를 통해 Repository 인터페이스를 사용할 수 있고, Repository 인터페이스를 구현해서 JPA를 쉽게 사용할 수 있다. 
 
 ### JPA 사용이유
 
