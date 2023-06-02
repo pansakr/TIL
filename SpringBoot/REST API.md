@@ -37,7 +37,7 @@ CRUD Operation을 적용하는 것을 의미한다.
 ```
 // 서버로부터 요청 url이 members/15 로 왔을때
 
-@postMapping("/members/{id}") //15가 {id} 에 매피오딘다.
+@postMapping("/members/{id}") //15가 {id} 에 맵핑된다.
 public 반환타입 메서드이름(@pathVariable(value = "id") int id)
 ```
 
