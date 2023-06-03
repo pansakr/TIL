@@ -15,6 +15,8 @@ CRUD Operation을 적용하는 것을 의미한다.
 
 * rest 기반으로 서비스 api를 구현한 것
 
+* restapi와 비동기 요청은 다른것!
+
 ### rest api설계 규칙
 
 * url에서 자원은 명사, 소문자, 복수 명사를 사용해야 한다.
