@@ -20,9 +20,11 @@
 
 * @RestController 어노테이션에는 @ResponseBody 어노테이션이 포함되있으므로 추가작업을 하지 않아도 자바객체 -> json으로 자동 변환된다.
 
-* 요청시 바이트스트림(바이트스트림중의 하나인 json) -> HttpMessageConveter -> 자바 객체. 이 과정이 역직렬화(DeSerialization)이다.
+* 즉, 요청시 바이트스트림(바이트스트림중의 하나인 json) -> HttpMessageConveter -> 자바 객체. 이 과정이 역직렬화(DeSerialization)이다.
 
-* 응답시 자바 객체 -> HttpMessageConveter -> 바이트스트림(바이트스트림중의 하나인 json). 이 과정은 직렬화(Serialization)이다.
+* 그리고 응답시 자바 객체 -> HttpMessageConveter -> 바이트스트림(바이트스트림중의 하나인 json). 이 과정은 직렬화(Serialization)이다.
+
+* json데이터가 아닌 폼에서 쿼리스트링으로 @RestController가 아닌 @Controller 로 가는 url로 데이터를 보내도 스프링에서 http 헤더,바디 형식으로 알아서 변환해서 받는다.
 
 
 ### 바이트스트림
