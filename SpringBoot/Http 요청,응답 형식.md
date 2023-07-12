@@ -27,6 +27,15 @@
 * json데이터가 아닌 폼에서 쿼리스트링으로 @RestController가 아닌 @Controller 로 가는 url로 데이터를 보내도 스프링에서 http 헤더,바디 형식으로 알아서 변환해서 받는다.
 
 
+### xml 데이터 받는 방법
+
+* jackson dataformat-xml 라이브러리를 추가한다.
+
+* 헤더값에 application/xml을 보내주면 xml로 서버가 자바 객체를 xml로 변환해 응답한다.
+
+* application/xml이 없다면 json(기본값)으로 응답한다.
+
+
 ### 바이트스트림
 
 * 1 byte를 입출력 할 수 있는 스트림
