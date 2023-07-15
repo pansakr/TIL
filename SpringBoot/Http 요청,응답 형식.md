@@ -9,12 +9,44 @@
 * Response header 에는 웹서버가 웹브라우저에 응답하는 메시지가 들어있고, 
 * Reponse body에 데이터 값이 들어가있다.
 
+### @PathVariable
 
-### @Requestbody, @Responsebody
+* url에 포함되어 오는 가변 데이터를 사용하기 위한 어노테이션
+
+```
+Path Parameter = (value = "/user/{type}/id/{id}")
+메소드이름 (@PathVariable(name = "type") String type){}
+
+// value에 적힌 uri의 중괄호를 @PathVariable 를 사용해서 자바 변수로 받는다.
+``````
+* uri에 반드시 데이터가 있어야 경로가 완성되기 때문에 선택적 데이터인 경우(데이터가 없을수도 있는) 사용하지 않는다.
+
+
+### @ModelAttribute
+
+* http 파라미터를 특정 java 객체에 바인딩한다.
+
+* query string형태나 http body의 form-data형식을 처리한다. json데이터는 처리할 수 없다.
+
+* query string및 form 형식이 아닌 데이터는 처리할 수 없다.
+
+* @ModelAttribute를 사용할 객체는 생성자나 @Setter가 필요하다
+
+
+### @Requestbody
+
+* http request 에서 body의 json,xml,text 데이터를 java 객체로 변환해 받는다.
+
+* 요청 body 값의 미디어 타입을 확인하고 타입에 맞는 HttpMessageConverter를 통해 java 객체로 변환된다.
+
+* @Requestbody를 사용할 객체는 @Getter 과 기본 생성자가 필요하다.
+
+
+### HttpMessageConveter
 
 * 클라이언트에서 서버로 http request body에 JSON 형식의 데이터를 담아 전송했을때 Java에서는 해당 JSON 형식의 데이터를 받기 위해서 JSON -> Java Object로의 변환이 필요하다.
 
-* 받을 매개변수 앞에 @RequestBody를 명시해주면 자바의 HttpMessageConverter가 json으로 전송된 데이터를 자바 객체로 변환한다. 
+* 컨트롤러에 @RestControoler 어노테이션이 있다면 자바의 HttpMessageConverter가 json으로 전송된 데이터를 자바 객체로 변환한다. 
 
 * 마찬가지로 요청된 데이터를 처리 후, 서버에서 클라이언트로 다시 응답 데이터 responseBody를 보낼 때도 Java Object에서 JSON 또는 XML 같은 형식으로의 변환이 필요하다. 
 
@@ -24,7 +56,6 @@
 
 * 그리고 응답시 자바 객체 -> HttpMessageConveter -> 바이트스트림(바이트스트림중의 하나인 json). 이 과정은 직렬화(Serialization)이다.
 
-* json데이터가 아닌 폼에서 쿼리스트링으로 @RestController가 아닌 @Controller 로 가는 url로 데이터를 보내도 스프링에서 http 헤더,바디 형식으로 알아서 변환해서 받는다.
 
 
 ### xml 데이터 받는 방법
