@@ -209,7 +209,7 @@
 
 ### 컴퓨터 메모리를 16진수로 표시하는 이유
 
-<img src="https://github.com/pansakr/TIL/assets/118809108/0089e9c3-07af-4729-bc4d-b037ab885c41">
+<img src="https://github.com/pansakr/TIL/assets/118809108/d1ec07bc-00d3-4bef-ba90-ebce56d55a09">
 
 * 컴퓨터는 8개의 bit가 모인 byte를 단위로 정보를 표현하는데, 2자리의 16진수로 1byte인 255까지 표현할 수 있어서 표시하기 유용하다.
 
