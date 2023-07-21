@@ -1,4 +1,4 @@
-![image](https://github.com/pansakr/TIL/assets/118809108/d096ac89-fd7c-453a-830a-9fd0255292d0)### 진수
+### 진수
 
 * 진법으로 나타내어진 수
 
