@@ -1,3 +1,9 @@
+### spring initializr의 옵션 설명
+
+* group id - 회사나 팀의 이름
+
+* artifact id - 개발하고자 하는 프로젝트나 애플리케이션의 이름
+
 ### DAO(Data Access object)
 
 * DB의 data에 접근하기 위한 객체.
