@@ -12,6 +12,8 @@
 
 * 운영체제에는 커널과 명령어 해석기가 있다.
 
+* cpu, os가 64bit일 경우 64bit 플랫폼이라 한다.
+
 
 ### 명령어 해석기(Command Interpreter, Shell)
 
