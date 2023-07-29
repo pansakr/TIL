@@ -45,3 +45,13 @@
 
 * Port번호는 service, interface, process 의 식별자이다
 
+
+### 계층별 데이터 단위
+
+* L1,L2 - Frame
+
+* L3 - Packet. 최대 단위 - MSS(Maxiam Transmission Unit)
+
+* L4 - Segment. 최대 단위 - MSS(Maxiam Segment Size)
+
+* L5 - Stream. 데이터 덩어리 - 보낼 데이터를 일정 크기로 자른것(크기는 프로그래머가 설정). 자른 송신 데이터들을 전부 보내야 스트림이 끝난다.
