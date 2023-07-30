@@ -64,6 +64,14 @@
 * Port번호는 service, interface, process 의 식별자이다
 
 
+### L5 ~ L7 계층
+
+* 현대의 인터넷은 OSI 7 모델이 아니라 TCP/IP 모델을 사용한다.
+
+* OSI 7 모델은 5,6,7 계층이 각각 Session, Presentation, Application 이지만, TCP/IP는 5,6,7 계층이 Application 하나로 합쳐져 있다.
+
+* 
+
 ### 계층별 데이터 단위
 
 * L1,L2 - Frame
