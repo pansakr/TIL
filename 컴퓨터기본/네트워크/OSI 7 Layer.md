@@ -49,7 +49,7 @@
 
 ### L4 - Transport Layer Tcp, Udp
 
-* port 번호를 통해 데이터를 전송하는 계층
+* 받은 데이터를 port 번호를 통해 프로세스에게 전달하는 계층
 
 * Tcp, Udp가 속한 영역이다.
 
