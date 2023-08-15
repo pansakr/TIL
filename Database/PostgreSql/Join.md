@@ -113,3 +113,86 @@ SELECT *
 FROM 테이블1 CROSS JOIN 테이블2                 // 일치하는 항목을 찾을 필요가 없기 때문에 on을 사용하지 않는다.
 ORDER BY district_2020.id, district_2035.id;
 ```
+
+### is null
+
+* 조인 결과에 null이 포함된 것만 출력할 수 있다.
+
+```
+SELECT *
+FROM 테이블1 LEFT JOIN 테이블2
+ON 테이블1.id = 테이블2.id
+WHERE 테이블2.id IS NULL;  // 테이블1, 테이블2 조인한 결과 중 null이 포함된 결과만 출력
+```
+
+### 테이블 별칭
+
+```
+SELECT 별칭1.id,              // 별칭으로 해당 테이블과 속한 컬럼들을 호출할 수 있다. 
+       별칭1.school_2020,
+       별칭2.school_2035
+FROM 테이블 AS 별칭1 LEFT JOIN 테이블2 AS 별칭2   // 테이블 이름 뒤 as 별칭이름으로 별칭을 설정해준다.
+ON 별칭1.id = 별칭2.id
+ORDER BY 별칭1.id;
+```
+
+### 여러 테이블 join
+
+* 3개 이상의 테이블을 조인하는 방법
+
+```
+SELECT 별칭1.id,
+       별칭1.school_2020,
+       별칭2.enrollment,
+       별칭3.grades
+FROM 테이블1 AS 별칭1 JOIN 테이블2 AS 별칭2  // 테이블1과 테이블2를 id값이 일치하는 행만 연결해준다.
+    ON 별칭1.id = 별칭2.id
+JOIN 테이블3 AS 별칭3                      // 테이블1과 테이블 3을 id값의 일치하는 행만 연결해준다.
+    ON 별칭1.id = 별칭3.id
+ORDER BY 별칭1.id;
+```
+
+### union, union all
+
+* union - 두개의 쿼리 결과를 중복을 제거해 합치고 출력해준다.
+
+* union all - 두개의 쿼리 결과를 중복을 포함해 합치고 출력해준다.
+
+* 쿼리 결과를 합쳐주기 때문에 두 쿼리 결과의 열 개수와 데이터 타입이 일치해야 한다. 
+
+```
+SELECT * FROM 테이블1
+UNION                  // 중복을 제거해 합쳐준다.
+SELECT * FROM 테이블2  // 두번째 쿼리의 행의 결과를 첫번째 쿼리의 행에 합쳐준다.
+ORDER BY id;
+
+// 결과 예시
+id  테이블1의 행   // 두번째 쿼리의 결과가 첫번째 쿼리로 합쳐지기 때문에 테이블1의 행이 표시된다.
+1   데이터1
+2	데이터2
+3	데이터3
+
+SELECT * FROM 테이블1
+UNION all              // 중복을 포함해 합쳐준다.
+SELECT * FROM 테이블2
+```
+
+### intersect
+
+* 두 쿼리에 모두 존재하는 행만 중복을 제거해 출력한다.
+```
+SELECT * FROM 테이블1
+intersect             // 두 쿼리 결과에 모두 존재하는 행만 출력하고 중복을 제거한다.
+SELECT * FROM 테이블2  
+ORDER BY id;
+```
+
+### except
+
+* 첫번째 쿼리 결과에만 있고 두번째 쿼리 결과에는 없는 행을 출력한다.
+```
+SELECT * FROM 테이블1
+except                // 테이블 1에만 있는 결과를 출력한다.
+SELECT * FROM 테이블2  
+ORDER BY id;
+```
