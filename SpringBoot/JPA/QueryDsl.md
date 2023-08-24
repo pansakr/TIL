@@ -2,7 +2,7 @@
 
 * sql, jpql을 코드로 작성할 수 있도록 해주는 빌더 api
 
-* entity와 매핑되는 qClass 객체를 사용해서 쿼리를 실행한다.
+* entity와 매핑되는 QClass 객체를 사용해서 쿼리를 실행한다.
 
 * jpql과 다르게 sql을 코드로 작성하기 때문에 IDE의 도움을 받을 수 있고 컴파일 단계에서 오류를 발견할 수 있다. 
 
@@ -66,7 +66,7 @@ dependencies {
 
     // 버전을 {queryDslVersion}처럼 표기할때는 ""쌍따옴표를 사용해야 한다.
 	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"	// QueryDsl 의존성 추가
-	annotationProcessor "com.querydsl:querydsl-apt:${queryDslVersion}" // QueryDsl annotationProcesso 추가
+	annotationProcessor "com.querydsl:querydsl-apt:${queryDslVersion}" // QueryDsl annotationProcessor 추가
 
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -118,7 +118,7 @@ public class QueryDsl {
 
 // 스프링은 싱글톤 기반으로 동작하기에 빈은 모든 쓰레드가 공유한다.
 // EntityManager를 빈으로 등록하면 사용할때 여러 쓰레드가 동시에 접근해 동시성 문제가 발생해 EntityManger를 공유하면 안된다.
-// 그러나 @PersistenceContext를 사용해 EntityManager를 빈으로 등록하면 proxy로 감싸고
+// 그러나 @PersistenceContext를 사용해 EntityManager를 주입받으면 주입받은 EntityManager를 proxy로 감싸고
 // 이후 EntityManager 호출 마다 proxy를 통해 EntityManager를 생성해 Thread-Safe를 보장한다.
 // 즉, 각 요청에 대해 독립적인 EntityManager가 만들어진다.
 ```
