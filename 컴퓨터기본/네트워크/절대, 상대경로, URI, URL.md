@@ -2,7 +2,7 @@
 
 <img src ="https://github.com/pansakr/TIL/assets/118809108/9d235798-4b93-45b3-b567-bb131cbc73ed">
 
-* 위 그림에서 상대경로 부분의 main은 오타이다. main -> portfolio 이다.
+* 위 그림에서 경로 부분의 main은 오타이다. main -> portfolio 이다.
 ```
 // style.css에서 photo.jpa링크 시 ../로 상위경로인 css폴더로 이동 후 images폴더 -> portfolio -> photo.jpg로 이동한다.
 // 절대경로는 html파일의 위치를 기준으로 정해지는 상대적인 경로가 아닌 절대적인 경로이기 때문에 html파일의 위치가 변경되어도 링크가 어긋나지 않는다.
