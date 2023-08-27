@@ -25,7 +25,7 @@ git pull --rebase
 // 둘중 하나로 pull 이후 push
 ```
 
-<img src="">
+<img src="https://github.com/pansakr/TIL/assets/118809108/b984c515-a6de-4612-a9e4-30c5736dd3c2">
 
 * Add Dongho to Leopards커밋에서 분기되어 원격 저장소에 커밋 하나가 push되었고, 로컬에 내 커밋이 있는 상태이다.
 
@@ -35,13 +35,13 @@ git pull --rebase
 
 * 이때 merge, rebase 두 가지 방법이 있다.
 
-<img src="">
+<img src="https://github.com/pansakr/TIL/assets/118809108/c2e90de3-ad4a-4f85-8376-1ca4cfaab84c">
 
 * merge는 두 커밋을 하나의 커밋으로 합치는 방법이다. 즉 두 커밋이 합쳐진 1개의 커밋이 생성된다.
 
 * Edit Leopards coach의 merge 이전 커밋 기록은 유지된다.
 
-<img src="">
+<img src="https://github.com/pansakr/TIL/assets/118809108/7343bf25-736e-4739-a25c-ccaef6ff86bc">
 
 * rebase는 원격 저장소의 커밋 라인에 내 커밋을 이어 붙인다.
 
