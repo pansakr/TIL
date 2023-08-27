@@ -71,3 +71,14 @@ git revert --continue
 // 원하는 다른 작업을 추가한 다음 함께 커밋할 수 있다.
 git revert --no-commit 해시코드
 ```
+
+### git reflog
+
+* 실수로 reset해서 git log에 복구할 커밋이 남아있지 않을 때 사용한다.
+```
+// 모든 커밋 기록 확인. 이전 버전으로 복구하려할때 커밋 기록이 남아있지 않을 시 사용한다.
+git reflog
+```
+* git reflog하면 한번이라도 커밋했다면 그 기록을 모두 출력해준다.
+
+* 원하는 버전의 해시값을 찾아서 git reset 명령어로 복구한다.
