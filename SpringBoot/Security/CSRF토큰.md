@@ -18,9 +18,19 @@
 
 * 토큰 값이 일치하지 않으면 잘못된 요청으로 오류가 발생한다
 ```
-//시큐리티가 csrf토큰을 추가해 돌려준 html파일. 
-<input type="text" name="username" placeholder="유저네임" required="required" csrf="임의의 난수값"/>
+// get - /add 요청으로 아래 add.html을 응답받아 Add버튼을 클릭해 서버로 post - /csrf 요청을 보낸다.
+// hidden태그 내부의 _csrf 값이 없다면 서버가 csrf토큰을 클라이언트로부터 받지 못해 post요청을 거부한다.
+// get 요청은 csrf토큰이 없어도 할 수 있다.
 
-// 실제 html 파일. csrf 부분은 시큐리티가 추가해 주는것으로 해당 html파일을 보면 저 부분은 없다.
-<input type="text" name="username" placeholder="유저네임" required="required" />
+// add.html파일
+<body>
+    <h2>POST 요청 전 CSRF 토큰 포함시키는 페이지</h2>
+    <form action="/csrf" method="post">
+        <button>Add</button>
+
+        <!-- 아래 코드가 없으면 클라이언트의 csrf토큰을 서버에 전달하지 못해 post요청을 거부당한다.-->
+        <input type="hidden" th:name="${_csrf.parameterName}"
+                             th:value="${_csrf.token}" />
+    </form>
+</body>
 ```
