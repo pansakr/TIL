@@ -1,6 +1,6 @@
 ### CSRF토큰
 
-<img src="">
+<img src="https://github.com/pansakr/TIL/assets/118809108/979d372b-bec0-4558-bed5-57479b1f94ac">
 
 * 서버측 애플리케이션에서 생성되어 클라이언트와 공유되는 인증 문자열 값이다.
 
