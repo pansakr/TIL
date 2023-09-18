@@ -1,4 +1,4 @@
-### Gitfolw
+### GitFlow
 
 * 협업을 위한 브랜치 전략
 
