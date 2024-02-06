@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: local
+
+server:
+  port: 8083
+
+me:
+  name: gibon
