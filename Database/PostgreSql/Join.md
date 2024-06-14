@@ -37,11 +37,11 @@ ON district_2020.id = district_2035.id
 ORDER BY district_2020.id;
 
 // 결과 예시
-id   테이블1                 id  테이블2
-1	 Oak Street School	    1 	 Oak Street School
-2	 Roosevelt High School	2	 Roosevelt High School
-3	 Dover Middle School	null null
-4	 Webutuck High School	4	 Webutuck High School
+id   테이블1                  id   테이블2
+1    Oak Street School	      1    Oak Street School
+2    Roosevelt High School    2	   Roosevelt High School
+3    Dover Middle School      null null
+4    Webutuck High School     4	   Webutuck High School
 
 // 왼쪽 테이블은 모두 출력한다.
 // 왼쪽 테이블과 join 기준 열이 일치하는 오른쪽 테이블의 행이 출력된다.
@@ -91,12 +91,12 @@ ORDER BY district_2020.id;
 
 // 결과 예시
 id  테이블1                 id  테이블2
-1	Oak Street School	    1	Oak Street School
-2	Roosevelt High School	2	Roosevelt High School
-5	Dover Middle School		
-6	Webutuck High School	6	Webutuck High School
-		                    4	Chase Magnet Academy
-		                    3	Morrison Elementary
+1   Oak Street School	    1	Oak Street School
+2   Roosevelt High School   2	Roosevelt High School
+5   Dover Middle School		
+6   Webutuck High School    6	Webutuck High School
+                            4	Chase Magnet Academy
+                            3	Morrison Elementary
 
 // 양쪽 테이블의 모든 행을 출력한다.
 // 왼쪽 테이블의 행들과 일치하는 행을 먼저 출력하고 그다음 오른쪽 테이블에만 있는 행을 출력한다. 
