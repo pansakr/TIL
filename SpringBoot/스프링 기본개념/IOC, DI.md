@@ -6,7 +6,29 @@
 
 * 스프링 컨테이너는 BeanFactory와 ApplicationContext 의 두가지 종류가 있는데 ApplicationContext가 BeanFactory의 기능을 포괄하면서 추가적인 기능을 제공하기 때문에 대부분 ApplicationContext를 사용한다.
 
-* 스프링 컨테이너에 객체(Bean)을 등록하는 이유는 스프링이 객체간 의존관계를 관리하도록 하는것에 있다.
+* 스프링 컨테이너가 생성될때 @Configuration이 붙은 설정 클래스를 인자로 사용한다.
+
+* 그리고 @Bean이 적용된 메서드를 모두 호출해 반환된 객체를 스프링 컨테이너에 등록한다. 이렇게 스프링 컨테이너에 등록된 객체를 스프링 빈이라 한다.
+
+* 마지막으로 등록된 스프링 빈들의 의존 관계를 맺어준다
+
+* 스프링 빈은 @Bean이 붙은 메서드의 명을 스프링 빈의 이름으로 사용한다.
+```
+// 스프링 컨테이너 생성 방법
+// @Configuration이 적용된 설정 클래스(여기서는 000.class)를 인자로 지정해 스프링 컨테이너 생성
+// 스프링 컨테이너는 파라미터로 넘어온 설정 클래스(구성 정보)를 활용해 스프링 빈을 등록한다
+ApplicationContext applicationContext = new AnnotationConfigApplicationContext(000.class);
+
+// 스프링 컨테이너에 등록된 스프링 빈(객체)를 찾는 방법
+applicationContext.getBean("@Bean의 메서드 이름", 반환타입);
+
+// 빈 이름은 메서드 이름을 사용하지만 직접 부여할 수도 있다
+// 빈 이름은 절대 중복되면 안된다
+@Bean(name="dddd")
+```
+
+* 스프링 컨테이너에 객체를 스프링 빈으로 등록하고, 스프링 컨테이너에서 스프링 빈을 찾아서 사용한다
+
 
 ### 의존성 주입(Dependency Injection)
 
