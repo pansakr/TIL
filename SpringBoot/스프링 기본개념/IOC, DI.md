@@ -20,11 +20,23 @@
 ApplicationContext applicationContext = new AnnotationConfigApplicationContext(000.class);
 
 // 스프링 컨테이너에 등록된 스프링 빈(객체)를 찾는 방법
+// 이름과 타입으로 찾을때. 이름은 @bean이 적용된 메서드의 이름이 기본값이다
 applicationContext.getBean("@Bean의 메서드 이름", 반환타입);
+
+// 타입으로만 찾을때
+applicationContext.getBean(반환타입);
 
 // 빈 이름은 메서드 이름을 사용하지만 직접 부여할 수도 있다
 // 빈 이름은 절대 중복되면 안된다
 @Bean(name="dddd")
+
+// 같은 인터페이스를 상속한 A, B 클래스가 있다고 가정
+// 빈에서 A, B를 리턴한다면 타입으로만 찾을 시 타입이 같아 어느것을 출력할지 몰라서 오류 발생
+// 이름과 타입으로 찾아주면 된다
+@Bean
+리턴 A
+@Bean
+리턴 B
 ```
 
 * 스프링 컨테이너에 객체를 스프링 빈으로 등록하고, 스프링 컨테이너에서 스프링 빈을 찾아서 사용한다
