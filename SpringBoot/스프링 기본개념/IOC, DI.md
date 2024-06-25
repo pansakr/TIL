@@ -66,9 +66,32 @@ public class Store {
 
 ### 싱글톤 패턴
 
+* 클래스의 인스턴스가 1개만 생성되는 것을 보장하는 디자인 패턴
+
 * 소프트웨어 디자인 패턴 중의 하나로 생성자가 여러 차례 호출되더라도 실제로 생성되는 객체는 하나이고, 최초 생성 이후에 호출된 생성자는 최초의 생성자가 생성한 객체를 리턴한다.
 
-* 요청이 많은 사이트에서는 계속 객체를 생성하게 되면 메모리 낭비가 심하기에 싱글톤 패턴을 사용한다.
+* 여러 사람의 요청마다 계속 객체를 생성하게 되면 메모리 낭비가 심하기에 싱글톤 패턴을 사용한다.
+```java
+public class SingletonService {
+
+    // static 영역에 객체를 1개만 생성해둔다
+    private static final SingletonService instance = new SingletonService();
+
+    // public로 외부 접근을 허용해두고, 객체가 필요하면 이 static 메서드를 통해서만 조회하도록 허용한다.
+    public static SingletonService getInstance(){
+        return instance;
+    }
+
+    // 생성자를 private으로 선언해서 외부에서 new 키워드를 사용한 객체 생성을 막는다.
+    // 생성자가 private이면 싱글톤이다
+    private SingletonService(){}
+    
+    public void logic(){
+        System.out.println("싱글톤 객체 로직 호출");
+    }
+}
+```
+
 
 
 ### 제어의 역전 IOC(Inversion Of Control)
