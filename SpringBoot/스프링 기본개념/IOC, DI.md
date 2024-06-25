@@ -4,7 +4,7 @@
 
 * 스프링 컨테이너가 관리하는 자바 객체를 빈(Bean)이라고 하는데, 스프링 컨테이너에서 이 빈의 생성부터 소멸까지 개발자 대신 관리해준다. 
 
-* 스프링 컨테이너는 BeanFactory와 ApplicationContext 의 두가지 종류가 있는데 ApplicationContext가 BeanFactory의 기능을 포괄하면서 추가적인 기능을 제공하기 때문에 대부분 ApplicationContext를 사용한다.
+* 스프링 컨테이너는 BeanFactory(인터페이스)와 ApplicationContext(인터페이스) 의 두가지 종류가 있는데 ApplicationContext가 BeanFactory의 기능을 상속하며 추가적인 기능을 제공하기 때문에 대부분 ApplicationContext를 사용한다.
 
 * 스프링 컨테이너가 생성될때 @Configuration이 붙은 설정 클래스를 인자로 사용한다.
 
