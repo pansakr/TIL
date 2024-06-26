@@ -92,6 +92,9 @@ public class SingletonService {
 }
 ```
 
+* 싱글톤 컨테이너 - 객체를 싱글톤 패턴으로 생성하고 관리하는 기능
+
+* 스프링 컨테이너는 싱글톤 컨테이너 역할을 하기 때문에 등록된 빈들을 알아서 싱글톤으로 관리한다
 
 
 ### 제어의 역전 IOC(Inversion Of Control)
