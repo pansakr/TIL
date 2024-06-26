@@ -145,9 +145,22 @@ class order{
 * 기존 수동 설정 클래스에서 의존관계 설정을 수작업으로 하던것 대신 의존관계 설정 정보를 알려주는 어노테이션을 사용해 자동으로 의존관계 설정을 해준다
 
 ```
-// 사용 옵션
-@Component 
+//사용 방법. 빈으로 등록할 요소가 있는 패키지에 붙인다
+@Component
+class a{}
+
+// 스캔 시작 위치 지정. 이 패키지를 포함해서 하위 패키지를 모두 탐색
+// hello.com.bb 패키지부터 하위 패키지까지 스캔해서 @Component가 있는 클래스를 찾아 빈으로 등록
+// 동일 선상에 있는 패키지는 스캔 범위에 포함되지 않는다
+@Component(basePakages = "hello.com.bb")
+
+// 지정한 클래스의 패키지를 탐색 시작 위로 지정
+@Component(basePakages = "hello.com.bb") 
 ```
+
+* 권장 설정 방법은 프로젝트 최상단에 두는것이다. 경로가 spring.hello.com 라면 com 하위에 두는것이다
+
+* 그런데 스프링 부트 프로젝트 생성시 자동으로 만들어지는 메인 메소드가 위치한 클래스에 @SpringBootApplication 에 @Component 가 포함되어 있다
 
 ### 제어의 역전 IOC(Inversion Of Control)
 
