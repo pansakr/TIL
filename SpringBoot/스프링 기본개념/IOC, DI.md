@@ -155,12 +155,30 @@ class a{}
 @Component(basePakages = "hello.com.bb")
 
 // 지정한 클래스의 패키지를 탐색 시작 위로 지정
-@Component(basePakages = "hello.com.bb") 
+@Component(basePakageClasses = "hello.com.bb") 
 ```
 
 * 권장 설정 방법은 프로젝트 최상단에 두는것이다. 경로가 spring.hello.com 라면 com 하위에 두는것이다
 
-* 그런데 스프링 부트 프로젝트 생성시 자동으로 만들어지는 메인 메소드가 위치한 클래스에 @SpringBootApplication 에 @Component 가 포함되어 있다
+* 그런데 스프링 부트 프로젝트 생성시 자동으로 만들어지는 메인 메소드가 위치한 클래스에 붙은 @SpringBootApplication에는 @Component가 포함되어 있다
+
+* 그래서 스프링 부트에서는 추가 설정클래스를 작성하지 않는다면 @Component를 사용하지 않아도 된다
+
+
+#### 컴포넌트 스캔 기본 대상
+
+* @Component - 컴포넌트 스캔 기본
+
+* @Controller - 스프링 MVC 컨트롤러에서 사용
+
+* @Service - 비즈니스 로직에서 사용
+
+* @Repository - 데이터 접근 계층에서 사용
+
+* @Configuration - 설정 정보에서 사용
+  
+* @Controller, @Service, @Repository, @Configuration 모두 @Component를 포함하고 있다
+  
 
 ### 제어의 역전 IOC(Inversion Of Control)
 
