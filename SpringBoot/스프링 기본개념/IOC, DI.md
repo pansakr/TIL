@@ -177,7 +177,209 @@ class a{}
 * @Configuration - 설정 정보에서 사용
   
 * @Controller, @Service, @Repository, @Configuration 모두 @Component를 포함하고 있다
+
+
+### 스프링 빈 초기화, 소멸
+
+* 데이터베이스 커넥션 풀이나, 네트워크 소켓처럼 애플리케이션 시작 시점에 연결을 미리 해두고, 애플리케이션 종료때 연결을 모두 종료하는 작업을 하려면 객체의 초기화와 종료 작업이 필요하다
+
+* 스프링 빈은 객체 생성 -> 의존관계 주입이 모두 끝나야 데이터를 사용할 수 있다. 따라서 초기화는 의존관계 주입이 완료되고 호출해야 한다.
+
+* 스프링은 의존관계 주입이 완료되면 스프링 빈에게 콜백 메서드를 통해 초기화, 종료 시점을 알려주는 기능을 제공한다
+
+* 주로 @PostConstruct, @PreDestory 를 사용한다
+
+* 초기화 콜백 @PostConstruct - 빈이 생성되고, 빈의 의존관계 주입이 완료된 후 호출
+
+* 소멸전 콜백 @PreDestory - 빈이 소멸되기 직전에 호출
+
+* 스프링 빈의 생명주기 - 스프링 컨테이너 생성 -> 스프링 빈 생성 -> 의존관계 주입 -> 초기화 콜백 -> 사용 -> 소멸전 콜백 -> 스프링 종료
+
+```
+// 사용 방법
+// 빈으로 등록할 클래스에 사용
+
+// 의존관계 주입까지 끝나면 실행됨
+@PostConstruct 
+메서드(){}
+
+// 빈이 소멸되기 전에 실행됨
+@PreDestory
+메서드(){}
+```
+
+* 객체의 생성(생성자)는 필수 정보를 받아(파라미터) 메모리를 할당해 객체를 생성하는 책임을 가지고, 초기화는 생성된 객체를 사용해 외부 커넥션을 연결하는 무거운 작업을 실행한다
+
+* 생성자 안에서 객체의 생성과 무거운 초기화 작업을 함께 하는 것 보다, 객체의 생성과 초기화 부분을 나누는 것이 유지보수 관점에서 좋다
+
+### 빈 스코프
+
+* 빈이 존재할 수 있는 범위를 뜻한다
+
+```
+// 스프링의 여러 스코프
+
+싱글톤 - 기본 스코프. 스프링 컨테이너의 시작과 종료까지 유지되는 가장 넓은 범위의 스코프
+
+프로토타입 - 스프링 컨테이너는 프로토타입 빈의 생성과 의존관계 주입까지만 관여하고 이후 관리하지 않는 짧은 범위의 스코프
+
+// 웹 관련 스코프
+
+request - 웹 요청이 들어오고 나갈때 까지 유지되는 스코프
+
+session - 웹 세션이 생성되고 종료될 때까지 유지되는 스코프
+
+application - 웹의 서블릿 컨텍스트와 같은 범위로 유지되는 스코프
+
+
+// 적용방법
+// 컴포넌트 스캔 어노테이션 위에 스코프를 지정해준다
+@Scope("prototype")
+@Component
+class ...(){}
+```
+
+* 프로토 타입 빈은 클라이언트의 요청마다 새로운 객체를 생성해 반환하고, 스프링 컨테이너가 의존관계 주입 이후 관여하지 않으므로 소멸전 콜백인 @PreDestory가 실행되지 않는다
+
+### 싱글톤과 프로토타입 빈 같이 사용시 문제점
+
+* 싱글톤 빈이 프로토타입 빈을 주입받으면 클라이언트의 요청마다 새로 생성되는 프로토 타입 빈의 특성이 없어진다
+
+```
+@Component
+class 싱글톤 빈{
+
+    // 프로토타입 빈 의존
+    private final 프로토타입 빈 aa;
+
+    public int add(){
+        aa.addCount();
+        return = aa.getCount();
+    }
+}
+
+@Component
+class 프로토타입 빈{}
+
+    private int count;
+
+    public void addCount(){
+        count++;
+    }
+
+    public int getCount(){
+        return count;
+    }
+
+// 의존성 주입 시점에 클라이언트 빈이 싱글톤 빈에 주입된 후 그 상태가 고정되서 클라이언트 빈이 추가로 생성되지 못한다
+
+// 클라이언트 a가 싱글톤 빈 요청 후 add() 요청 시 int = 1이 된다.
   
+// 클라이언트 b가 싱글톤 빈 요청 후 add() 요청 시 int = 2가 된다.
+
+// 본래 의도는 요청마다 새로운 객체가 생성되어 둘다 1이 되는것인데, 싱글톤 빈처럼 작동해 2가 되었다. 
+```
+* 해결방법
+
+```
+@Component
+class 싱글톤 빈{
+
+    // 프로토 타입 빈 대신 ObjectProvider를 주입받는다
+    private final ObjectProvider<프로토타입 빈> aa;
+
+    public int add(){
+        프로토타입 빈  bb = aa.getObject(); // ObjectProvider가 프로토 타입 빈을 찾아준다
+        bb.addCount();
+        return = bb.getCount();
+    }
+}
+
+// ObjectProvider - 빈을 찾아주는 객체
+
+// 싱글톤 빈이 클라이언트 빈을 직접 주입받지 않는다
+
+// add() 실행마다 ObjectProvider가 스프링 컨테이너에 프로토 타입 빈 생성을 요청해 매번 새로운 프로토타입 빈이 생성된다 
+```
+
+### Request 스코프
+
+* 클라이언트의 Htto Request 마다 별도의 빈 인스턴스가 생성된다
+
+* 각각의 http 요청마다 구분해서 로그 남기는 방법
+```
+// logger 클래스
+@Component
+@Scope(value = "request") // 이 빈은 request 요청당 하나씩 생성되고, 끝나는 시점에 소멸된다
+public class MyLogger {
+
+    private String uuid;
+    private String requestURL;
+
+    public void setRequestURL(String requestURL) {
+        this.requestURL = requestURL;
+    }
+
+    public void log(String message){
+        System.out.println("[" + uuid + "]" + "[" + requestURL + "]" + "[" + message + "]");
+    }
+
+    @PostConstruct
+    public void init(){
+        uuid = UUID.randomUUID().toString(); // 유일한 값이 생성된다
+        System.out.println("[" + uuid + "] request scope bean create:" + this);
+    }
+
+    @PreDestroy
+    public void close(){
+        System.out.println("[" + uuid + "] request scope bean close:" + this);
+    }
+}
+
+// 컨트롤러
+@Controller
+@RequiredArgsConstructor
+public class LogDemoController {
+
+    private final LogDemoService logDemoService;
+
+    // MyLogger빈은 요청이 들어와야 생성되기 때문에 애플리케이션 생성 시점에는 생성되지 않는다
+    // 그래서 MyLogger를 바로 주입 받으면 없기 때문에 오류나서 빈을 찾아주는 ObjectProvider로 MyLogger를 감싸서 주입받는다
+    private final ObjectProvider<MyLogger> myLoggerProvider;
+
+    @RequestMapping("/log-demo")
+    @ResponseBody
+    public String logDemo(HttpServletRequest request){
+        String requestURL = request.getRequestURI().toString();
+        MyLogger myLogger = myLoggerProvider.getObject();
+        myLogger.setRequestURL(requestURL);
+
+        myLogger.log("controller test");
+        logDemoService.logic("testId");
+        return "OK";
+    }
+}
+
+// 서비스
+@Service
+@RequiredArgsConstructor
+public class LogDemoService {
+
+    private final ObjectProvider<MyLogger> myLoggerProvider;
+    public void logic(String id) {
+        MyLogger myLogger = myLoggerProvider.getObject();
+        myLogger.log("service id = " + id);
+    }
+}
+
+// 1. 애플리케이션 실행
+// 2. log-demo 요청 시 MyLogger 빈 생성 -> 빈의 생명주기에 따라 초기화 메서드가 실행되어 uuid 생성됨
+// 3. 컨트롤러의 ObjectProvider가 생성된 MyLogger를 가져옴
+// 4. HttpServletRequest에 들어있는 요청 url을 받아 myLogger 에 세팅
+// 5. log() 메서드로 세팅된 uuid와 url을 출력
+// 6. 서비스 계층에서 MyLogger를 가져올 땐 컨트롤러에서 세팅이 된 MyLogger빈을 가져옴
+// 7. 서비스 게층의 logic() 실행
+```
 
 ### 제어의 역전 IOC(Inversion Of Control)
 
