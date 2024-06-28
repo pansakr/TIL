@@ -295,7 +295,7 @@ class 싱글톤 빈{
     }
 }
 
-// ObjectProvider - 빈을 찾아주는 객체
+// ObjectProvider - 스프링 컨테이너에 빈을 요청해주는 인터페이스
 
 // 싱글톤 빈이 클라이언트 빈을 직접 주입받지 않는다
 
@@ -380,6 +380,38 @@ public class LogDemoService {
 // 6. 서비스 계층에서 MyLogger를 가져올 땐 컨트롤러에서 세팅이 된 MyLogger빈을 가져옴
 // 7. 서비스 게층의 logic() 실행
 ```
+
+* ObjectProvider 대신 프록시 사용
+
+```
+// logger 클래스
+@Component
+@Scope(value = "request", proxyMode = ScopedProxyMode.TAGRET_CLASS)
+public class MyLogger{}
+
+@Controller
+@RequiredArgsConstructor
+public class LogDemoController {
+
+    // 프록시 사용으로 ObjectProvider 미사용 . @Service도 마찬가지
+    private final MyLogger myLogger;
+}
+
+// 적용 대상이 클래스면 TAGRET_CLASS, 인터페이스면 INTERFACES 선택
+```
+* 이렇게 하면 애플리케이션 생성 시점에 Http 요청과 상관없이 MyLogger의 가짜 프록시 객체를 만들어 다른 빈에 주입해 둘 수 있다.
+
+#### 프록시 객체 사용 원리
+
+* @Scope의 proxyMode = ScopedProxyMode.TAGRET_CLASS 옵션을 사용하면 스프링 컨테이너는 CGLIB라는 바이트 코드를 조작하는 라이브러리를 사용해서 MyLogger를 상속받은 가짜 프록시 객체를 생성한다
+
+* 그리고 스프링 컨테이너에 내가 만든 MyLogger 클래스가 아닌 스프링에서 만든 가짜 객체를 대신 빈으로 등록한다
+
+* 의존관계 주입도 가짜 프록시 객체가 주입된다
+
+* 가짜 프록시 객체는 요청이 오면 그때 내부에서 진짜 빈을 요청하는 위임 로직이 들어있다.
+
+* 가짜 프로시 객체는 실제 request scope와는 관계가 없다. 내부에 단순 위임 로직만 있고, 싱글톤처럼 동작한다
 
 ### 제어의 역전 IOC(Inversion Of Control)
 
