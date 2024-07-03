@@ -110,9 +110,13 @@ Path Parameter = (value = "/user/{type}/id/{id}")
 
 #### @Requestbody
 
-* http request 에서 body의 json,xml,text 데이터를 java 객체로 변환해 받는다.
+* http request body의 json,xml,text 데이터를 읽어 String이나 자바 객체로 받는다
 
-* 요청 body 값의 미디어 타입을 확인하고 타입에 맞는 HttpMessageConverter를 통해 java 객체로 변환된다.
+* String으로 받으면 이후 타입을 바꿔주는 라이브러리(ojbectMapper(json) 등 받은 타입에 따라 다른 라이브러리 사용)를 사용해 자바 객체로 바꿔줘야 한다
+
+* 자바 객체로 받으면 스프링의 HttpMessageConveter가 자동으로 자바 객체로 변환해준다
+
+* HttpMessageConveter는 요청 body 값의 미디어 타입을 확인하고 타입에 맞는 HttpMessageConverter를 통해 java 객체로 변환된다.
 
 * @Requestbody를 사용할 객체는 @Getter 과 기본 생성자가 필요하다.
 
