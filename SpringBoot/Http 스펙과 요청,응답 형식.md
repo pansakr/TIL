@@ -51,6 +51,37 @@ Connection: keep-alive
 * Response header 에는 웹서버가 웹브라우저에 응답하는 메시지가 들어있고, 
 * Reponse body에 데이터 값이 들어가있다.
 
+### 클라이언트에서 서버로 요청 데이터를 전달하는 방법
+
+#### GET - 쿼리 파라미터
+
+* 메시지 바디 없이 url의 쿼리 파라미터에 데이터를 포함해서 전달
+
+* 쿼리 파라미터 - url뒤에 ?를 붙이고 '파라미터 = 값' 형식으로 넘길 데이터를 붙이고, 여러개를 넘길 경우 파라미터 뒤에 &를 붙여 구분하는 방법
+
+* ex) /url?age=20&phone=01011112222
+
+* 검색, 필터, 페이징 등에서 사용
+
+
+#### POST - HTML Form
+
+* HTML form의 헤더 타입 - content-type: application/x-www-form-urlencoded
+
+* 메시지 바디에 쿼리 파라미터 형식으로 전달
+
+* 회원가입, 주문 등에서 사용
+
+
+#### Http message body에 데이터를 직접 담아서 요청
+
+* HTTP API에서 주로 사용. JSON< XML< TEXT
+
+* 주로 JSON 형식을 사용
+
+* HTTP METHOD - POST, PUT, PATCH
+  
+
 ### 스프링에서 http Request의 데이터를 받는 방법
 
 #### @PathVariable
