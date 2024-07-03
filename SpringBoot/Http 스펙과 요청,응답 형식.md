@@ -75,7 +75,7 @@ Connection: keep-alive
 
 #### Http message body에 데이터를 직접 담아서 요청
 
-* HTTP API에서 주로 사용. JSON< XML< TEXT
+* HTTP API에서 주로 사용. JSON, XML, TEXT
 
 * 주로 JSON 형식을 사용
 
