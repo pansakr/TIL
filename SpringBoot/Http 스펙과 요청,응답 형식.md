@@ -1,15 +1,59 @@
-### content-type 
+### Http 스펙
+
+#### Http Request
+```
+// 첫째줄 - 요청라인(http 메서드)
+POST /create-developer HTTP/1.1
+// 둘째줄부터 줄바꿈 이전까지 - 헤더
+Content-Type: application/json
+Accept: application/json
+
+// 줄바꿈 이후 - 요청 바디 
+{
+  "developerLevel": "JUNIOR",
+  "developerSkillType": "FULL_STACK",
+  "experienceYears": 2,
+  "memberId": "sunny.flower",
+  "name": "sun",
+  "age": 36
+}
+```
+#### Http Response 
+```
+// 첫째줄 - 응답 상태코드
+HTTP/1.1 200 OK
+// 둘째줄부터 줄바꿈 전까지 - 헤더
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 17 Jul 2021 15:33:34 GMT
+Keep-Alive: timeout=60
+Connection: keep-alive
+
+// 줄바꿈 이후 - 응답 바디
+{
+  "developerLevel": "JUNIOR",
+  "developerSkillType": "FULL_STACK",
+  "experienceYears": 2,
+  "memberId": "sunny.flo1wer",
+  "name": "sun",
+  "age": 36
+}
+```
+
+#### content-type 
 
 * http 메시지 바디의 데이터 형식을 지정
 * body에 담긴 데이터가 어떤 타입의 데이터인지 설명
 
-### http header, body
+#### http header, body
 * http header에는 (요청/응답)에 대한 요구사항이
 * http body에는 그 내용이 적혀있고,
 * Response header 에는 웹서버가 웹브라우저에 응답하는 메시지가 들어있고, 
 * Reponse body에 데이터 값이 들어가있다.
 
-### @PathVariable
+### 스프링에서 http Request의 데이터를 받는 방법
+
+#### @PathVariable
 
 * url에 포함되어 오는 가변 데이터를 사용하기 위한 어노테이션
 
@@ -22,7 +66,7 @@ Path Parameter = (value = "/user/{type}/id/{id}")
 * uri에 반드시 데이터가 있어야 경로가 완성되기 때문에 선택적 데이터인 경우(데이터가 없을수도 있는) 사용하지 않는다.
 
 
-### @ModelAttribute
+#### @ModelAttribute
 
 * http 파라미터를 특정 java 객체에 바인딩한다.
 
@@ -33,7 +77,7 @@ Path Parameter = (value = "/user/{type}/id/{id}")
 * @ModelAttribute를 사용할 객체는 생성자나 @Setter가 필요하다
 
 
-### @Requestbody
+#### @Requestbody
 
 * http request 에서 body의 json,xml,text 데이터를 java 객체로 변환해 받는다.
 
