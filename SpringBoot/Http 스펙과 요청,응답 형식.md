@@ -123,9 +123,13 @@ Path Parameter = (value = "/user/{type}/id/{id}")
 
 ### HttpMessageConveter
 
+* HTTP 요청이나 응답 시 body에 데이터를 직접 보내거나 받는 경우(http api) 해당 데이터의 변환을 위해 스프링 mvc에서 자동 적용되는 인터페이스
+
+* @RestController, @RequestBody, @ResponsBody, HttpEntity(RequestEntity), HttpEntity(ResponseEntity) 사용시 자동 적용   
+
 * 클라이언트에서 서버로 http request body에 JSON 형식의 데이터를 담아 전송했을때 Java에서는 해당 JSON 형식의 데이터를 받기 위해서 JSON -> Java Object로의 변환이 필요하다.
 
-* 컨트롤러에 @RestControoler 어노테이션이 있다면 자바의 HttpMessageConverter가 json으로 전송된 데이터를 자바 객체로 변환한다. 
+* 컨트롤러에 @RestController 어노테이션이 있다면 자바의 HttpMessageConverter가 json으로 전송된 데이터를 자바 객체로 변환한다. 
 
 * 마찬가지로 요청된 데이터를 처리 후, 서버에서 클라이언트로 다시 응답 데이터 responseBody를 보낼 때도 Java Object에서 JSON 또는 XML 같은 형식으로의 변환이 필요하다. 
 
