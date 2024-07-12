@@ -101,6 +101,8 @@ Path Parameter = (value = "/user/{type}/id/{id}")
 
 * http 파라미터를 특정 java 객체에 바인딩한다.
 
+* 바인딩한 객체에 model.addAttribute("item", item)를 자동으로 해주기도 해서 view로 리턴시 데이터가 전달된다
+
 * query string형태나 http body의 form-data형식을 처리한다. json데이터는 처리할 수 없다.
 
 * query string및 form 형식이 아닌 데이터는 처리할 수 없다.
