@@ -93,4 +93,4 @@ label.item.itemName=상품명
 
 * th:if 에서 null 반환시 실패 처리되어 해당 태그가 렌더링 되지 않는다
 
-* StringUtils 설명 - 
+* StringUtils 설명 - https://github.com/pansakr/TIL/blob/main/SpringBoot/%EC%9C%A0%ED%8B%B8%20%ED%81%B4%EB%9E%98%EC%8A%A4/StringUtils.md
