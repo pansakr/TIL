@@ -79,11 +79,13 @@ label.item.itemName=상품명
         <!--label.item.itemName은 국제화 설정파일 값 사용-->
         <label for="itemName" th:text="#{label.item.itemName}">상품명</label>
 
-        <!--errors객체에 'itemName' 이 있으면 html tag class를 form-control field-error(예외 전용 css, html 설정), 없으면 form-control(정상) 으로 바꿔준다-->
+         <!--errors객체에 'itemName' 이 있으면 html tag class를 form-control field-error(예외 전용 css, html 설정), 없으면 form-control(정상) 으로 바꿔준다-->
          <input type="text" id="itemName" th:field="*{itemName}"
                 th:class="${errors?.containsKey('itemName')} ? 'form-control field-error' : 'form-control'"
                  class="form-control" placeholder="이름을 입력하세요">
-          <div class="field-error" th:if="${errors.containsKey('itemName')}" th:text="${errors['itemName']}">
+
+         <!--errors객체에 'itemName' 이 있으면 itemName의 값을 입력, 없다면 div 태그 렌더링 되지 않음-->    
+         <div class="field-error" th:if="${errors?.containsKey('itemName')}" th:text="${errors['itemName']}">
                상품명 오류
         </div>
       </div>
