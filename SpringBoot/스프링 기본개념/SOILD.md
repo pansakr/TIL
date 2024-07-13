@@ -31,3 +31,65 @@
 ### DIP 의존관계 역전 원칙(Dependency inversion principle)
 
 * 구현 클래스에 의존하지 말고 인터페이스에 의존해야 한다
+
+
+### 어떻게 ocp, dip를 지킬 수 있는가?
+
+```java
+
+interface BBB{}
+class bbb implements BBB{}
+class bbb2 implements BBB{}
+
+// aaa 클래스에서 BBB인터페이스를 구현한 bbb클래스를 사용 == 의존한다. 
+public class aaa implements AAA{
+
+    // 다형성을 활용해 DIP를 지키려고 했다
+    // 그러나 BBB 인터페이스, bbb 구현체 모두를 의존하기에 DIP를 지키지 못했다
+    // private final BBB b = new bbb(); 
+
+    // 인터페이스만 선언해 DIP를 지켰다.
+    // 그러나 구현체가 없어 사용할 수 없다.
+    private final BBB bb;
+}
+```
+
+* 위 상황에서 DIP를 지키려면 객체 생성, 연결에 관한 로직을 분리해 처리해야 한다.
+
+
+```java
+
+interface BBB{}
+class bbb implements BBB{} 
+class bbb2 implements BBB{}
+
+public class aaa implements AAA{
+
+    private final BBB bb;
+
+    // 생성자 추가
+    public aaa(BBB b){
+        this.bb = b;
+    }
+}
+
+// 객체를 대신 생성하고 연결해주는 설정 클래스
+public class AppConfig {
+
+    // 구현체 변경 가능 
+    public BBB config1(){
+        return new aaa(new bbb());
+        // return new aaa(new bbb2());
+    }
+}
+```
+
+* AppConfig가 객체 생성, 연결을 대신해 준다
+
+* aaa 클래스 입장에서는 의존관계를 외부에서 주입해주는것 같다고 해서 의존관계 주입 또는 의존성 주입이라 한다
+
+* aaa 클래스는 생성자를 통해 어떤 구현객체가 들어올지(주입될지) 모른다.
+
+* aaa 클래스의 생성자를 통해 어떤 구현객체를 주입할지는 AppConfig에서 결정하고 aaa는 실행에만 집중하면 된다
+
+* 기능을 변경하고 싶다면 부품을 갈아끼우듯이 AppConfig에서 다른 구현체로 변경해주기만 하면 된다.
