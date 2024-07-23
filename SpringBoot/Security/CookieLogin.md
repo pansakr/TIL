@@ -1,6 +1,6 @@
 ### 쿠키 로그인
 
-* 쿠키(https://github.com/pansakr/TIL/blob/main/SpringBoot/%EC%8A%A4%ED%94%84%EB%A7%81%20%EA%B8%B0%EB%B3%B8%EA%B0%9C%EB%85%90/%EC%84%B8%EC%85%98%2C%20%EC%BF%A0%ED%82%A4.md) 
+* [쿠키란?](https://github.com/pansakr/TIL/blob/main/SpringBoot/%EC%8A%A4%ED%94%84%EB%A7%81%20%EA%B8%B0%EB%B3%B8%EA%B0%9C%EB%85%90/%EC%84%B8%EC%85%98%2C%20%EC%BF%A0%ED%82%A4.md) 
 
 ```java
 @Controller
