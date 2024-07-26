@@ -31,3 +31,73 @@ public interface HandlerInterceptor {
 
 }
 ```
+
+### InterCeptor 사용 방법
+
+```java
+// HandlerInterceptor 구현
+@Slf4j
+public class LoginInterceptor implements HandlerInterceptor {
+
+    public static final String LOG_ID = "logId";
+
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
+        String requestURI = request.getRequestURI();
+        String uuid = UUID.randomUUID().toString();
+
+        // 인터셉터는 호출 시점이 완전히 분리되어 있어 preHandle 에서 지정한 값을 postHandle, afterCompletion 사용하려면 어딘가에 담아두어야 한다.
+        // LogInterceptor 도 싱글톤 처럼 사용되기 때문에 맴버변수를 사용하면 위험하다.
+        // 따라서 request 에 담아두었다. 이 값은 afterCompletion 에서 request.getAttribute(LOG_ID) 로 찾아서 사용한다
+        request.setAttribute(LOG_ID, uuid);
+
+
+        if(handler instanceof HandlerMethod){
+
+            //호출할 컨트롤러 메서드의 모든 정보가 포함되어 있다.
+            HandlerMethod hm = (HandlerMethod) handler;
+        }
+
+        log.info("REQUEST [{}][{}][{}]", uuid, requestURI, handler);
+
+        // true 면 정상 호출. 다음 인터셉터나 컨트롤러가 호출된다.
+        return true;
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        log.info("postHandle [{}]", modelAndView);
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+
+        String requestURI = request.getRequestURI();
+        String logId = (String) request.getAttribute(LOG_ID);
+        log.info("RESPONSE [{}][{}][{}]", logId, requestURI, handler);
+
+        if (ex != null){
+            log.error("afterCompletion error!!", ex);
+        }
+    }
+}
+```
+```java
+// 인터셉터 등록
+@Configuration
+public class WebConfig implements WebMvcConfigurer { // WebMvcConfigurer 구현
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+
+        // 인터셉터 등록
+        registry.addInterceptor(new LoginInterceptor())
+                // 호출 순서 지정. 낮을수록 먼저 호출
+                .order(1)
+                // 인터셉터를 적용할 URL 패턴 지정
+                .addPathPatterns("/**")
+                // 인터셉터에서 제외할 패턴 지정
+                .excludePathPatterns("/css/**", "/*ico", "/error");
+    }
+```
