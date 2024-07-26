@@ -26,3 +26,69 @@ public interface Filter {
 // doFilter(): 고객의 요청이 올 때 마다 해당 메서드가 호출된다. 필터의 로직을 구현하면 된다.
 // destroy(): 필터 종료 메서드, 서블릿 컨테이너가 종료될 때 호출된다.
 ```
+
+### Filter 사용방법
+
+```java
+// 사용할 필터 작성
+// 필터를 사용하기 위해 필터 인터페이스 구현
+@Slf4j
+public class LogFilter implements Filter {
+
+  @Override
+  public void init(FilterConfig filterConfig) throws ServletException {
+  log.info("log filter init");
+  }
+
+  // HTTP 요청이 오면 doFilter 가 호출됨
+  // ServletRequest request 는 HTTP 요청이 아닌 경우까지 고려해서 만든 인터페이스다
+  // HTTP를 사용하면 아래와 같이 다운 케스팅해 사용
+  @Override
+  public void doFilter(ServletRequest request, ServletResponse response,
+                            FilterChain chain) throws IOException, ServletException {
+
+      HttpServletRequest httpRequest = (HttpServletRequest) request;
+
+      String requestURI = httpRequest.getRequestURI();
+
+      // HTTP 요청을 구분하기 위해 요청당 uuid 생성
+      String uuid = UUID.randomUUID().toString();
+
+      try {
+        log.info("REQUEST [{}][{}]", uuid, requestURI);
+
+        // 다음 필터가 있으면 필터를 호출하고, 필터가 없으면 서블릿을 호출
+        // 이 로직을 호출하지 않으면 다음 단계로 진행되지 않아 서블릿이 호출되지 않는다
+        chain.doFilter(request, response);
+        } catch (Exception e) {
+          throw e;
+        } finally {
+          log.info("RESPONSE [{}][{}]", uuid, requestURI);
+        }
+  }
+
+  @Override
+  public void destroy() {
+    log.info("log filter destroy");
+  }
+}
+```
+```java
+// 스프링 부트 사용시 FilterRegistrationBean 를 사용해서 필터 등록
+@Configuration
+public class WebConfig {
+
+    @Bean
+    public FilterRegistrationBean logFilter(){
+        FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();
+        // 등록할 필터를 지정
+        filterRegistrationBean.setFilter(new LogFilter());
+        // 필터는 체인으로 동작하기 때문에 순서가 필요하다. 낮을 수록 먼저 동작
+        filterRegistrationBean.setOrder(1);
+        // 필터를 적용할 url 패턴. 여러 패턴을 지정할 수 있다
+        filterRegistrationBean.addUrlPatterns("/*");
+
+        return filterRegistrationBean;
+    }
+}
+```
