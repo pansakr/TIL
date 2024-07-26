@@ -29,11 +29,11 @@ public interface Filter {
 
 ### Filter 사용방법
 
+* 로그 필터
+
 ```java
-// 사용할 필터 작성
-// 필터를 사용하기 위해 필터 인터페이스 구현
 @Slf4j
-public class LogFilter implements Filter {
+public class LogFilter implements Filter { // 필터를 사용하기 위해 필터 인터페이스 구현
 
   @Override
   public void init(FilterConfig filterConfig) throws ServletException {
@@ -89,6 +89,98 @@ public class WebConfig {
         filterRegistrationBean.addUrlPatterns("/*");
 
         return filterRegistrationBean;
+    }
+}
+```
+
+* 로그인 필터
+
+```java
+@Slf4j
+public class LoginCheckFilter implements Filter {
+
+    // 화이트 리스트에 해당하는 URL은 인증 체크X
+    private static final String[] whitelist = {"/", "/members/add", "/login", "/logout", "/css/*"};
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        String requestURI = httpRequest.getRequestURI();
+
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
+
+        try {
+            log.info("인증 체크 필터 시작{}", requestURI);
+
+            if(isLoginCheckPath(requestURI)){
+
+                log.info("인증 체크 로직 실행{}", requestURI);
+
+                HttpSession session = httpRequest.getSession(false);
+
+                if(session == null || session.getAttribute(SessionConst.LOGIN_MEMBER) == null){
+
+                    log.info("미인증 사용자 요청 {}", requestURI);
+
+                    // 로그인으로 redirect
+                    // redirect할때 사용자가 요청했던 url을 붙여준다
+                    // 어떤 문제로 url에 접근하지 못했을때(여기선 로그인) 문제를 해결하면 자동으로 해당 url로 이동되게 하기 위함  
+                    httpResponse.sendRedirect("/login?redirectURL=" + requestURI);
+                    return;
+                }
+            }
+            chain.doFilter(request, response);
+
+        } catch (Exception e){
+            // 예외 로깅 가능 하지만, 톰캣까지 예외를 보내주어야 함
+            throw e;
+        } finally {
+            log.info("인증 체크 필터 종료{}", requestURI);
+        }
+    }
+
+    /**
+     * 화이트 리스트의 경우 인증 체크X
+     */
+    private boolean isLoginCheckPath(String requestURI){
+        return !PatternMatchUtils.simpleMatch(whitelist, requestURI);
+    }
+}
+```
+```java
+// 필터 등록
+@Configuration
+public class WebConfig {
+
+    @Bean
+    public FilterRegistrationBean logCheckFilter(){
+        FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();
+        filterRegistrationBean.setFilter(new LoginCheckFilter());
+        filterRegistrationBean.setOrder(2);
+        filterRegistrationBean.addUrlPatterns("/*");
+
+        return filterRegistrationBean;
+    }
+}
+```
+```java
+@Controller
+public class LoginController{
+
+    // filter에서 로그인 하지 않은 사용자가 인증이 필요한 페이지에 접근시 사용자가 요청한 url을 포함시켜 get: /login으로 리다이렉트 시키고,
+    // 리다이렉트 된 로그인 페이지에서 로그인 시 로그인 정보와, 사용자가 요청한 url이 post: /login으로 넘어온다 
+    @PostMapping("/login")
+    public String loginV4(@Valid @ModelAttribute LoginForm form, BindingResult bindingResult,
+                          @RequestParam(defaultValue = "/") String redirectURL, // defaultValue - 사용자가 요청한 url이 없을때 기본값 설정
+                          HttpServletRequest request){
+        // 검증..
+
+        // 로그인 처리..
+
+        // 사용자가 요청한 url로 리다이렉트
+        // 로그인 성공했으니 사용자가 접근하지 못했던 페이지로 보내준다
+        return "redirect:" + redirectURL;
     }
 }
 ```
