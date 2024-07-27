@@ -32,12 +32,12 @@ public interface HandlerInterceptor {
 }
 ```
 
-### InterCeptor 사용 방법
+### Interceptor 사용 방법
 
 ```java
-// HandlerInterceptor 구현
+// log 기록용 인터셉터
 @Slf4j
-public class LoginInterceptor implements HandlerInterceptor {
+public class LoginInterceptor implements HandlerInterceptor {  // HandlerInterceptor 구현
 
     public static final String LOG_ID = "logId";
 
@@ -99,5 +99,46 @@ public class WebConfig implements WebMvcConfigurer { // WebMvcConfigurer 구현
                 .addPathPatterns("/**")
                 // 인터셉터에서 제외할 패턴 지정
                 .excludePathPatterns("/css/**", "/*ico", "/error");
+    }
+```
+
+###  Interceptor로 인증 체크
+
+```java
+@Slf4j
+public class LoginCheckInterceptor implements HandlerInterceptor {
+
+    // 인증은 컨트롤러 전에만 호출하면 되기 때문에 preHandle만 구현
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
+        String requestURI = request.getRequestURI();
+
+        log.info("인증 체크 인터셉터 실행", requestURI);
+
+        HttpSession session = request.getSession();
+
+        if (session == null || session.getAttribute(SessionConst.LOGIN_MEMBER) == null){
+            log.info("미인증 사용자 요청");
+
+            response.sendRedirect("/login?redirectURL=" + requestURI);
+            return false;
+        }
+        return true;
+    }
+}
+```
+```
+// 로그인 인터셉터 등록
+@Configuration
+public class WebConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+
+        registry.addInterceptor(new LoginCheckInterceptor())
+                .order(2)
+                .addPathPatterns("/**")
+                .excludePathPatterns("/", "/members/add", "/login", "/logout", "/css/**", "/*.ico", "/error");
     }
 ```
