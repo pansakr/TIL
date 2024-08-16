@@ -175,3 +175,33 @@ public class WebConfig implements WebMvcConfigurer {
     }
 }
 ```
+
+* 지금까지는 ExceptionResolver 를 직접 구현한 것이고, 스프링이 제공하는 ExceptionResolver 를 사용하면 더 쉽게 예외처리를 할 수 있다
+
+### 스프링이 제공하는 ExceptionResolver 종류
+
+* 1.ExceptionHandlerExceptionResolver - api 예외 처리
+
+* 2.ResponseStatusExceptionResolver - http 상태 코드 지정
+```java
+// BadRequestException 발생시 404 코드가 응답됨
+@ResponseStatus(value = HttpStatus.NOT_FOUND)
+public class BadRequestException extends RuntimeException {
+}
+```
+
+* 3.DefaultHandlerExceptionResolver - 스프링 내부 예외 처리
+```
+파라미터 바인딩 시점에 타입이 맞지 않으면 TypeMismatchException 이 발생하고 서블릿 컨테이너까지 예외가 올라가 다시 내부 재요청해 500 오류가 발생한다
+
+그런데 파라미터 바인딩은 클라이언트가 요청 정보를 잘못 호출해서 발생하는 문제로 이럴 때는 상태코드 400을 사용하게 되어있다
+
+스프링의 DefaultHandlerExceptionResolver 는 이것을 500이 아니라 400으로 변경해준다
+
+내부를 보면 response.sendError(HttpServletResponse.SC_BAD_REQUEST) (400) 로 response.sendError() 를 통해 문제를 해결한다
+
+// 예외 흐름
+컨트롤러(예외 발생) -> ExceptionResolver -> response.sendError(...) -> was까지 응답 후 was가 다시 오류 페이지(/error) 내부 요청 -> 최종 응답
+```
+
+* 우선 순위는 1 -> 2 -> 3 이다
