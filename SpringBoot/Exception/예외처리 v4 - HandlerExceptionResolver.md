@@ -1,8 +1,8 @@
-### ExceptionResolver
+### HandlerExceptionResolver
 
 * 컨트롤러에서 발생한 예외를 처리해주는 인터페이스
 
-* ExceptionResolver를 구현한 클래스를 등록하면 예외 발생 시 해당 클래스가 예외를 처리 후 DispatcherServlet 으로 응답한다
+* HandlerExceptionResolver를 구현한 클래스를 등록하면 예외 발생 시 해당 클래스가 예외를 처리 후 DispatcherServlet 으로 응답한다
 
 * 응답값에는 빈 ModelAndView, ModelAndView 지정, null 이 있다
 
@@ -81,11 +81,11 @@ public class WebConfig implements WebMvcConfigurer {
 }
 ```
 
-### ExceptionResolver 활용
+### HandlerExceptionResolver 활용
 
 * 지금까지는 예외가 발생하면 was까지 전달되고, was에서 오류 페이지 정보를 찾아 내부적으로 다시 재요청했다
 
-* ExceptionResolver 를 활용하면 예외를 was로 전달하지 않고 해결할 수 있다
+* HandlerExceptionResolver 를 잘 활용해 예외를 was로 전달하지 않고 해결할 수 있다
 
 ```
 // ExceptionResolver 미사용시 예외 흐름
