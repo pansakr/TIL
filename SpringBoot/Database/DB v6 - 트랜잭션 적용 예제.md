@@ -139,3 +139,13 @@ public class MemberServiceV2 {
         assertThat(findMemberB.getMoney()).isEqualTo(10000);
     }
 ```
+
+### 이 방법의 문제점
+
+* jdbc 구현 기술은 repository 계층에서만 사용되야 하지만 트랜잭션 적용 때문에 강제로 서비스 계층에서 사용된다. 
+
+* 트랜잭션을 유지하기 위해 커넥션을 파라미터로 넘겨야 해서 똑같은 기능도 트랜잭션용과 아닌 것 2가지를 만들어야 한다
+
+* repository 계층의 jdbc 구현 기술 예외가 서비스 계층으로 전파된다
+
+* jdbc 반복 문제. try, catch, finally 
