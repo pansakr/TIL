@@ -31,7 +31,7 @@
 
 #### Method 영역
 
-* static 메소드, 변수 등을 저장한다.
+* static 메소드, static 변수 등을 저장한다.
 
 * static 메서드 내부에 static 변수는 만들지 못한다.
 
