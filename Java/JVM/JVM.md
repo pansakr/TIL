@@ -145,21 +145,6 @@
 
 * java는 이 가비지 컬렉터를 이용해 자동으로 메모리를 실시간 최적화 시켜준다.
 
-
-
-### jvm 실행 과정
-
-* 자바 프로그램을 실행하면 jvm은 os로부터 메모리를 할당받는다.
-
-* 자바 컴파일러가 .java파일(작성한 소스코드)을 .class(바이트 코드)로 컴파일 한다.
-
-* Class Loader는 동적 로딩을 통해 필요한 클래스(.class로 변환된 바이트 코드)들을 Runtime Data Area에 올린다.
-
-* Runtime Data Area에 로딩된 바이트 코드는 Execution Engine을 통해 해석된다.
-
-* 이 과정에서 Execution Engine에 의해 Garbage Collector의 작동과 Thread 동기화가 이루어진다.
-
-
 ### 자바 프로그램을 모든 os에서 실행할 수 있는 이유
 
 * 윈도우용 프로그램은 다른 os에서 실행이 불가능 -> os 명령어가 다르기 때문 
