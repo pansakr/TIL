@@ -4,7 +4,7 @@
 
 ### 자바의 락
 
-* 모니터를 구현 중 하나로, 동기화 메커니즘을 제공하는 실제 도구
+* 모니터의 구현 중 하나로, 동기화 메커니즘을 제공하는 실제 도구
 
 * 락은 객체 단위로 적용되기 때문에 하나의 클래스 내부에 동기화 메서드가 둘 이상 있으면 동시에 실행되지 못한다
 
@@ -85,4 +85,109 @@ public static void main(String[] args) {
               new SoldierRun(s, phoneBooth)
           ).start());
     }
+```
+
+* 생산자와 소비자 예제
+
+```java
+// takeout(), fill() 메서드는 동시에 실행되지 못한다
+// 하나의 메서드가 실행중이라면 다른 스레드들은 대기해야 한다 
+public class CoffeeMachine {
+
+    final int CUP_MAX = 10;
+    int cups = CUP_MAX;
+
+    synchronized public void takeout (CustomerRun customer) {
+        if (cups < 1) {
+            System.out.printf(
+                    "[%d] 😭 %s 커피 없음%n", cups, customer.name
+            );
+        } else {
+            try { Thread.sleep(1000);
+            } catch (InterruptedException e) {}
+
+            System.out.printf(
+                    "[%d] ☕️ %s 테이크아웃%n", cups, customer.name
+            );
+            cups--;
+        }
+
+        notifyAll();
+        try { wait();
+        } catch (InterruptedException e) {}
+    }
+
+    synchronized public void fill () {
+        if (cups > 3) {
+            System.out.printf(
+                    "[%d] 👌 재고 여유 있음...%n", cups
+            );
+        } else {
+            try { Thread.sleep(1000);
+            } catch (InterruptedException e) {}
+
+            System.out.printf(
+                    "[%d] ✅ 커피 채워넣음%n", cups
+            );
+            cups = CUP_MAX;
+        }
+
+        notifyAll();
+        try { wait(); // 커피를 채우고 나감
+        } catch (InterruptedException e) {}
+    }
+}
+```
+```java
+// 고객 - 소비자
+public class CustomerRun implements Runnable{
+    String name;
+    CoffeeMachine coffeeMachine;
+
+    public CustomerRun(String name, CoffeeMachine coffeeMachine) {
+        this.name = name;
+        this.coffeeMachine = coffeeMachine;
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            coffeeMachine.takeout(this);
+        }
+    }
+}
+```
+```java
+// 카페 매니저 - 생산자
+public class ManagerRun implements Runnable{
+    CoffeeMachine coffeeMachine;
+    public ManagerRun(CoffeeMachine coffeeMachine) {
+        this.coffeeMachine = coffeeMachine;
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            coffeeMachine.fill();
+        }
+    }
+}
+```
+```java
+// main
+public class Main {
+
+    public static void main(String[] args) {
+
+        CoffeeMachine coffeeMachine = new CoffeeMachine();
+
+        Arrays.stream("철수,영희,돌준,병미,핫훈,짱은,밥태".split(","))
+                .forEach(s -> new Thread(
+                        new CustomerRun(s, coffeeMachine)
+                ).start()); // 고객 - 소비자 스레드 7개 실행
+
+        // 카페 매니저 - 생산자 스레드 1개 실행
+        new Thread(new ManagerRun(coffeeMachine)).start();
+    }
+}
 ```
