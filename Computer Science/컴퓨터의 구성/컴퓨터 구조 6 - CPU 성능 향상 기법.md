@@ -66,4 +66,6 @@
 
     - 명령어 처리 과정을 보통 인출 -> 해석 -> 실행 -> 저장으로 본다
 
-    - CPU가 이 과정들을 겹치지 실행하는 것
+    - CPU가 이 과정들을 겹치지 않게 실행하는 것
+
+<img src="https://github.com/user-attachments/assets/d30fb02c-f462-40cc-bc92-d903ea0ffe56">
