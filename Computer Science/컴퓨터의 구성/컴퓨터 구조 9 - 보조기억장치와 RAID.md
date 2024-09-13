@@ -146,7 +146,7 @@
  
     - 새로운 데이터가 저장될 때마다 페리티를 저장하는 디스크에도 데이터를 쓰게 되므로 발생하는 병목을 현상 해소하는 방법이다
  
-    <img src="5">
+    <img src="https://github.com/user-attachments/assets/cf44d519-bd99-4093-a2e5-c4854f47284e">
 
 * RAID 6 (이중 패리티)
 
