@@ -507,7 +507,7 @@ public class AopTest {
 
             - joinPoint.proceed() 를 사용하지 않아도 자동으로 다음 타겟이 호출된다
 
-            - 예외 발생 시 다읔 코드가 호출되지는 않는다
+            - 예외 발생 시 다음 코드가 호출되지는 않는다
 
     - @AfterReturing
 
