@@ -19,6 +19,7 @@
 * 삭제 - 삭제된 상태. 엔티티를 영속성 컨텍스트와 데이터베이스에서 삭제한다
 
 ```java
+EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpabook")
 EntityManager em = emf.createEntityManager();
 em.getTransaction().begin();
 
@@ -29,15 +30,16 @@ member.setId("member1");
 
 member.setUsername(“회원1”);
 
-//객체를 저장한 상태(영속)
+// 객체를 저장한 상태(영속)
 em.persist(member);
 
-//회원 엔티티를 영속성 컨텍스트에서 분리, 준영속 상태
+// 회원 엔티티를 영속성 컨텍스트에서 분리, 준영속 상태
 em.detach(member);
 
-//객체를 삭제한 상태(삭제)
+// 객체를 삭제한 상태(삭제)
 em.remove(member);
 
+// 이 시점에 DB에서 변경사항에 대한 SQL이 실행됨  
 tx.commit();
 ```
 
@@ -74,13 +76,9 @@ Member b = em.find(Member.class, "member1");
 
 *동등성 - 인스턴스는 다를 수 있지만 인스턴스가 가지고 있는 값이 같다
 
-### 엔티티 등록, 쓰기 지연 sql 저장소
+* 영속성 컨텍스트의 1차 캐시를 활용한 find()
 
-* 엔티티 매니저로 데이터 변경시 트랜잭션을 시작해야 한다
-
-* 트랜잭션 시작 후 저장, 수정, 삭제를 하면 변경사항이 영속성 컨텍스트 내부의 1차캐시 영역의 엔티티에 적용된다
-
-  - find() 를 호출했는데 1차 캐시에서 데이터를 가져온 경우 JPA 설정 파일에 hibernate.show_sql 이 있어도 로그에 SELECT 로그가 남지 않는다
+  - find()를 호출했는데 1차 캐시에서 데이터를 가져온 경우 JPA 설정 파일에 hibernate.show_sql 이 있어도 로그에 SELECT 로그가 남지 않는다
  
   - DB에 접근하지 않고, 영속성 컨텍스트의 1차 캐시에서 가져왔으므로 SELECT를 실행하지 않은 것이기 때문에 SELECT 로그 미출력
 
@@ -97,9 +95,15 @@ Member b = em.find(Member.class, "member1");
   em.find(Member.class, 101L)
   ```
 
+### 엔티티 등록, 쓰기 지연 sql 저장소
+
+* 엔티티 매니저로 데이터 변경시 트랜잭션을 시작해야 한다
+
+* 트랜잭션 시작 후 저장, 수정, 삭제를 하면 변경사항이 영속성 컨텍스트 내부의 1차캐시 영역의 엔티티에 적용된다
+
 * 그리고 엔티티의 변경사항에 대한 sql을 영속성 컨텍스트 내부의 쓰기 지연 sql 저장소에 모아둔다
 
-* 트랜잭션 커밋 전까지 변경사항에 대한 작업을 엔티티에 적용하고 해당하는 sql을 모아두었다가 커밋 시 한꺼번에 db에 보낸다.(플러시)
+* 트랜잭션 커밋 전까지 변경사항에 대한 작업을(등록, 수정, 삭제) 엔티티에 적용하고 해당하는 sql을 모아두었다가 커밋 시 한꺼번에 db에 보낸다.(플러시)
 
 ### 플러시(flush)
 
