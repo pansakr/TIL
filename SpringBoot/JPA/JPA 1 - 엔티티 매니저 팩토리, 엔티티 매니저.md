@@ -43,11 +43,11 @@ em.close // 엔티티 매니저 종료
 emf.close // 엔티티 매니저 팩토리 종료
 ```
 
-### 트랜잭션 관리
+### 엔티티 매니저를 사용해 DB와 통신
+
+* 엔티티 매니저 팩토리 생성 -> 엔티티 매니저 팩토리로 엔티티 매니저 생성 -> 엔티티 매니저가 트랜잭션을 획득해 DB 통신
 
 ```java
-// 엔티티 매니저를 사용한 db crud 전체 코드
-
 // 엔티티 매니저 팩토리 생성
 // 엔티티 매니저 팩토리는 하나만 생성해서(서버 실행 시점) 애플리케이션 전체에서 공유됨
 EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpabook");
