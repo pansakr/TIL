@@ -110,7 +110,7 @@
 
     - 객체와 테이블 단방향 연관관계 매핑
     
-        <img src ="">
+        <img src ="https://github.com/user-attachments/assets/c682d038-9d8d-4826-b6af-a1f48b8669a3">
 
         - 테이블의 연관관계를 객체 지향 모델링에 맞춘 것이 위의 그림에서 객체 연관관계이다
      
@@ -168,7 +168,7 @@
 
     - 객체와 테이블의 양방향 연관관계 매핑
  
-        <img src ="양방향 매핑">
+        <img src ="https://github.com/user-attachments/assets/5154b861-3c22-4d38-87d0-84e57148166a">
 
         - Member, Team 테이블은 양쪽 모두에서 외래키로 조인해서 서로를 조회할 수 있다
      
