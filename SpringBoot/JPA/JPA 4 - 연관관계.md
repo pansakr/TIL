@@ -110,35 +110,72 @@
 
     - 객체와 테이블 단방향 연관관계 매핑
     
-    ```
-    @Entity
-    public class Member{
+        <img src ="">
+
+        - 테이블의 연관관계를 객체 지향 모델링에 맞춘 것이 위의 그림에서 객체 연관관계이다
+     
+        - JPA는 객체 연관관계가 작성된 엔티티 클래스의 정보를 사용해 관련된 테이블에 접근하기 때문에 둘을 매핑해줘야 한다
+     
+            - 매핑해주지 않으면 jpa는 엔티티의 Team team 이 테이블의 TEAM_ID(FK) 인줄 모르기 때문에 관련된 테이블을 찾을 수 없다고 오류가 발생한다
+         
+            - 즉 엔티티의 참조와(Team team) 테이블의 외래 키(TEAM_ID(FK)) 가 연관관계가 있다고 정의해 줘야 한다   
+
+        ```java
+        @Entity
+        public class Member{
+        
+            ...
+        
+            // 단방향 연관관계 매핑
+            // 다중성 정보를 적는다. 여기서는 다대일 관계라는 @ManyToOne을 사용했다
+            // Member 입장에서 Member 가 다수고, Team이 하나라는 것
+            @ManyToOne  
+            @JoinColumn(name="Team_ID")  // join 시 사용할 컬럼이라는 뜻. name 속성에 매핑할 테이블의 외래키 이름을 지정한다. 이 어노테이션은 생략할 수 있고 기본값은 '필드명_참조하는 테이블의 기본키 컬럼명' 이다.
+            private Team team;
+        
+        }
+        
+        @Entity
+        public class Team{
+        
+            @Id
+            @Column(name="Team_ID")
+            private String id;
+        }
+        ```
+        ```java
+        // Member 에서 Team 을 바로 조회할 수 있다
+
+        Team team = new Team();
+        team.setname("TeamA");
+        em.persist(team);
+
+        Member member = new Member();
+        member.setUsername("member1");
+
+        // member에 team 그대로 저장
+        member.setTeam(team);
+
+        // DB에 insert 할 때 jpa 가 team의 pk값을 꺼내서 외래키에 저장 
+        em.persist(member);
+
+        // Member 조회
+        Member findMember = em.find(Member.class, member.getId());
     
-        ...
-    
-        // 연관관계 매핑
-        @ManyToOne  // 다중성 정보를 적는다. 여기서는 다대일 관계라는 @ManyToOne을 사용했다.
-        @JoinColumn(name="Team_ID")  // 외래키를 매핑할때 사용한다. name 속성에는 매핑할 외래키 이름을 지정한다. 이 어노테이션은 생략할 수 있고 기본값은 '필드명_참조하는 테이블의 기본키 컬럼명' 이다.
-        private Team team;
-    
-    }
-    
-    @Entity
-    public class Team{
-    
-        @Id
-        @Column(name="Team_ID")
-        private String id;
-    }
-    
-    ```
+        // 조회된 Member 로 team 조회
+        Team findTeam = findMember.getTeam();
+        ```
 
     - 객체와 테이블의 양방향 연관관계 매핑
+ 
+        <img src ="양방향 매핑">
+
+        - Member, Team 테이블은 양쪽 모두에서 외래키로 조인해서 서로를 조회할 수 있다
+     
+        - 
     
-    ```
+    ```java
     @Entity
-    @Getter
-    @Setter
     public class Member{
     
         @Id
@@ -154,8 +191,6 @@
     }
     
     @Entity
-    @Getter
-    @Setter
     public class Team{
     
         @Id
@@ -166,8 +201,36 @@
     
         // 멤버 엔티티와 일대다 관계. 서로 매핑(참조)을 했으니 양방향이다.
         @OneToMany(mappedBy = "team") // mappedBy 속성이 붙은 쪽이 주인이 아니고 값으로 반대쪽 매핑의 필드 이름을 준다.
-        private List<Member> members = new ArrayList<Member>(); // 일대다 관계, 즉 팀 엔티티는 멤버 엔티티를 여러개 가질 수 있으니 리스트로 만든다.
+        private List<Member> members = new ArrayList<>(); // 일대다 관계, 즉 팀 엔티티는 멤버 엔티티를 여러개 가질 수 있으니 리스트로 만든다.
     }
+
+    // team 에서 member 호출
+    
+    Team team = new Team();
+    team.setname("TeamA");
+    em.persist(team);
+
+    Member member = new Member();
+    member.setUsername("member1");
+    member.setTeam(team);
+    em.persist(member);
+
+    // Member 조회
+    Member findMember = em.find(Member.class, member.getId());
+
+    List<Member> members = findMember.getTeam().getMembers();
+
+
+    // 연관관계 설정 및 조회 과정
+    1. member.setTeam(team)을 통해 member와 team의 관계가 설정됨
+    
+    2. em.persist(member)로 member가 데이터베이스에 저장되면서, team과의 외래 키 관계가 관리됨
+    
+    3. findMember.getTeam()을 호출하면, JPA는 team 엔티티를 프록시로 가져오고, 이후 findMember.getTeam().getMembers()를 호출할 때 실제 데이터베이스에서 team_id에 해당하는 members 리스트를 조회해 초기화함
+    
+    4. 따라서, findMember.getTeam().getMembers()를 호출하는 순간에 List<Member>가 조회되어 반환
+    
+    5. members 리스트는 실제로 데이터베이스에 저장된 값에 따라 동적으로 채워지게 된다
     ```
     
     - 테이블은 외래키 하나로 두 테이블의 연관관계를 관리하고 조인할 수 있으므로 항상 양방향 관계이다. 
@@ -178,7 +241,7 @@
     
     - 테이블의 외래키는 1개인데 객체의 참조는 2개로 차이가 발생한다.
     
-    - 이 때문에 양방행 매핑시 2개의 참조 중 하나를 정해서 테이블의 외래키와 매핑해주어야 하는데 이것을 연관관계의 주인 이라 한다.
+    - 이 때문에 양방향 매핑시 2개의 참조 중 하나를 정해서 테이블의 외래키와 매핑해주어야 하는데 이것을 연관관계의 주인 이라 한다.
     
     - 엔티티에 수정 사항이 반영되어 sql로 만들어질때 매핑 정보들을 분석해서 만들기 때문에 연관관계 매핑을 정확하게 해야한다.
     
