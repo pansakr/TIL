@@ -171,8 +171,6 @@
         <img src ="https://github.com/user-attachments/assets/5154b861-3c22-4d38-87d0-84e57148166a">
 
         - Member, Team 테이블은 양쪽 모두에서 외래키로 조인해서 서로를 조회할 수 있다
-     
-        - 
     
     ```java
     @Entity
