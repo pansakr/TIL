@@ -275,3 +275,81 @@
 * 그래서 엔티티의 다대일, 일대다 관계에서도 항상 다쪽이 외래키를 가지기 때문에 @ManyToOne 에는 mappedBy속성이 없다.
 
 * 양방향 관계에서도 연관관계의 주인은 항상 다쪽이다.
+
+### 양방향 연관관계 주의점
+
+* 연관관계의 주인과 주인이 아닌 쪽 모두에 값을 설정해야 한다
+
+    - mappedBy 속성이 붙은 필드를 조회 시 DB에서 조회해서 가져오면 문제없다
+ 
+    - 그런데 mappedBy 적용된 필드에 값 세팅을 안한 상태가 영속성 컨텍스트에 적용이 되었을때 mappedBy 적용된 필드를 조회하면 값이 없다
+ 
+        - 영속성 컨텍스트에 저장된 엔티티가 없다면 DB를 조회해 값을 가져오는데, 영속성 컨텍스트에 엔티티가 있다면 해당 값을 가져오기 때문에 발생하는 문제
+     
+    - 연관관계 편의 메서드를 사용해 해결할 수 있다
+ 
+        - 연관관계 편의 메서드는 주인, 주인이 아닌 객체 둘 중 하나에만 있어야 한다 
+ 
+    ```java
+    @Entity
+    public class Member{
+    
+        ...
+        
+        @ManyToOne // 팀 엔티티와 다대일 관계
+        @JoinColumn(name="Team_ID") 
+        private Team team;
+
+        // 연관관계의 주인 객체에 값을 설정할 때 주인이 아닌 객체에도 자동으로 값을 세팅하도록 설정
+        // 일반적인 set 메서드와 다르므로 메서드 이름을 바꾸는 것도 좋다
+        public void setTeam(Team team){
+            this.team = team;
+            team.getMembers().add(this);
+        }
+    }
+    ```
+
+* 양방향 매핑시 무한 루프
+
+    - toString, lombok, json 생성 라이브러리 사용 시 무한 루프 발생
+ 
+    ```java
+    class Parent {
+        private Long id;
+        private List<Child> children;
+    
+    @Override
+    public String toString() {
+        return "Parent{" +
+                "id=" + id +
+                ", children=" + children +  // 이 부분에서 각 Child의 toString() 호출
+                '}';                        .. children 은 children.toString() 이 생략되어 있는 것이다
+        }
+    }
+    
+    class Child {
+        private Long id;
+        private Parent parent;
+        
+        @Override
+        public String toString() {
+            return "Child{" +
+                    "id=" + id +
+                    ", parent=" + parent +  // 이 부분에서 Parent의 toString() 호출
+                    '}';
+        }
+    }
+    ```
+    - Parent의 toString()이 호출되면, children 리스트의 각 Child에 대해 toString()을 호출
+      
+    - Child의 toString()이 호출되면 다시 parent의 toString()을 호출
+      
+    - 이렇게 서로 계속해서 toString()을 호출하며, 순환 참조가 일어나기 때문에 무한 루프가 발생
+
+    - lombok 사용 시 toString 을 빼고 사용하면 된다
+
+* 단방향 매핑으로 설계를 완료하는게 제일 좋고, 꼭 필요한 경우만 양방향 매핑을 해야 한다
+
+    - 단방향 매핑만으로 이미 연관관계 매핑은 완료된 것이고, 양방퍙 매핑은 반대 방향에서 조회하는 기능이 추가된 것 뿐이다
+
+    - 양방향 매핑 추가시 설계가 더 복잡해진다
