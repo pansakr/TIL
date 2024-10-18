@@ -23,7 +23,7 @@
 
 * 객체는 타입으로 구분할 수 있지만 테이블은 타입의 개념이 없기 때문에 타입을 구분할 컬럼을 추가해준다
 
-<img src="조인 전략">
+<img src="https://github.com/user-attachments/assets/0840b087-ab4d-4fe9-a516-0cd5d810cd1d">
 
 * Item 테이블에 pk, name, price, dtype 컬럼이 있고, Movie 자식 테이블 pk, director, actor 가 있다
 
@@ -116,7 +116,7 @@ tx.commit();
  
     - 하나의 테이블에서 자식 테이블의 컬럼을 구분해야 해서 구분 컬럼이 필수다
 
-<img src="단일 테이블 전략">
+<img src="https://github.com/user-attachments/assets/36e0cd2b-b723-4dde-95a0-0fe2ff52ecd3">
 
 ```java
 @Entity
@@ -180,7 +180,7 @@ Movie findmovie = em.find(Movie.class, movie.getId())
 
 * 이 전략은 잘 사용하지 않는다
 
-<img src = "구현 테이블마다 테이블 전략">
+<img src = "https://github.com/user-attachments/assets/d59e2bf9-4403-423f-a78a-b063fa06f3a2">
 
 ```
 @Entity
