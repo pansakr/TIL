@@ -135,7 +135,7 @@ public abstract class Item{
 }
 
 @Entity
-@DiscriminatorValue("A") // 단일 테이블을 사용하므로 구분컬럼이 필수이다.
+@DiscriminatorValue("A") // 단일 테이블을 사용하므로 구분컬럼이 필수이다
 public class Album extends Item{...}
 
 @Entity
@@ -220,25 +220,43 @@ public class Movie extends Item{...}
 
 ### @MappedSuperclass
 
-* 부모 클래스를 테이블과 매핑하지 않고 자식 클래스에게 정보만 제공할때 사용한다
+* 공통 매핑 정보가 필요할 때 사용
 
-* 부모 클래스에 객체들이 주로 사용하는 공통 매핑 정보를 정의하고, 자식 엔티티는 상속을 통해 매핑 정보를 물려받는다
+    - 부모 클래스를 상속받는 자식 클래스에게 매핑 정보만 제공할때 사용
 
-* 부모 클래스는 공통 매핑 정보만 제공하는 용도로 테이블과 매핑하지 않는다. @MappedSuperclass로 표시한다
+    - 부모 클래스에 상속받을 객체들이(엔티티) 주로 사용하는 공통 매핑 정보를 정의하고, 자식 엔티티는 상속을 통해 매핑 정보를 물려받는다
+
+    - 부모 클래스는 공통 매핑 정보만 제공하는 용도로 테이블과 매핑하지 않는다. @MappedSuperclass로 표시한다
+ 
+    - 부모 클래스는 엔티티, 테이블과 매핑되지 않으므로 조회, 검색이 불가능하고 직접 생성해서 사용할 일이 없으니 추상 클래스로 생성하는 것이 좋다
 
 * 자식 엔티티들은 하나의 부모 클래스에게 상속받았지만 공통 필드 때문에 상속받은것일뿐, 연관관계는 없다. 따라서 db에서 외래키로 참조하는 관계가 아니다
 
-```
+* 주로 등록일, 등록자, 수정일, 수정자 같은 전체 엔티티에서 공통으로 적용하는 정보를 사용한다
+
+* JPA의 @Entity 가 적용된 클래스는 같은 Entity 클래스나 @MappedSuperclass 가 적용된 클래스만 상속받을 수 잇다
+
+```java
+@MappedSuperclass // 매핑 정보만 제공해주는 부모 클래스
+public abstract class BaseEntity{
+
+    // 공통 매핑 정보
+    private String createdBy;
+    private LocalDateTime createdDate;
+    private String lastModifiedBy;
+    private LocalDateTime lastModifiedDate;
+}
+
 @Entity
-@AttributeOverride(name = "id", column = @Column(name = "MEMBER_ID")) // 상속받은 매핑 정보를 재정의한다
+@AttributeOverride(name = "createdBy", column = @Column(name = "insert_name")) // 상속받은 매핑 정보를 재정의한다
 public class Member extends BaseEntity{...}
 
-// 부모에게 상속받은 id속성의 컬럼명을 MEMBER_ID로 재정의했다.
+// 부모에게 상속받은 createdBy 필드의 컬럼명을 insert_name 으로 재정의했다
 
 @Entity
 @AttributeOverrides({  // 여러개를 재정의할 때 사용
-    @AttributeOverride(name = "id", column = @Column(name = "MEMBER_ID"))
-    @AttributeOverride(name = "name", column = @Column(name = "MEMBER_NAME"))
+    @AttributeOverride(name = "createdBy", column = @Column(name = "insert_name"))
+    @AttributeOverride(name = "createdDate", column = @Column(name = "insert_date"))
     }) 
 public class Member extends BaseEntity{...}
 ```
