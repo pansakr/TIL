@@ -149,7 +149,7 @@ m.getTeam().getName();
 
 ### 즉시로딩, 지연로딩 중 어떤것을 사용해야할까?
 
-* jpa의 기본 fetch 전략은 연관 엔티티가 하나면 즉시로딩, 컬렉션이면 지연 로딩을 사용한다.
+* jpa의 기본 fetch 전략은 연관 엔티티가 하나면 즉시로딩, 컬렉션이면 지연 로딩을 사용한다
 
 ```
 @ManyToOne, @OneToOne - 즉시 로딩
@@ -160,3 +160,210 @@ m.getTeam().getName();
 * 연관 컬렉션에 데이터가 수만개일때 즉시 로딩이면 수만개의 데이터가 함께 로딩되기 때문에 컬렉션은 지연 로딩으로 설정하는것이 좋다
 
 * 추천 방법은 일단 모든 연관관계에 지연 로딩을 사용해 완성하고 실제 사용하는 상황을 보고 필요한 곳만 즉시 로딩으로 바꿔준다
+
+### 영속성 전이
+
+* 특정 엔티티를 저장/삭제 할때 연관된 엔티티도 저장/삭제 하는 기능
+
+  - 관련된 엔티티를 함께 저장/삭제 하는 기능일 뿐, 연관관계를 매핑하는 것과 아무 상관 없다
+
+* CASCADE 옵션으로 JPA의 영속성 전이 옵션을 사용할 수 있다
+
+* CASCADE 미사용
+
+```java
+// 테이블 구조
+Parent - Child는 일대다, 다대일 양방향 관계
+
+@Entity
+public class parent{
+
+    @Id, @GeneretedValue
+    private Long id;
+
+    @OneToMany(mappedBy = "parent")
+    private List<Child> children = new ArrayList<Child>();
+    ...
+}
+
+@Entity
+public class Child{
+
+    @Id @GenereatedValue
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "parent_id")
+    private Parent parent;
+    ...
+}
+```
+```java
+Child child1 = new Child();
+Child child2 = new Child();
+
+Parent parent = new Parent();
+parent.addChild(child1);
+parent.addChild(child2);
+
+em.persist(parent);
+em.persist(child1);
+em.persist(child2);
+
+// parent, child1, child2 와 관련된 총 3번의 sql이 실행된다
+tx.commit();
+```
+
+* CASCADE 사용
+
+```java
+@Entity
+public class parent{
+
+    ...
+
+    @OneToMany(mappedBy = "parent", cascade = Cascade.Type.PERSIST) // CASCADE 저장 옵션 사용
+    private List<Child> children = new ArrayList<Child>();
+
+    ...
+}
+```
+```java
+
+Child child1 = new Child();
+Child child2 = new Child();
+
+Parent parent = new Parent();
+parent.addChild(child1);
+parent.addChild(child2);
+
+em.persist(parent);
+
+// 한번의 persist() 실행으로 관련 엔티티들이 insert 된다
+// sql이 3번 실행되는건 같다
+tx.commit()l
+}
+```
+
+* 엔티티 삭제 시에도 영속성 전이를 사용할 수 있다
+
+```
+@Entity
+public class parent{
+
+    ...
+
+    @OneToMany(mappedBy = "parent", cascade = Cascade.Type.REMOVE) // CASCADE 삭제 옵션 사용
+    private List<Child> children = new ArrayList<Child>();
+
+    ...
+}
+
+
+// CASCADE 미사용시
+Parent panret = em.find(...) 
+Child child1 = em.find(...) 
+Child child2 = em.find(...) 
+
+em.remove(panret)  // 조회 후 삭제를 3번 해야 한다
+em.remove(child1)
+em.remove(child2)
+
+
+// CASCADE 사용시
+Parent panret = em.find(...)  // 부모 타입만 조회 후 삭제하면 연관 엔티티도 삭제된다
+em.remove(parent)
+```
+
+* CASCADE의 종류
+
+```
+ALL       // 모두 적용
+PERSIST   // 영속
+MERGE     // 병합
+REMOVE    // 삭제
+REFRESH   // REFRESH
+DETACH    // 준영속화
+```
+
+* 특정 엔티티를 한 곳에서만 사용할때(단일 소유자) 사용한다
+
+  - child 엔티티를 parent 엔티티에서만 사용한다면 사용해도 된다
+ 
+  - 다른 엔티티들에서 child 엔티티를 사용한다면 데이터 정합성에 문제가 생겨 사용하면 안된다 
+
+### 고아 객체
+
+* 부모 엔티티와 연관관계가 끊어진 엔티티를 자동으로 삭제하는 기능
+
+* JPA의 고아 객체 제거 기능은 부모 엔티티의 컬렉션에서 자식 엔티티의 참조를 제거하면 자식 엔티티가 자동으로 삭제되도록 한다
+
+```java
+@Entity
+public class parent{
+
+    ...
+
+    @OneToMany(mappedBy = "parent", orphanRemoval = true) // 고아객체 자동 삭제 옵션 사용
+    private List<Child> children = new ArrayList<Child>();
+}
+```
+```java
+Child child1 = new Child();
+Child child2 = new Child();
+
+Parent parent = new Parent();
+parent.addChild(child1);
+parent.addChild(child2);
+
+em.persist(parent);
+
+em.plush();
+em.clear();
+
+Parent = findParent = em.find(Parent.class, parent.getId());
+
+// 자식 엔티티를 컬렉션에서 제거
+// 컬렉션에서 제거된 자식 엔티티에 대한 delte sql 생성됨
+findParent.getChildren().remove(0);  
+
+// DELETE FROM CHILD FROM WHERE ID = xxx 쿼리 실행됨
+tx.commit();
+```
+* 영속성 전이와 마찬가지로 참조하는 곳이 하나일 때만 사용해야 한다
+
+  - 특정 엔티티가 개인 소유일 때 사용
+
+* @OneToOne, @OneToMany 만 가능
+
+###  Cascade.Type.REMOVE 와 orphanRemoval = true 의 차이점
+
+* A, B 엔티티는 일대다, 다대일 양방향 매핑이고, 연관관계 주인은 B 이고, A는 B를 List 로 참조하고 있다고 가정 
+
+  - Cascade.Type.REMOVE : B 엔티티가 삭제될 때 A 엔티티도 삭제된다 (DB 에서 delete query 실행)
+
+  - orphanRemoval = true : B 엔티티의 컬렉션에서 A 엔티티가 제거될 때 A 엔티티도 삭제된다 (DB 에서 delete query 실행)
+
+```
+@Entity
+public class parent{
+
+    @OneToMany(mappedBy = "parent", orphanRemoval = true) // 컬렉션에서 제거 시 DB 에 delte sql 실행
+    private List<Child> children = new ArrayList<Child>();
+
+    ...
+}
+
+Parent = findParent = em.find(Parent.class, parent.getId());
+
+// 컬렉션에서 연관관계 엔티티 삭제 시 연관관계 엔티티와 매핑된 테이블의 실제 데이터 삭제 
+// Cascade.Type.REMOVE 는 엔티티를 삭제 시 실제 데이터를 삭제하고, 컬렉션에서 삭제해도 실제 데이터를 삭제하지 않는다
+findParent.getChildren().remove(0);
+
+// Cascade.Type.REMOVE 는 엔티티 삭제 시 해당 엔티티와 연관관계의 엔티티와 매핑된 테이블의 실제 데이터 삭제
+em.remove(findParent())
+```
+
+* 두 옵션은 참조하고 있는 엔티티가 한곳일 때만 사용해야 한다
+
+* 두 옵션으로 삭제된 자식 엔티티를 다른 곳에서 참조하고 있었다면 문제가 발생한다
