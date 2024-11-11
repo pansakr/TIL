@@ -75,3 +75,34 @@
     - 상단의 build 탭 -> Build Project 클릭
 
     - 서버 재실행
+
+### @NotNull, @NotEmpty, @NotBlank 의 차이점
+
+* @Column(nullable = false) 
+
+    - JPA에서 엔티티의 필드에 적용되는 어노테이션
+    
+    - 이 필드가 매핑된 데이터베이스의 컬럼에 NOT NULL 제약조건을 걸어줌
+    
+        - 엔티티의 필드가 아닌, DB 의 컬럼에 NOT NULL 제약 설정
+
+    - 애플리케이션 레벨에서의 유효성 검사는 제공하지 않으므로, 만약 애플리케이션에서 null 값을 해당 필드에 직접 할당하려고 하면 JPA 자체에서 바로 예외가 발생하지는 않는다
+    
+        - 이 경우, 데이터베이스에 실제로 저장하려고 할 때 NOT NULL 제약에 의해 예외 발생
+
+    - 정리하면, @Column(nullable = false)는 데이터베이스의 컬럼에 NOT NULL 제약을 걸어주는 기능을 제공하는 것이지, 애플리케이션 레벨에서 null 할당을 방지하는 것은 아니다
+
+* @NotNull
+
+    - null 만 허용하지 않음
+
+    - 값이 비어있더라도 null만 아니면 제약을 만족
+
+* @NotEmpty
+
+    - null, "" 허용하지 않음
+
+
+* @NotBlank
+
+    - null, "", 공백 허용하지 않음
