@@ -30,21 +30,23 @@
 
         3. 영속성 컨텍스트에 식별자에 대응하는 값이 없으므로 DB를 조회하고 그 값을 영속성 컨텍스트에 저장 후 반환
         
-            - 조회한 데이터가 저장된 엔티티는 영속 상태의 엔티티가 되고, 영속 상태의 엔티티는 변경 감지가 동작함
+            - 영속성 컨텍스트에 조회해온 데이터가(엔티티) 저장되면 영속 상태의 엔티티로 전환되고, 영속 상태의 엔티티는 변경 감지가 동작함
 
         4. 조회해온 데이터를, set()을 호출해 인자로 받은 member 엔티티의 값으로 변경
 
             - 병합 내부에서의 변경 감지는 모든 필드를 변경하므로, member 엔티티의 필드 중 null 이 있다면 그대로 null 로 변경됨
 
         ```java
-        .. merge(Member member1)
+        // memberA : 인자로 받은 데이터
+        // memberB : DB 에서 조회된 데이터
+        .. merge(Member memberA)
 
-            Member member2 = memberRepository().findOne(member.getId);
+            Member memberB = memberRepository().findOne(memberA.getId);
 
-            // member2 엔티티의 모든 필드가 변경됨
-            // member1 의 필드 중 비어있거나 null 인 필드가 있다면 member2 의 해당 필드도 null 로 변경됨
-            member2.setName(member1.getName());
-            member2.set...
+            // memberB 엔티티의 모든 필드가 memberA 의 데이터로 변경됨
+            // memberA 의 필드 중 비어있거나 null 인 필드가 있다면 memberB 의 해당 필드도 null 로 변경됨
+            memberB.setName(member1.getName());
+            memberB.set...
         ```
         
         5. 변경 시 변경 감지가 동작해서 커밋 시점에 DB에 변경 사항에 대한 update sql 실행
