@@ -146,3 +146,29 @@
     	options.annotationProcessorPath = configurations.querydsl
     }
     ```
+
+    - 빈 등록
+
+    ```java
+    @Configuration
+    public class QueryDsl {
+    
+        // @PersistenceContext는 EntityManager를 빈으로 등록할때 사용한다.
+        private EntityManager em;
+    
+        @Bean
+        public JPAQueryFactory jpaQueryFactory(){
+            return new JPAQueryFactory(this.em);
+        }
+    }
+    
+    // 스프링은 싱글톤 기반으로 동작하기에 빈은 모든 쓰레드가 공유한다
+    
+    // EntityManager를 빈으로 등록하면 사용할때 여러 쓰레드가 동시에 접근해 동시성 문제가 발생해 EntityManger를 공유하면 안된다
+    
+    // 그러나 @PersistenceContext를 사용해 EntityManager를 주입받으면 주입받은 EntityManager를 proxy로 감싸고
+    
+    // 이후 EntityManager 호출 마다 proxy를 통해 EntityManager를 생성해 Thread-Safe를 보장한다
+    
+    // 즉, 각 요청에 대해 독립적인 EntityManager가 만들어진다
+    ```
