@@ -1,6 +1,6 @@
 ### Query Dsl
 
-* 스프링 부트 3.0 이상 설정방법
+* 스프링 부트 3.0 이상 설정 방법
 
     - build.gradle
 
@@ -69,3 +69,80 @@
         - 실행 후 build -> generated -> sources -> annotationProcessor -> java
 
         - java 폴더 내부에 main 디렉토리 구조가 그대로 있는데, 엔티티 클래스가 위치한 곳에 가보면 Q클래스가 생성되어 있다
+
+* 스프링 부트 2.xx 설정 방법
+
+    - build.gradle
+
+    ```java
+    buildscript {
+    	ext {
+    		queryDslVersion = "5.0.0"  // 스프링 2.6 버전 이상은 5.0 버전을 사용해야 한다.
+    	}
+    }
+    
+    plugins {
+    	id 'java'
+    	id 'org.springframework.boot' version '2.7.9'
+    	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"  // querydsl 플러그인 추가
+    }
+    
+    group = 'com.ex'
+    version = '0.0.1-SNAPSHOT'
+    
+    java {
+    	sourceCompatibility = '11'
+    }
+    
+    configurations {
+    	compileOnly {
+    		extendsFrom annotationProcessor
+    	}
+    }
+    
+    repositories {
+    	mavenCentral()
+    }
+    
+    dependencies {
+    	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    	implementation 'org.springframework.boot:spring-boot-starter-validation'
+    	implementation 'org.springframework.boot:spring-boot-starter-web'
+    
+        // 버전을 {queryDslVersion}처럼 표기할때는 ""쌍따옴표를 사용해야 한다.
+    	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"	// QueryDsl 의존성 추가
+    	annotationProcessor "com.querydsl:querydsl-apt:${queryDslVersion}" // QueryDsl annotationProcessor 추가
+    
+    	compileOnly 'org.projectlombok:lombok'
+    	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    	runtimeOnly 'org.postgresql:postgresql'
+    	annotationProcessor 'org.projectlombok:lombok'
+    	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+    
+    // QueryDsl 추가설정
+    
+    // querydsl 빌드 경로 변수
+    def querydslDir = "$buildDir/generated/querydsl"
+    
+    querydsl {
+    	jpa = true
+    	querydslSourcesDir = querydslDir
+    }
+    
+    // build 시 사용할 sourceSet 추가
+    sourceSets {
+    	main.java.srcDir querydslDir
+    }
+    
+    configurations {
+    	querydsl.extendsFrom compileClasspath
+    }
+    
+    // querydsl 컴파일시 사용할 옵션 설정
+    compileQuerydsl{
+    	options.annotationProcessorPath = configurations.querydsl
+    }
+    ```
