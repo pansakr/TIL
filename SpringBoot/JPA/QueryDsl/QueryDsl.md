@@ -1,27 +1,3 @@
-### QueryDsl
-
-* sql, jpql을 코드로 작성할 수 있도록 해주는 빌더 api
-
-* entity와 매핑되는 QClass 객체를 사용해서 쿼리를 실행한다.
-
-* jpql과 다르게 sql을 코드로 작성하기 때문에 IDE의 도움을 받을 수 있고 컴파일 단계에서 오류를 발견할 수 있다. 
-
-
-### QClass
-
-* QueryDsl로 작성하는 쿼리의 대상이 되는 클래스
-
-* JPAAnnotationProcessor이 컴파일 시점에 @Entity를 기반으로 생성한 Static Class
-
-
-### Annotation Processor
-
-* 컴파일 단계에서 Annotation에 정의된 일렬의 프로세스를 동작하게 하는 것
-
-* 컴파일 단계에서 실행되기 때문에 빌드 단계에서 에러를 출력하게 할 수 있고, 바이트 코드를 생성할 수 있다.
-
-* 자주 사용되는 예로 @Override, Lombok라이브러리의 @Getter, @Setter 등이 있다.
-
 * repository
 
 ```
