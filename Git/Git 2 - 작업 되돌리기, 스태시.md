@@ -74,7 +74,7 @@
 
             - 작업 디렉토리 내의 변경 사항과 스테이지에 추가된 변경 사항은 유지하고, 커밋했다는 사실만 되돌리는 방법
 
-            <img src = "소프트">
+            <img src = "https://github.com/user-attachments/assets/bf1eb339-a64d-449d-b222-537ee22c4008">
 
             - A -> A, B -> A, C 의 세 버전이 있을 때, 두번째 버전으로(A, B) soft reset
 
@@ -84,7 +84,7 @@
 
             - 작업 디렉토리 내의 변경 사항은 유지하고, 스테이지와 커밋을 되돌리는 방법
 
-            <img src = "믹스">
+            <img src = "https://github.com/user-attachments/assets/7533853d-7442-4359-828c-0d5afc282233">
 
             - 위 예시에서 mixed reset
 
@@ -96,7 +96,7 @@
 
             - 작업 디렉토리 내의 변경 사항까지 모두 되돌리는 방법
 
-            <img src = "하드">
+            <img src = "https://github.com/user-attachments/assets/51baf423-06d5-4625-a645-fe171d2a13ad">
 
             - 위 예시에서 hard reset
 
