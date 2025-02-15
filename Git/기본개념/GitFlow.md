@@ -38,9 +38,10 @@
 * 출시된 버전에서 발생한 버그를 수정하는 브랜치
 
 * main으로부터 분기한다.
+<br>
 
-### git flow 활용
-
+### Git Flow 활용  
+<br>
 <img src="https://github.com/pansakr/TIL/assets/118809108/5420d0a4-9d0c-4bbe-92e8-1cf13af3c954">
 
 * github에 sns servie 프로젝트 생성(원격 main 브랜치 생성됨)
