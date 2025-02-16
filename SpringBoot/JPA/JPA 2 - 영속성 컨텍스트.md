@@ -45,7 +45,7 @@ tx.commit();
 
 ### 영속성 컨텍스트의 1차 캐시
 
-<img src="https://github.com/pansakr/TIL/assets/118809108/8f1d3b9d-b073-4899-bc82-dc8bd8a20a63">
+<img src="https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Spring/JPA/1%EC%B0%A8%20%EC%BA%90%EC%8B%9C.jpg" alt="1차캐시">
 
 * 엔티티 객체를 관리하기 위해 내부적으로 사용하는 메모리 내 저장 공간
 
