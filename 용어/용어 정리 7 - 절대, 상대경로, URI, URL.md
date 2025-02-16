@@ -1,6 +1,6 @@
 ### 절대경로와 상대경로
 
-<img src ="https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Computer%20Science/%EC%A0%88%EB%8C%80%EA%B2%BD%EB%A1%9C%2C%20%EC%83%81%EB%8C%80%EA%B2%BD%EB%A1%9C.jpg">
+<img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Computer%20Science/%EC%A0%88%EB%8C%80%EA%B2%BD%EB%A1%9C%2C%20%EC%83%81%EB%8C%80%EA%B2%BD%EB%A1%9C.jpg">
 
 * 위 그림에서 경로 부분의 main은 오타이다. main -> portfolio 이다.
 ```
