@@ -180,7 +180,7 @@ Movie findmovie = em.find(Movie.class, movie.getId())
 
 * 이 전략은 잘 사용하지 않는다
 
-<img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Spring/JPA/%EA%B5%AC%ED%98%84%20%ED%81%B4%EB%9E%98%EC%8A%A4%EB%A7%88%EB%8B%A4%20%ED%85%8C%EC%9D%B4%EB%B8%94%20%EC%A0%84%EB%9E%B5.jpg" alt"구현 클래스마다 전략">
+<img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Spring/JPA/%EA%B5%AC%ED%98%84%20%ED%81%B4%EB%9E%98%EC%8A%A4%EB%A7%88%EB%8B%A4%20%ED%85%8C%EC%9D%B4%EB%B8%94%20%EC%A0%84%EB%9E%B5.jpg" alt="구현 클래스마다 테이블 전략">
 
 ```
 @Entity
