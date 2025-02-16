@@ -112,7 +112,7 @@
 
     - 객체와 테이블 단방향 연관관계 매핑
     
-        <img src ="https://github.com/user-attachments/assets/c682d038-9d8d-4826-b6af-a1f48b8669a3">
+        <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Spring/JPA/%EB%8B%A8%EB%B0%A9%ED%96%A5%20%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84.jpg" alt="단방향 연관관계">
 
         - 테이블의 연관관계를 객체 지향 모델링에 맞춘 것이 위의 그림에서 객체 연관관계이다
      
@@ -170,7 +170,7 @@
 
     - 객체와 테이블의 양방향 연관관계 매핑
  
-        <img src ="https://github.com/user-attachments/assets/5154b861-3c22-4d38-87d0-84e57148166a">
+        <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Spring/JPA/%EC%96%91%EB%B0%A9%ED%96%A5%20%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84.jpg" alt="양방향 연관관계">
 
         - Member, Team 테이블은 양쪽 모두에서 외래키로 조인해서 서로를 조회할 수 있다
     
@@ -438,7 +438,7 @@
          
                 - 엔티티가 관리하는 외래 키가(팀 객체에서 회원 외래키 관리) 다른 테이블에(회원 테이블에서 팀 외래키 관리) 있게 되고, 연관관계 관리를 위해 추가로 UPDATE SQL 실행해야 한다
              
-                <img src="https://github.com/user-attachments/assets/a43927d3-802c-4658-a52e-12a8873a6de7">
+                <img src="https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Spring/JPA/%EC%9D%BC%EB%8C%80%EB%8B%A4%20%EB%8B%A8%EB%B0%A9%ED%96%A5.jpg" alt="일대다 단방향">
                 
                 ```java
                 // 일(팀) 대 다(회원) 관계
