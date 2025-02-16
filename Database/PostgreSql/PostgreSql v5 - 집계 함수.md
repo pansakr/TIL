@@ -27,7 +27,7 @@ FROM 테이블 이름;
 
 ### group by
 
-<img src ="https://github.com/pansakr/TIL/assets/118809108/fa08ee1d-dff0-4067-a4fa-c90a4cfd43e5">
+<img src ="https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/group%20by.jpg" alt="group by">
 
 * group by 대상 컬럽을 기준으로 그룹을 나누고, 나눈 그룹별로 집계 연산을 수행 후 결과를 하나의 테이블에 모은다.
 
