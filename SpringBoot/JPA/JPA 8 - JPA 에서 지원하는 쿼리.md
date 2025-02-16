@@ -63,7 +63,7 @@
 
 * JPQL 문법
 
-    <img src ="https://github.com/user-attachments/assets/dcc2b32a-f049-4c7f-998b-b5f5c6bd56f8">
+    <img src ="https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Spring/JPA/JPQL%20%EB%AC%B8%EB%B2%95.jpg" alt="JPQL 문법">
 
     - select m from Member as m where m.age > 18
 
