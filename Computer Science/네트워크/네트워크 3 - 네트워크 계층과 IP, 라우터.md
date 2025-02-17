@@ -60,7 +60,7 @@
     
     - 데이터 링크 계층은 네트워크 계층으로부터 받은 패킷을 페이로드로 삼아 헤더와 트레일러를 붙인다
 
-    - <img src="https://github.com/user-attachments/assets/915a12aa-16ec-4c24-82a1-b68841d0ad20">
+    - <img src="https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Computer%20Science/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/IP%20%ED%8C%A8%ED%82%B7.jpg" alt="IP 패킷">
 
     - 식별자
 
@@ -423,7 +423,7 @@
 
     - 아래와 같은 라우팅 테이블이 있을때, 이는 수신지가 192.168.2.0 /24 (호스트 IP 주소 범위 192.168.2.1 ~ 192.168.2.254)인 패킷은 eth0(인터페이스) 를 통해 192.168.2.1(게이트웨이)로 전송하라는 것을 의미한다
 
-    <img src="https://github.com/user-attachments/assets/642bee0f-ba5a-4287-91fb-80d14b78aea8">
+    <img src="https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Computer%20Science/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/%EB%9D%BC%EC%9A%B0%ED%8C%85%20%ED%85%8C%EC%9D%B4%EB%B8%94.jpg" alt="라우팅 테이블">
 
     - 패킷 내의 수신지 IP 주소가 라우팅 테이블에 없는 경우 기본적으로 패킷을 내보낼 경로인 '디폴트 라우트'로 전송한다
     
