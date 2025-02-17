@@ -10,7 +10,7 @@
 
 * 브랜치의 전체적인 설명과 체크아웃, HEAD 개념
 
-    <img src = "https://github.com/user-attachments/assets/91d58607-cdc2-43c7-a57d-c838ee5527e2">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/%EB%B8%8C%EB%9E%9C%EC%B9%98%20%EA%B0%9C%EB%85%90.jpg" alt="브랜치 개념">
     <br>
     
     - master(main)
@@ -100,10 +100,10 @@
 
 * 빨리 감기 병합 (fast-forward merge)
 
-    <img src = "https://github.com/pansakr/TIL/assets/118809108/6e6b95cd-0f94-4ad1-85f6-7732230b3738">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/%EB%B3%91%ED%95%A9%20%EC%9D%B4%EC%A0%84.jpg" alt="병합 이전">
     <br>
 
-    <img src="https://github.com/pansakr/TIL/assets/118809108/60b60e32-ae86-4e64-934d-d474e0d7c25e">
+    <img src="https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/%ED%8C%A8%EC%8A%A4%ED%8A%B8%20%EB%B3%91%ED%95%A9.jpg" alt="패스트 병합">
     <br>
     
     - 어느 커밋으로부터(A 브랜치의 최신 커밋) 분기된 브랜치를(B) 다시 합칠때 원래의 커밋에 변화가 없을때 사용
