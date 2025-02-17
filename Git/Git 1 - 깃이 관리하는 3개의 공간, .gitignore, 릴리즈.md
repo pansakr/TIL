@@ -33,7 +33,7 @@
 
 * 저장소 생성
 
-    <img src = "https://github.com/user-attachments/assets/7c571137-5c6a-445a-8478-b0f90333467d">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/%EC%A0%80%EC%9E%A5%EC%86%8C%20%EC%83%9D%EC%84%B1.jpg" alt="저장소 생성">
 
     - 소스트리 실행 후 오른쪽 상단의 Create 버튼을 눌러 위 화면 진입
 
@@ -41,23 +41,23 @@
 
 * 저장소에 파일 추가
 
-    <img src = "https://github.com/user-attachments/assets/2b777aa9-f575-43fb-81a4-675c3654e898">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/%EC%83%88%EB%A1%9C%EC%9A%B4%20%ED%8C%8C%EC%9D%BC%20%EC%B6%94%EA%B0%80.jpg" alt="새로운 파일 추가">
 
 * 소스트리로 확인
 
-    <img src = "https://github.com/user-attachments/assets/a2c8f609-54a2-4bc9-9b8c-e8481ec688fa">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%A7%80%EC%97%90%20%EC%98%AC%EB%9D%BC%EA%B0%80%EC%A7%80%20%EC%95%8A%EB%8A%94%20%ED%8C%8C%EC%9D%BC%20%ED%99%95%EC%9D%B8.jpg" alt="스테이지에 올라가지 않는 파일 확인">
 
     - 추가한 파일들이 스테이지에 올라가지 않은 파일들로 나타남
 
 * 모두 스테이지에 올리기
 
-    <img src = "https://github.com/user-attachments/assets/c23227ca-3449-4f14-9ef7-0d35e656db60">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/%EB%AA%A8%EB%91%90%20%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%A7%80%EC%97%90%20%EC%98%AC%EB%A6%AC%EA%B8%B0.jpg" alt="모두 스테이지에 올리기">
 
     - 추가한 파일들 모두를 사용해 새로운 버전을 만들 것이므로 모두 스테이지에 추가
 
 * 변경 사항 확인
 
-    <img src = "https://github.com/user-attachments/assets/159641cf-5ebc-4e97-ae14-3dd4f888971a">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/%EA%B0%81%20%ED%8C%8C%EC%9D%BC%EC%9D%84%20%EB%88%8C%EB%9F%AC%20%EB%B3%80%EA%B2%BD%EC%82%AC%ED%95%AD%20%ED%99%95%EC%9D%B8.jpg" alt="각 파일을 눌러 변경사항 확인">
 
     - 각 파일들을 눌러 변경사항 확인하기
 
@@ -65,7 +65,7 @@
 
 * 커밋 메시지 작성 후 커밋
 
-    <img src = "https://github.com/user-attachments/assets/53c67b7a-8640-4ee6-bce0-bc5190362ef3">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/%EC%BB%A4%EB%B0%8B%20%EB%A9%94%EC%8B%9C%EC%A7%80.jpg" alt="커밋 메시지">
 
     - 커밋 메시지 : 버전을 설명하는 메시지
 
@@ -92,7 +92,7 @@
 
 * 변경 후 소스트리 상태
 
-    <img src = "https://github.com/user-attachments/assets/37a40521-3915-48a3-be27-704a84c6956f">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/%EB%B3%80%EA%B2%BD%20%ED%9B%84%20%EC%86%8C%EC%8A%A4%ED%8A%B8%EB%A6%AC.jpg" alt="변경 후 소스트리">
 
     - 스테이지에 올라가지 않은 파일에 변경된 파일(a.txt 변경, c.txt 삭제) 확인
 
@@ -104,7 +104,7 @@
 
 * 완료 후 소스트리 상태
 
-    <img src = "https://github.com/user-attachments/assets/309858c7-2bfc-4a5a-972b-07c41ff57043">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/%EB%91%90%EB%B2%88%EC%A7%B8%20%EC%BB%A4%EB%B0%8B%20%EC%99%84%EB%A3%8C.jpg" alt="두번째 커밋 완료">
 
     - 동그라미 하나는 하나의 버전(커밋 하나) 를 의미
 
@@ -134,11 +134,11 @@
 
 * .gitignore 파일에 무시할 파일 등록
 
-    <ing src = "https://github.com/user-attachments/assets/d0c7f01e-5830-40d2-b6cb-fad9db0f69be">
+    <ing src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/git%20ignore%20%EB%93%B1%EB%A1%9D.jpg" alt="git ignore 등록">
 
     - e.txt 파일 생성 후 .gitignore 에 등록
 
-    <img src = "https://github.com/user-attachments/assets/992a91cc-1388-4d72-864f-dccf689138e1">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/git%20ignore%20%EB%93%B1%EB%A1%9D%20%ED%9B%84%20%EC%86%8C%EC%8A%A4%ED%8A%B8%EB%A6%AC.jpg" alt="git ignore 등록 후 소스트리">
 
     - 작업 디렉토리에 e.txt 파일이 추가됬는데도 소스트리의 스테이지에 올라가지 않은 파일 항목에 e.txt 항목이 생성되지 않음
 
@@ -181,7 +181,7 @@ logs/**/debug.log
 
 ### 커밋 해시
 
-<img src = "https://github.com/user-attachments/assets/683070b2-523a-44e0-8079-c089b6539f20">
+<img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/%EC%BB%A4%EB%B0%8B%20%ED%95%B4%EC%8B%9C.jpg" alt="커밋 해시">
 
 * 각 커밋이 가진 고유한 ID
 
@@ -219,11 +219,11 @@ logs/**/debug.log
 
 * 태그 추가
 
-    <img src = "https://github.com/user-attachments/assets/50464c23-0cc6-4a77-b524-83127d53f075">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/%ED%83%9C%EA%B7%B8%20%EC%B6%94%EA%B0%80.jpg" alt="태그 추가">
 
     - 상단의 태그 버튼 클릭 후 태그 추가
 
-    <img src = "https://github.com/user-attachments/assets/d7ef8d23-da3a-40e1-a33a-c297e5693f6a">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/%ED%83%9C%EA%B7%B8%20%ED%9B%84%20%EC%86%8C%EC%8A%A4%ED%8A%B8%EB%A6%AC.jpg" alt="태그 후 소스트리">
 
 
 ### 버전 표기법
