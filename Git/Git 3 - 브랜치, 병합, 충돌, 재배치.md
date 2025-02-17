@@ -182,14 +182,14 @@
 
     - 위의 설명과 같은 브랜치가 있고, 충돌이 발생했다고 가정
 
-    <img src = "충돌">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/%EC%B6%A9%EB%8F%8C.JPG" alt="충돌">
     <br>
 
     - 충돌이 발생해서 커밋하지 않은 변경사항이 생성되었고, 스테이지에 올라가지 않은 파일, 스테이지에 올라간 파일에 충돌이 발생한 파일이 추가되었다
 
     - 스테이지에 올라가지 않은 파일에 <<, ==, >> 기호들이 추가되어 있다
 
-    <img src = "충돌 설명">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/%EC%B6%A9%EB%8F%8C%20%EC%84%A4%EB%AA%85.jpg" alt="충돌 설명">
     <br>
     
     - 기호는 일종의 영역 표기이다
@@ -208,7 +208,7 @@
 
         - 내것은 현재 체크아웃된 브랜치(main) 를 반영, 저장소 것은 병합하려는 브랜치(foo)를 반영
 
-    <img src = "충돌 해결">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/%EC%B6%A9%EB%8F%8C%20%ED%95%B4%EA%B2%B0.JPG" alt="충돌 해결">
     <br>
     
     - 여기서는 내것을 이용해 해결 -> 한쪽을 사용해 충돌을 해결하시겠습니까? -> 확인
@@ -223,7 +223,7 @@
 
     - 커밋 -> 충돌 해결 후 병합 완료
 
-    <img src = "충돌 해결 완료">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/%EC%B6%A9%EB%8F%8C%20%ED%95%B4%EA%B2%B0%20%EC%99%84%EB%A3%8C.JPG" alt="충돌 해결 완료">
     <br>
     
 
@@ -231,19 +231,19 @@
 
 * 브랜치가 뻗어나온 기준점을 변경하는 것
 
-    <img src = "rebase 설명 1">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/rebase%20%EC%84%A4%EB%AA%85%201.jpg" alt="rebase 설명 1">
     <br>
     
     - main 브랜치의 두번재 커밋에서 foo 브랜치가 분기되었고, 각 브랜치에 여러 커밋이 쌓인 상태
 
-    <img src = "rebase 설명 1">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/rebase%20%EC%84%A4%EB%AA%85%202.jpg" alt="rebase 설명 2">
     <br>
     
     - foo 브랜치를 네번째 커밋에서 분기되도록 변경
 
 * 소스트리로 rebase
 
-    <img src = "rebase 1">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/rebase%201.jpg" alt="rebase 1">
     <br>
 
     - 첫번째 그림과 같은 상태의 히스토리
@@ -252,7 +252,7 @@
 
     - main 브랜치의 4번 커밋으로 재배치할 것이므로 main의 네 번째 커밋에서 우클릭 -> 재배치
 
-    <img src = "rebase 2">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/rebase%202.JPG" alt="rebase 2">
     <br>
 
     - 재배치 완료 후 모습
