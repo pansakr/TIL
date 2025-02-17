@@ -2,7 +2,7 @@
 
 * 협업을 위한 브랜치 전략
 
-<img src="https://github.com/pansakr/TIL/assets/118809108/ea69ec5c-b2f2-4db9-a23c-db6ad1e38f07">
+<img src="https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/Git%20Flow.jpg" alt="Git Flow">
 
 #### main 브랜치
 
@@ -42,7 +42,7 @@
 
 ### Git Flow 활용  
 <br>
-<img src="https://github.com/pansakr/TIL/assets/118809108/5420d0a4-9d0c-4bbe-92e8-1cf13af3c954">
+<img src="https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/%EA%B9%83%20%ED%99%9C%EC%9A%A9.jpg" alt="깃 활용">
 
 * github에 sns servie 프로젝트 생성(원격 main 브랜치 생성됨)
 
