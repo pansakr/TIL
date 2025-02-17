@@ -32,7 +32,7 @@
 
 * 어드바이저를 기반으로 프록시 생성
 
-<img src="https://github.com/user-attachments/assets/14fdab7d-b442-499a-b340-75bd4ff82a55">
+<img src="https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Spring/AOP%2C%20Proxy/%EC%96%B4%EB%93%9C%EB%B0%94%EC%9D%B4%EC%A0%80%EB%A5%BC%20%EA%B8%B0%EB%B0%98%EC%9C%BC%EB%A1%9C%20%ED%94%84%EB%A1%9D%EC%8B%9C%20%EC%83%9D%EC%84%B1.jpg" alt="어드바이저를 기반으로 프록시 생성">
 
 ```
 1. 스프링 빈 대상이 되는 객체를 생성한다. ( @Bean , 컴포넌트 스캔 모두 포함)
