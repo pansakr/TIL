@@ -78,7 +78,7 @@
 
         - CPU가 이 과정들을 겹치지 않게 동시에 실행하는 것
 
-        <img src ="https://github.com/user-attachments/assets/d30fb02c-f462-40cc-bc92-d903ea0ffe56">
+        <img src ="https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Computer%20Science/%EC%BB%B4%ED%93%A8%ED%84%B0%EC%9D%98%20%EA%B5%AC%EC%84%B1%2C%20%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8.jpg" alt="파이프라인">
 
         - 생산 공장과 같이 명령어들을 파이프라인에 넣고 실행한다고 해서 파이프라이닝이라 부른다
 
