@@ -8,7 +8,7 @@
 
 #### 하드 디스크(HDD - Hard Disk Drive)
 
-<img src="https://github.com/pansakr/TIL/assets/118809108/5f2e2cc1-ff93-44f9-9746-ca9f93c49c7d">
+<img src="https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Computer%20Science/%EC%BB%B4%ED%93%A8%ED%84%B0%EC%9D%98%20%EA%B5%AC%EC%84%B1%2C%20%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/HDD.jpg" alt="HDD">
 
 * 플래터라 불리는 원판 모양의 자기 디스크로 이루어져 있다.
 
@@ -94,7 +94,7 @@
 
     - 여러 개의 보조기억 장치에 데이터를 단순히 나누어 저장하는 구성 방식
 
-    <img src="https://github.com/user-attachments/assets/44b57a37-aadc-4d85-bcd2-4531e8a404d4">
+    <img src="https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Computer%20Science/%EC%BB%B4%ED%93%A8%ED%84%B0%EC%9D%98%20%EA%B5%AC%EC%84%B1%2C%20%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/raid%200.jpg" alt="raid 0">
     
     - 1TB 하드 디스크 4개로 RAID 0 을 구성했다면 데이터가 저장될때 하드 디스크 개수만큼 나뉘어 저장된다
  
@@ -134,7 +134,7 @@
 
     - 완전한 복사번 대신 오류를 검출하고 복구하기 위한 정보를 저장한 장치를 두는 구성 방식
  
-    <img src="https://github.com/user-attachments/assets/5b6bdd2f-3dfb-4542-8ead-ec914c6d6180">
+    <img src="https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Computer%20Science/%EC%BB%B4%ED%93%A8%ED%84%B0%EC%9D%98%20%EA%B5%AC%EC%84%B1%2C%20%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/raid%204.jpg" alt="raid 4">
 
     - 오류를 검출하고 복구하기 위한 정보를 '패리티 비트'라 하며 이를 사용해 다른 장치들의 오류를 검출하고, 오류가 있다면 복구한다
 
@@ -146,7 +146,7 @@
  
     - 새로운 데이터가 저장될 때마다 페리티를 저장하는 디스크에도 데이터를 쓰게 되므로 발생하는 병목 현상을 해소하는 방법이다
  
-    <img src="https://github.com/user-attachments/assets/cf44d519-bd99-4093-a2e5-c4854f47284e">
+    <img src="https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Computer%20Science/%EC%BB%B4%ED%93%A8%ED%84%B0%EC%9D%98%20%EA%B5%AC%EC%84%B1%2C%20%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/raid%205.jpg" alt="raid 5">
 
 * RAID 6 (이중 패리티)
 
