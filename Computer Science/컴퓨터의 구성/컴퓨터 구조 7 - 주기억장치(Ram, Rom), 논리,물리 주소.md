@@ -78,7 +78,7 @@
 
     - 10번지 라는 주소는 실행 중인 여러 프로그램에게 동시에 논리 주소로서 존재할 수 있다
 
-    <img src="https://github.com/user-attachments/assets/1ddeb736-053e-467e-9dd3-9b4dd6f1da80">
+    <img src="https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Computer%20Science/%EC%BB%B4%ED%93%A8%ED%84%B0%EC%9D%98%20%EA%B5%AC%EC%84%B1%2C%20%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/%EB%85%BC%EB%A6%AC%EC%A3%BC%EC%86%8C.jpg" alt="논리주소">
 
   - 논리 주소를 물리 주소로 변환
 
@@ -108,7 +108,7 @@
 
     - 프로그램의 물리 주소 범위는 베이스 레지스터 값 이상, 베이스 레지스터 값 + 한계 레지스터 값 미만이 된다
 
-    <img src="https://github.com/user-attachments/assets/78418df2-e3bd-4b67-874e-2355926517c2">
+    <img src="https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Computer%20Science/%EC%BB%B4%ED%93%A8%ED%84%B0%EC%9D%98%20%EA%B5%AC%EC%84%B1%2C%20%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/%ED%95%9C%EA%B3%84%20%EB%A0%88%EC%A7%80%EC%8A%A4%ED%84%B0.jpg" alt="한계 레지스터">
 
     - cpu는 메모리에 접근하기 전에 접근하려고 하는 논리 주소가 한계 레지스터보다 작은지 항상 검사하고, 만약 cpu가 한계 레지스터보다 높은 논리 주소에 접근하려고 하면 인터럽트를 발생시켜 실행을 중단한다
 
