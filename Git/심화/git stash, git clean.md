@@ -37,7 +37,7 @@ git stash drop stash@{1}
 // stash list의 모든항목들 지우기
 git stash clear
 ```
-<img src="https://github.com/pansakr/TIL/assets/118809108/829bc13a-4f3f-40c7-8a19-09d8c425698e">
+<img src="https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/stash.jpg" alt="stash">
 
 ### git clean
 
@@ -49,6 +49,6 @@ git clean -옵션
 //예시
 git clean -df
 ```
-<img src="https://github.com/pansakr/TIL/assets/118809108/e1471365-8a0e-4ba2-8732-72e9f985ec63">
+<img src="https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/clean.jpg" alt="clean">
 
 * 위의 옵션들을 조합하여 사용한다
