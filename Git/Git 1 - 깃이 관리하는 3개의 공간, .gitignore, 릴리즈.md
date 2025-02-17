@@ -134,7 +134,7 @@
 
 * .gitignore 파일에 무시할 파일 등록
 
-    <ing src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/git%20ignore%20%EB%93%B1%EB%A1%9D.jpg" alt="git ignore 등록">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/git%20ignore%20%EB%93%B1%EB%A1%9D.jpg" alt="git ignore 등록">
 
     - e.txt 파일 생성 후 .gitignore 에 등록
 
