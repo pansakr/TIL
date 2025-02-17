@@ -20,7 +20,7 @@
 
 #### JWT의 형태
 
-<img src="https://github.com/pansakr/TIL/assets/118809108/26eb4718-11c2-4544-b923-4e4fafc7efca">
+<img src="https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Spring/Security/jwt.jpg" alt="jwt">
 
 * 헤더, 본문, 서명 의 세 부분으로 구성된다.
 
