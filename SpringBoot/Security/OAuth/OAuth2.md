@@ -44,14 +44,14 @@
 
 * 사용자가 소셜 로그인 버튼 클릭시 클라이언트는 권한 서버에 클라이언트 id, pw, redirect url를(사용자 id,pw 아님) 보내 등록된 클라이언트임을 인증하고 사용자를 로그인 페이지로 리디렉션 해준다.
 
-<img src="https://github.com/pansakr/TIL/assets/118809108/18c887ed-b6ab-4320-996f-74c4f5f76206">
+<img src="https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Spring/Security/%EC%A0%95%EB%B3%B4%EC%A0%9C%EA%B3%B5%20%EB%8F%99%EC%9D%98.jpg" alt="정보제공 동의">
 
 * 이후 로그인 페이지에서 정보를 입력해 로그인 시 사용자에게 클라이언트가 요청한 정보를 확인시켜준다.
 
 
 ### 승인 코드 그랜트
 
-<img src="https://github.com/pansakr/TIL/assets/118809108/e265d33a-3740-4f4f-827e-5ab631aca7ec">
+<img src="https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Spring/Security/aouth2%20%EA%B0%9C%EB%85%90.jpg" alt="aouth2 개념">
 
 * 클라이언트 서버는 구글 로그인을 구현했다고 가정한다.
 
@@ -77,7 +77,7 @@
 
 #### 사용할 oauth2 애플리케이션을 깃허브에 등록한다.
 
-<img src="https://github.com/pansakr/TIL/assets/118809108/34f8346e-8291-4867-8513-a466bb7db947">
+<img src="https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Spring/Security/aouth2%20%EB%93%B1%EB%A1%9D.jpg" alt="aouth2 등록">
 
 * 등록이 완료되면 깃허브는 clint id, pw를 제공한다.
 
@@ -167,7 +167,7 @@ public class SecurityConfig {
 
 * 생성한 클라이언트 자격 증명을 시큐리티에 등록해야 사용할 수 있다.
 
-<img src="https://github.com/pansakr/TIL/assets/118809108/434e4b73-9fca-48bc-bd74-083fbce3fd61">
+<img src="https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Spring/Security/%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8%20%EC%9E%90%EA%B2%A9.jpg" alt="클라이언트 자격">
 
 * oauth2 로그인 시 oauth2인증 필터는 ClientRegistrationRepository에서 클라이언트 자격 증명에 관한 세부 정보를 얻는다.
 
