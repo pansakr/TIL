@@ -60,13 +60,13 @@
 
 * 각각 기능을 완성해 원격의 feature에 push까지 완료하고 b가 먼저 dev에 merge
 
-* 분기 시점 이후로 dev에 변경사항이 없어 fastforward 지만, 커밋 기록을 남기기 위해 --no-ff명령어로 merge
+* 분기 시점 이후로 dev에 변경사항이 없어 fast-forward 지만, 병합 커밋 기록을 남기기 위해 --no-ff명령어로 merge (팀 방식에 따라 다름)
 
 * 완료 후 로컬 dev로 push하고 git branch -d feature/기능1 명령어로 로컬의 브랜치 삭제, git push origin -d feature/기능1로 원격의 브랜치를 삭제
 
 * 사람 c가 이어 merge 하는데 분기 시점 이후로 변경점이 있어 git pull로 최신화 하고 dev에 merge
 
-* 3way merge라 기록이 남으니 --no-ff는 사용하지 않아도 된다
+* 3way merge라 병합 커밋 기록이 남는다
 
 * dev를 원격에 push하고 마찬가지로 사용이 끝난 로컬, 원격의 feature/기능2 브랜치를 삭제
 
