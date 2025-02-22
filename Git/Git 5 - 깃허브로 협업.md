@@ -10,7 +10,7 @@
 
     - 상관없는 파일을 추가/삭제 하거나 잘못 수정하는 문제 발생 가능
 
-* 하지만 여러 문제 때문에 Collaborator 대신 풀 리퀘스트 (pull request) 를 사용한다
+* 여러 문제 때문에 Collaborator 대신 풀 리퀘스트 (pull request) 를 사용
 
 ### 풀 리퀘스트
 
