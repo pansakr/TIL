@@ -301,3 +301,63 @@
 * git pull 도는 git pull [원격 저장소 이름]: 원격 저장소를 가져와서 합치기
 
     - 패치와 병합을 동시에 하는 방법
+ 
+    - pull 설정 : rebase true, rebase false, ff only 중 하나 지정 가능
+
+    - rebase false
+  
+    ```
+    // git pull을 실행할 때 merge 방식으로 동작하도록 설정
+    // 원격 브랜치의 최신 커밋을 로컬 브랜치에 병합할 때, 새로운 merge 커밋이 생성된다
+    git config pull.rebase false
+    
+    // 예시
+    // 로컬 브랜치(main)에서 commit 1, 2를 추가했고, 원격 저장소에는 commit 3이 추가된 상황
+    원격 저장소: A --- B --- C  (원격 main)
+    로컬 저장소: A --- B --- D --- E  (로컬 main)
+    
+    // git pull 실행
+    // 원격 브랜치(C)와 로컬 브랜치(D, E)가 병합되어 merge 커밋(M) 이 새롭게 생성됨
+    A --- B --- D --- E --- M (merge 커밋)
+           \
+            C  (원격 브랜치)
+    ```
+
+    - rebase true
+
+    ```
+    // git pull을 실행할 때 rebase 방식으로 동작하도록 설정
+    // 원격의 최신 커밋을 로컬 브랜치의 커밋 이전에 위치시키고, 로컬에서 작업한 커밋을 다시 쌓는 방식으로 진행된다
+    git config pull.rebase true
+    
+    // 예시
+    원격 저장소: A --- B --- C  (원격 main)
+    로컬 저장소: A --- B --- D --- E  (로컬 main)
+    
+    // git pull --rebase 실행 후
+    A --- B --- C --- D' --- E' (rebase된 로컬 main)
+    
+    // 원격 브랜치(C)를 기준으로 로컬 브랜치의 커밋이(D, E) 뒤에 다시 쌓인다
+    // merge 커밋이 생성되지 않는다
+    ```
+
+    - ff only
+ 
+    ```
+    // pull할 때 fast-forward가 가능한 경우에만 허용
+    // fast-forward가 불가능한 상황이라면 pull이 거부
+    // fast-forward : 병합할 때 추가적인 merge 커밋 없이 브랜치가 그대로 앞당겨지는 경우
+    git config pull.ff only
+    
+    // 예시
+    원격 저장소: A --- B --- C  (원격 main)
+    로컬 저장소: A --- B  (로컬 main)
+    
+    // git pull을 실행 후
+    A --- B --- C  (로컬 main, fast-forward)
+    
+    // 이와 달리, 로컬에서 추가적인 커밋이 있는 경우
+    // fast-forward가 불가능하므로, git pull을 실행하면 거부됨
+    원격 저장소: A --- B --- C  (원격 main)
+    로컬 저장소: A --- B --- D  (로컬 main)
+    ```
