@@ -1,31 +1,3 @@
-### git fetch
-
-* 원격 저장소의 커밋을 가져오고 merge는 하지 않는다.
-
-* merge 전 최신 커밋이 있는지 확인하는 용도로 사용한다.
-
-```
-// 원격 저장소에서 모든 브랜치를 가져온다.
-git fetch [원격 저장소 이름]
-
-// 원격 저장소의 특정 브랜치만 가져온다.
-git fetch [원격 저장소 이름] [브랜치 이름]
-
-// fetch로 가져온 브랜치 목록 확인
-git branch -r
-
-예시 목록 - origin/dev 
-
-// fetch로 가져온 브랜치로 이동해 변경사항 확인
-// fetch는 merge하지 않기 때문에 임시 브랜치로 이동된다.
-git checkout [git branch -r로 확인한 fetch로 가져온 브랜치 이름]
-
-// 확인 후 충돌시 수정해주고, 이상 없다면 브랜치 이동 후 merge
-// git switch [merge 할 브랜치이름]
-
-// git pull
-```
-
 ### git pull
 
 * fetch + merge 이다.
