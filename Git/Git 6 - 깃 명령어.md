@@ -1,3 +1,24 @@
+### 깃 설정
+
+* 깃 명령어에는 지역(local),전역(global),시스템(system) 의 설정 범위가 있다
+
+* 지역범위는 특정 저장소로 한정되고, 전역범위는 현재 사용자의 모든 저장소, 시스템범위는 해당 컴퓨터의 모든 저장소와 사용자에 적용된다
+
+* 유저명과 유저 이메일 정하기
+
+    ```
+    git config --global user.name "유저네임"
+    
+    git config --global user.email "유저이메일"
+
+    // 설정이 제대로 되었는지 확인
+    git config --list // 설정 목록보기
+    ```
+
+    - 명령어 뒤의 -은 축약어이고(ex =  meesage를 -m으로 표현), --은 옵션이란 뜻이다
+    
+    - 위에서는 git config의 옵션 --global을 사용한다는 뜻
+
 ### 버전 만들기
 
 <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/%EB%B2%84%EC%A0%84%20%EB%A7%8C%EB%93%A4%EA%B8%B0.JPG" alt="버전 만들기">
@@ -179,9 +200,9 @@
         git revert --no-commit 해시코드
         ```
 
-### git reflog
+* git reflog
 
-* 실수로 reset해서 git log 에 복구할 커밋이 남아있지 않을 때 사용
+    - 실수로 reset해서 git log 에 복구할 커밋이 남아있지 않을 때 사용
 
     ```
     // 모든 커밋 기록 확인
@@ -264,7 +285,7 @@
 
 - git branch -d [브랜치] : 브랜치 삭제
 
-- git branch [브랜치] : 브랜치 재배치
+- git branch [브랜치] : 브랜치 재배치 (rebase)
 
 
 ### 원격 저장소와 상호작용
