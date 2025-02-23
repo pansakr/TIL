@@ -500,12 +500,27 @@
     
     - 위의 옵션들을 조합하여 사용한다
 
-* git restore --staged [파일명]
+* git restore
 
-    - 스테이지에 올라간 파일을 취소 (add 취소) 해서 working directory 로 되돌린다
-
-    - working directory 의 변경 사항은 그대로 유지 (파일 자체는 삭제되지 않음)
+    - working directory, staging area 의 작업들을 이전으로 되돌린다
     
-* git restore [파일명]
+    ```
+    // 특정 파일의 변경사항을 working directory에서 삭제
+    // working directory 의 변경사항을 취소하고 싶을때 사용
+    git restore [파일명]
+    
+    // 모든 변경사항을 working directory에서 삭제
+    git restore .
+    
+    // 스테이지에 올라간 특정 파일을 취소 (add 취소) 해서 working directory 로 되돌린다
+    git restore --staged [파일명]
 
-    - working directory 의 변경 사항 삭제
+    // 모든 변경 사항을 스테이지에서 취소
+    git restore --staged .
+    
+    // 파일을 특정 커밋의 상태로 되돌리기
+    git restore --source [커밋해시] [파일명]
+    
+    // 특정 파일만 해시코드의 커밋 상태로 되돌아간다
+    // git은 이 파일을 수정했다고 인식하기 때문에 add -> commit하면 된다
+    ``````
