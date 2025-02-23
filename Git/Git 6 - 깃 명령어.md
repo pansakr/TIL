@@ -245,6 +245,8 @@
 
 * git branch : 브랜치의 목록과 현재 작업 중인 브랜치 * 로 표시
 
+* git branch -a : 원격 브랜치를 포함해 표시
+
 * git branch [브랜치] : 브랜치 생성
 
 * 브랜치 전환
@@ -289,6 +291,26 @@
 
 - git branch [브랜치] : 브랜치 재배치 (rebase)
 
+    ```
+    // rebase 충돌시
+    // rebase는 커밋들 하나하나를 합치는 방식이기 때문에 커밋마다 충돌이 있을시 각각 해결해줘야 한다
+    
+    // merge와 마찬가지로 충돌 파일을 직접 수정하고 add -> git rebase --continue 한다
+    git add .
+    git rebase -- continue  // rebase할 다음 커밋의 충돌이 없으면 완료, 있다면 다음 커밋의 충돌부분이 에러메시지로 뜬다
+    
+    // 충돌 부분이 더 있어 에러메시지가 떴다면 해결 후 다시 git rebase -- continue 입력
+    // 정상적으로 rebase가 완료될 때까지 반복한다.
+    
+    // main에도 변경사항을 적용하기 위해 main브랜치로 이동해 rebase한 브랜치와 merge해준다.
+    git merge rebase한 브랜치
+    
+    // rebase는 커밋들을 그대로 이어붙이기 때문에 2개의 커밋을 rebase했다면 메인 브랜치에 2개의 커밋이 추가된다.
+    // 그런데 rebase과정에 충돌이 나서 해결 과정에 main쪽을 선택했다면 해당 커밋은 변경사항이 없어지는 셈이고, rebase의 의미도 없어지기 때문에 커밋이 기록되지 않는다
+    
+    // rebase 취소
+    git rebase --abort
+    ```
 
 ### 원격 저장소와 상호작용
 
@@ -332,7 +354,22 @@
 
 * git remote remove [원격 저장소 이름] : 원격 저장소 삭제
 
-* git branch -M [브랜치 이름] : 현재 브랜치 이름을 [브랜치 이름] 으로 변경
+* 브랜치 이름 변경
+
+    - git branch -M [브랜치 이름] : 현재 브랜치 이름을 [브랜치 이름] 으로 변경
+
+        ```
+        // 현재 old-branch 브랜치에 있을 때 new-branch로 변경
+        git branch -m new-branch
+        ```
+  
+    - git branch -M [기존 브랜치 이름] [새 브랜치 이름] : 다른 브랜치에서 특정 브랜치 이름 변경
+
+        ```
+        // 현재 main 브랜치에 있을 때, old-branch를 new-branch로 변경
+        git branch -m old-branch new-branch
+        ```
+
 
 * git push [원격 저장소 이름] [로컬 브랜치] : 원격 저장소 이름으로 로컬 브랜치를 푸시
 
