@@ -425,3 +425,19 @@
     원격 저장소: A --- B --- C  (원격 main)
     로컬 저장소: A --- B --- D  (로컬 main)
     ```
+
+### 부가 명령어
+
+* git clean
+
+    - 깃에서 추적하지 않는 파일들을 삭제
+
+    ```
+    git clean -옵션
+    
+    //예시
+    git clean -df
+    ```
+    <img src="https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/clean.jpg" alt="clean">
+    
+    - 위의 옵션들을 조합하여 사용한다
