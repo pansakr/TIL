@@ -11,8 +11,9 @@
     
     git config --global user.email "유저이메일"
 
+    // 설정 목록보기
     // 설정이 제대로 되었는지 확인
-    git config --list // 설정 목록보기
+    git config --list 
     ```
 
     - 명령어 뒤의 -은 축약어이고(ex =  meesage를 -m으로 표현), --은 옵션이란 뜻이다
