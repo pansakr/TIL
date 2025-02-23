@@ -484,7 +484,7 @@
     로컬 저장소: A --- B --- D  (로컬 main)
     ```
 
-### 부가 명령어
+### 이외의 명령어
 
 * git clean
 
@@ -499,3 +499,13 @@
     <img src="https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/clean.jpg" alt="clean">
     
     - 위의 옵션들을 조합하여 사용한다
+
+* git restore --staged [파일명]
+
+    - 스테이지에 올라간 파일을 취소 (add 취소) 해서 working directory 로 되돌린다
+
+    - working directory 의 변경 사항은 그대로 유지 (파일 자체는 삭제되지 않음)
+    
+* git restore [파일명]
+
+    - working directory 의 변경 사항 삭제
