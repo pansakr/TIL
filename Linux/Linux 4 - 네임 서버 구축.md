@@ -218,7 +218,7 @@
 
     - 예시
 
-        - 사용자가 www.naver.com에 접속할때 최종적으로 naver.com 네임 서버에 www.naver.com 의 IP 주소를 요청하게 됨
+        - 사용자가 www.naver.com 에 접속할때 최종적으로 naver.com 네임 서버에 www.naver.com 의 IP 주소를 요청하게 됨
 
         - www.naver.com 도메인이 3대의 서버에 걸쳐 운영되고 각각의 IP 주소가 1.1.1.1, 2.2.2.2, 3.3.3.3 이라고 가정
         
