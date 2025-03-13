@@ -254,3 +254,39 @@
         - 그리고 마스터 네임 서버의 트래픽을 슬레이브 네임 서버로 균등하게 보내 부하 분산을 할 수 있음 
 
     - 슬레이브 네임 서버들은 마스터 네임 서버의 정보를 복제해서 사용
+
+### 컴퓨터에서 어떤 네임 서버 사용할지 설정하는 방법
+
+* /etc/resolv.conf 파일에 DNS 설정
+
+    - 모든 네트워크에 적용됨
+ 
+    - 하지만 부팅 시 /etc/netplan/90..yml 에 설정된 DNS 설정으로 /etc/resolv.conf 가 업데이트됨
+ 
+* /etc/netplan/90..yml 파일에 DNS 설정
+
+    - 네트워크 인터페이스(NIC) 마다 다른 DNS 서버 설정 가능
+ 
+    ```
+    network:
+      version: 2
+      ethernets:
+        eth0:  # 유선 NIC
+          addresses:
+            - 192.168.1.100/24
+          gateway4: 192.168.1.1
+          nameservers:
+            addresses:
+              - 8.8.8.8  # Google DNS
+              - 1.1.1.1  # Cloudflare DNS
+    
+      wifis:
+        wlan0:  # 무선 NIC
+          addresses:
+            - 192.168.1.200/24
+          gateway4: 192.168.1.1
+          nameservers:
+            addresses:
+              - 9.9.9.9  # Quad9 DNS
+              - 208.67.222.222  # OpenDNS
+    ```
