@@ -255,38 +255,78 @@
 
     - 슬레이브 네임 서버들은 마스터 네임 서버의 정보를 복제해서 사용
 
-### 컴퓨터에서 어떤 네임 서버 사용할지 설정하는 방법
+### 로컬 네임 서버와 외부 네임 서버
 
-* /etc/resolv.conf 파일에 DNS 설정
+* 로컬 네임 서버
 
-    - 모든 네트워크에 적용됨
- 
-    - 하지만 부팅 시 /etc/netplan/90..yml 에 설정된 DNS 설정으로 /etc/resolv.conf 가 업데이트됨
- 
-* /etc/netplan/90..yml 파일에 DNS 설정
+    - 내부 네트워크에서 DNS 요청을 처리하는 서버
 
-    - 네트워크 인터페이스(NIC) 마다 다른 DNS 서버 설정 가능
+    - 회사/학교 등의 인트라넷에서 사용
+
+    - 로컬 네임 서버가 외부 네트워크의 DNS 서버와 통신할 수 없다면 외부 인터넷 사용 불가능
  
-    ```
-    network:
-      version: 2
-      ethernets:
-        eth0:  # 유선 NIC
-          addresses:
-            - 192.168.1.100/24
-          gateway4: 192.168.1.1
-          nameservers:
-            addresses:
-              - 8.8.8.8  # Google DNS
-              - 1.1.1.1  # Cloudflare DNS
-    
-      wifis:
-        wlan0:  # 무선 NIC
-          addresses:
-            - 192.168.1.200/24
-          gateway4: 192.168.1.1
-          nameservers:
-            addresses:
-              - 9.9.9.9  # Quad9 DNS
-              - 208.67.222.222  # OpenDNS
-    ```
+    - 하지만 인터넷에 연결된 상태로 외부 DNS 요청을 처리할 수 있도록 설정되어 있다면 외부 DNS 서버와 통신 가능해서 외부 인터넷 사용 가능
+ 
+* 외부 네임 서버
+
+    - 외부 네트워크에서 DNS 요청을 처리하는 서버
+ 
+    - 내부 네트워크의 사설 IP 주소는 알 수 없음
+ 
+    - ex) 구글 네임 서버
+ 
+* 컴퓨터에 로컬/외부 네임 서버 설정 방법
+
+    - 로컬 네임 서버가 외부 네트워크 DNS 서버와 통신할 수 있다면 로컬 네임 서버만 사용해도 됨
+ 
+        - 하지만 로컬 네임 서버가 제공하는 개인화된 DNS 레코드나 캐싱을 통해 DNS 요청을 빠르게 처리하는 기능을 사용할 수 없으므로 사용하는것이 좋음 
+ 
+    - 로컬 네임 서버가 외부 네트워크와 통신할 수 없다면 외부 네임 서버를 따로 등록해야 함
+ 
+    - 로컬 네임 서버 설정
+ 
+        - DNS 소프트웨어마다 다름
+     
+        - BIND 의 경우 /etc/bind/named.conf.options 에 로컬 네임 서버 세부 설정
+     
+        - /etc/resolv.conf 에 로컬 네임 서버 IP 등록 
+
+    - 외부 네임 서버 설정
+
+        - /etc/resolv.conf 파일에 DNS 설정
+        
+            - 모든 네트워크에 적용됨
+         
+            - 하지만 부팅 시 /etc/netplan/90..yml 에 설정된 DNS 설정으로 /etc/resolv.conf 가 업데이트됨
+         
+        - /etc/netplan/90..yml 파일에 DNS 설정
+        
+            - 네트워크 인터페이스(NIC) 마다 다른 DNS 서버 설정 가능
+         
+            ```
+            network:
+              version: 2
+              ethernets:
+                eth0:  # 유선 NIC
+                  addresses:
+                    - 192.168.1.100/24
+                  gateway4: 192.168.1.1
+                  nameservers:
+                    addresses:
+                      - 8.8.8.8  # Google DNS
+                      - 1.1.1.1  # Cloudflare DNS
+            
+              wifis:
+                wlan0:  # 무선 NIC
+                  addresses:
+                    - 192.168.1.200/24
+                  gateway4: 192.168.1.1
+                  nameservers:
+                    addresses:
+                      - 9.9.9.9  # Quad9 DNS
+                      - 208.67.222.222  # OpenDNS
+            ```
+
+* 대부분은 포워딩이 가능한 로컬 네임 서버 사용를 구축해서 사용
+
+    - 로컬 네임 서버가 DNS 포워딩 기능을 지원하면, 내부 네임 서버가 요청을 처리하지 못하는 경우 자동으로 외부 네임 서버로 요청을 포워딩함
