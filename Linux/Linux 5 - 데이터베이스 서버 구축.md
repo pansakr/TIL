@@ -1,6 +1,6 @@
 ### DB 서버 구축
 
-* DB(Mysql) 설치
+* 리눅스 운영체제에 DB(Mysql) 설치
 
     - 저장소 업데이트 : apt update -> MySql 설치 : apt -y install mysql-server mysql-client
 
