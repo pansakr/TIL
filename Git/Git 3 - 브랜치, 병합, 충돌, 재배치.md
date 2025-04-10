@@ -182,14 +182,14 @@
 
     - 위의 설명과 같은 브랜치가 있고, 충돌이 발생했다고 가정
 
-    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/%EC%B6%A9%EB%8F%8C.JPG" alt="충돌">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/%EC%B6%A9%EB%8F%8C.JPG" width="700" height="600" alt="충돌">
     <br>
 
     - 충돌이 발생해서 커밋하지 않은 변경사항이 생성되었고, 스테이지에 올라가지 않은 파일, 스테이지에 올라간 파일에 충돌이 발생한 파일이 추가되었다
 
     - 스테이지에 올라가지 않은 파일에 <<, ==, >> 기호들이 추가되어 있다
 
-    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/%EC%B6%A9%EB%8F%8C%20%EC%84%A4%EB%AA%85.jpg" alt="충돌 설명">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/%EC%B6%A9%EB%8F%8C%20%EC%84%A4%EB%AA%85.jpg" width="700" height="500" alt="충돌 설명">
     <br>
     
     - 기호는 일종의 영역 표기이다
