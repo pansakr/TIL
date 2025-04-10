@@ -10,7 +10,7 @@
 
 * 브랜치의 전체적인 설명과 체크아웃, HEAD 개념
 
-    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/%EB%B8%8C%EB%9E%9C%EC%B9%98%20%EA%B0%9C%EB%85%90.jpg" alt="브랜치 개념">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/%EB%B8%8C%EB%9E%9C%EC%B9%98%20%EA%B0%9C%EB%85%90.jpg" alt="브랜치 개념" width="500" height="600">
     <br>
     
     - master(main)
