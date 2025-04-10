@@ -231,19 +231,19 @@
 
 * 브랜치가 뻗어나온 기준점을 변경하는 것
 
-    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/rebase%20%EC%84%A4%EB%AA%85%201.jpg" alt="rebase 설명 1">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/rebase%20%EC%84%A4%EB%AA%85%201.jpg" width="600" height="300" alt="rebase 설명 1">
     <br>
     
     - main 브랜치의 두번재 커밋에서 foo 브랜치가 분기되었고, 각 브랜치에 여러 커밋이 쌓인 상태
 
-    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/rebase%20%EC%84%A4%EB%AA%85%202.jpg" alt="rebase 설명 2">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/rebase%20%EC%84%A4%EB%AA%85%202.jpg" width="600" height="300" alt="rebase 설명 2">
     <br>
     
     - foo 브랜치를 네번째 커밋에서 분기되도록 변경
 
 * 소스트리로 rebase
 
-    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/rebase%201.jpg" alt="rebase 1">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Git/rebase%201.jpg" width="300" height="300" alt="rebase 1">
     <br>
 
     - 첫번째 그림과 같은 상태의 히스토리
