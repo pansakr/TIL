@@ -1,4 +1,4 @@
-### 도커 컴포즈를 사용해서 Nginx + Spring Boot 구축 + 별도 서버의 Postgresql 연동
+### 도커 컴포즈를 사용해서 Nginx + Spring Boot 구축 + 별도 서버의 Postgresql 연동 (Deploy-test2 v.1.1.0 참고)
 
 * 우분투에 PostgresSQL 설치 : sudo apt install postrgresql
 
