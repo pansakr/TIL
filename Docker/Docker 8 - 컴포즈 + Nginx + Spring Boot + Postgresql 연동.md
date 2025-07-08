@@ -64,9 +64,7 @@
     # 확인
     SELECT * FROM member;
 
-    # 종료
-    \q
-
+    --------------
     # DB 접속 전환
     \c deploytest2
     ```
