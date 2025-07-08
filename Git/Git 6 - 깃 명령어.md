@@ -104,6 +104,10 @@
 
     - git log 또는 git log --oneline 명령어로 커밋 해시 확인
 
+* git tag -a <태그 이름> -m "태그 설명" : 태그와 설명 동시 생성
+
+* git push origin [태그이름] : 원격 저장소에 태그 push
+
 * git tag, git tag --list, git tag -l : 태그 목록 조회
 
 * git tag --delete [태그], git tag -d [태그] : 태그 삭제
