@@ -195,6 +195,14 @@
         - ex) sudo chmod 644 index.html
    
     - netstat -nlpt : 실행 중인 포트 확인 (net-tools 설치 필요)
+ 
+    - grep : 특정 문자열이나 패턴을 파일 또는 출력 결과에서 찾아주는 명령어
+ 
+        - grep "8080" nohup.out	: nohup.out 파일에서 8080 관련 로그만 검색
+     
+        - grep "Exception" nohup.out : nohup.out 파일에서 Exception 만 골라서 검색
+     
+        - tail -f mylog.out | grep "ERROR" : tail -f 명령어와 함께 사용해서 "ERROR"가 포함된 줄만 실시간 모니터링
 
 * 런(실행) 레벨
 
