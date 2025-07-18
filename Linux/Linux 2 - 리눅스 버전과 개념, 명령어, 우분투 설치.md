@@ -157,6 +157,8 @@
         - head -3 /etc/systemd/user.conf : 앞 3행만 화면에 출력
 
         - tail -5 /etc/systemd/user.conf : 마지막 5행만 화면에 출력
+     
+        - tail -f : 파일의 마지막 10줄을 출력하고, 그 이후 새로 추가되는 내용도 실시간으로 계속 출력
 
     - more : 텍스트 형식 파일을 페이지 단위로 화면에 출력. 스페이스바는 다음 페이지, b는 앞 페이지, q는 종료
 
@@ -193,7 +195,6 @@
         - ex) sudo chmod 644 index.html
    
     - netstat -nlpt : 실행 중인 포트 확인 (net-tools 설치 필요)
-
 
 * 런(실행) 레벨
 
