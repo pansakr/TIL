@@ -220,6 +220,20 @@
      
         - sudo timedatectl set-timezone Asia/Seoul : Asia/Seoul 타임존으로 설정
 
+    - PID 검색 : gprep [option] pattern
+    
+        - pgrep : 실행 중인 프로세스 중 특정 조건에 맞는 PID만 출력
+    
+        - -u : 특정 사용자에 대한 프로세스 출력
+    
+        - -l : PID 와 프로세스 이름 출력
+    
+        - -f : 실행할 때 입력한 전체 문장 검색
+    
+        - pgrep java : java 로 실행 중인 프로세스의 pid 출력
+    
+        - pgrep -f .jar : 현재 실행 중인 프로세스 중 실행할 때 입력한 명령어에서 .jar라는 문자열이 들어간 명령어를 찾아서 해당 PID(프로세스 ID)를 출력
+
 * 런(실행) 레벨
 
     - 시스템의 동작 모드를 정의
