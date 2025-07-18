@@ -203,6 +203,16 @@
         - grep "Exception" nohup.out : nohup.out 파일에서 Exception 만 골라서 검색
      
         - tail -f mylog.out | grep "ERROR" : tail -f 명령어와 함께 사용해서 "ERROR"가 포함된 줄만 실시간 모니터링
+     
+    - 타임존
+ 
+        - timedatectl : 설정된 타임존 확인
+     
+        - timedatectl list-timezones : 타임존 설정값 종류 확인
+     
+        - timedatectl list-timezones | grep Seoul : 그중 서울 확인
+     
+        - sudo timedatectl set-timezone Asia/Seoul : Asia/Seoul 타임존으로 설정
 
 * 런(실행) 레벨
 
