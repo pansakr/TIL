@@ -190,7 +190,9 @@
             
             - 644 는 소유자는 읽기와 쓰기 권한, 그룹, 누구나 는 읽기 권한만 주는 것이다
 
-        - ex) sudo chmod 644 index.html 
+        - ex) sudo chmod 644 index.html
+   
+    - netstat -nlpt : 실행 중인 포트 확인 (net-tools 설치 필요)
 
 
 * 런(실행) 레벨
