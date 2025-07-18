@@ -195,7 +195,13 @@
         - ex) sudo chmod 644 index.html
    
     - netstat -nlpt : 실행 중인 포트 확인 (net-tools 설치 필요)
+
+    - ps -ef : 현재 실행 중인 모든 프로세스 목록 출력
  
+        - e : 모든 사용자의 모든 프로세스를 보여줌 (--everyone의 약자)
+     
+        - f : 자세한 정보를 출력 (UID, PID, PPID 등) --full format 의 약자
+
     - grep : 특정 문자열이나 패턴을 파일 또는 출력 결과에서 찾아주는 명령어
  
         - grep "8080" nohup.out	: nohup.out 파일에서 8080 관련 로그만 검색
