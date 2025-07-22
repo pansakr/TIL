@@ -218,3 +218,55 @@
 
     - &> : 표준 출력 + 표준 에러 출력 모두 리다이렉션 (덮어쓰기)
     ```
+
+* 환경 변수
+
+    - 프로세스에게 미리 전달해주는 설정값 
+    
+    - 스프링 부트에서 DB 환경 설정을 환경 변수로 넘기기
+
+        - export DB_PASSWORD=abc123
+
+        - java -jar app.jar
+
+        - Srping Boot 는 DB_PASSWORD 환경 변수를 읽어서 DB에 로그인할 때 사용
+
+    - 리눅스의 PATH 변수
+
+        - echo $PATH => /usr/local/...
+
+        - 리눅스는 ls, java, curl 같은 명령어를 실행할 때 이 경로들 안에서 해당 명령어를 찾는다
+
+        - 즉 PATH는 명령어를 실행할 때 어디를 먼저 찾을지 알려주는 환경 변수
+
+* export : 환경 변수 적용 명령어
+
+    - 환경 변수 적용
+
+        ```shell
+        export HELLO="hello ubuntu"
+
+        echo $HELLO
+
+        # hello ubuntu 출력됨
+        ```
+
+    - 재접속 시 export 로 등록했던 환경 변수 정보들이 사라진다
+
+    - 환경 변수를 저장하는 리눅스의 설정 파일에 export 정보를 등록하면 영구적으로 저장된다
+
+    - 해당 설정 파일은 어떤 shell을 사용하는지에 따라 달라지고, 우분투는 .bashrc 이다
+
+        ```shell
+        # 숨겨진 파일 보기
+        ls -al
+
+        vim bashrc
+
+        # bashrc 파일의 제일 아래쪽에 추가
+        export HELLO="hello ubuntu"
+        ```
+
+        - .bashrc 의 내용은 컴퓨터 부팅시 적용된다
+
+        - 바로 적용 시키고 싶다면 source bashrc 입력
