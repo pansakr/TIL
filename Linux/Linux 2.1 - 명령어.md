@@ -308,3 +308,23 @@
         - .bashrc 의 내용은 컴퓨터 부팅시 적용된다
 
         - 바로 적용 시키고 싶다면 source bashrc 입력
+
+* tar : 압축
+
+    - 옵션
+
+        - -c : tar 로 압축
+     
+        - -x : tar 파일 압축 풀기
+     
+        - -v : 압축하거나 풀 때 출력을 화면에 보여줄지 말지 선택
+     
+        - -f : 압축하거나 풀 때 파일 이름 지정
+
+    - tar -cvf [압축파일 이름] [압축할 파일]
+ 
+        - tar -cvf hello.tar a.txt b.txt : a.txt, b.txt 파일을 hello.tar 파일로 압축하고, 화면에 보여줌
+     
+    - tar -xvf [압축 풀 파일 이름]
+    
+        - tar -xvf archive.tar : archive.tar 파일을 압축 해제하고, 화면에 어떤 파일이 풀리는지 보여줌
