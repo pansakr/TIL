@@ -30,7 +30,7 @@
 
     - b.sh 는 상단에 #!/bin/bash 가 없어서 dash 셸로 실행됨
  
-    - dash 셸은 source 명령을 실행하지 못하기 때문에 오류 발생 
+    - dash 셸은 source 명령이 없기 때문에 오류 발생 
 
 ### 명령어
 
