@@ -204,7 +204,7 @@
 
 * 네트워크 설정
 
-    <img src = "" alt = "네트워크 설정">
+    <img src = "https://raw.githubusercontent.com/pansakr/TIL/refs/heads/main/%EC%9D%B4%EB%AF%B8%EC%A7%80/Aws/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC%20%EC%84%A4%EC%A0%95.JPG" alt = "네트워크 설정">
 
     - EC2 인스턴스에 어떤 트래픽(포트, 프로토콜, IP 대역)을 허용할지 설정
 
