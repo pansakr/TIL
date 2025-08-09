@@ -31,7 +31,7 @@
 
 #### Method 영역
 
-* static 메소드, static 변수 등을 저장한다
+* static 메소드, static 변수 등을 저장됨
 
 * 자바 문법상 static 메서드 내부에는 static 변수를 선언할 수 없다. static 변수는 클래스 레벨에서만 선언 가능하다
 
@@ -41,7 +41,7 @@
 
 * jvm 시작시 생성되고 프로그램 종료 시까지 사용된다
 
-* 모든 스레드가 공유한다
+* 모든 스레드가 공유
 
 
 #### Runtime Constant Pool
