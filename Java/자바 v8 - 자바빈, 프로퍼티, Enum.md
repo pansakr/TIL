@@ -21,7 +21,7 @@
 
 ### 필드와 프로퍼티
 
-* 프로퍼티는 객체가 갖는 속성이고 이 속성의 실체(값)이 담기는 곳이 필드이다
+* 프로퍼티는 객체가 갖는 속성이고 이 속성의 값이 담기는 곳이 필드이다
 
 ```java
 @Getter
@@ -33,9 +33,9 @@ public class Member {
 }
 ```
 
-* Member 클래스의 프로퍼티는 name, age, phoneNumber 이고, 이들의 실제 값이 담기는 곳이 필드(변수)가 된다
+* Member 클래스의 프로퍼티는 name, age, phoneNumber 이고, 이들의 값을 담는 변수가 필드이다
 
-* 즉 Member 클래스는 이름, 나이, 폰번호의 속성(프로퍼티)을 가지고, 이들의 실제 값이 해당 필드에 담긴다
+* 즉 Member 클래스는 name, age, phoneNumber 속성(프로퍼티)을 가지고, 이들의 값이 해당 name, age, phoneNumber 필드에 저장된다
 
 
 ### POJO(Plain Old Java Object)
