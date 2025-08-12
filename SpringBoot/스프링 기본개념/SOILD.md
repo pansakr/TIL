@@ -28,7 +28,7 @@
 * 인터페이스를 목적에 따라 분리하면 해당 부분을 다른 기능으로 대체하기 쉬워진다
 
 
-###$ DIP 의존관계 역전 원칙(Dependency inversion principle)
+#### DIP 의존관계 역전 원칙(Dependency inversion principle)
 
 * 구현 클래스에 의존하지 말고 인터페이스에 의존해야 한다
 
