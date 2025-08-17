@@ -10,5 +10,5 @@
 // 주의점 - 공백만 있는 문자열은(" ") true가 반환된다 
 hasLength - null이 아니고 길이가 0이 아니면 true 
 
-hasTest - null이 아니고 길이가 0이 아니고 공백이 아니면 true
+hasText - null이 아니고 길이가 0이 아니고 공백이 아니면 true
 ```
