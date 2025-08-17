@@ -4,7 +4,7 @@
 
 ```java
 // 검증 클래스. @Component로 스프링 빈으로 자동 등록한다
-// Validator - 스프링은 검증을 체계적으로 제공하는 인터페이스
+// Validator - 스프링에서 제공하는 검증 인터페이스
 @Component
 public class ItemValidator implements Validator {
 
