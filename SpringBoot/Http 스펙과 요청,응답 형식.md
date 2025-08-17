@@ -51,36 +51,63 @@ Connection: keep-alive
 * Response header 에는 웹서버가 웹브라우저에 응답하는 메시지가 들어있고, 
 * Reponse body에 데이터 값이 들어가있다
 
-### 클라이언트에서 서버로 요청 데이터를 전달하는 방법
+### 클라이언트에서 서버로 요청시 데이터를 전달하는 방법
 
 #### GET - 쿼리 파라미터
 
 * 메시지 바디 없이 url의 쿼리 파라미터에 데이터를 포함해서 전달
 
-* 쿼리 파라미터 - url뒤에 ?를 붙이고 '파라미터 = 값' 형식으로 넘길 데이터를 붙이고, 여러개를 넘길 경우 파라미터 뒤에 &를 붙여 구분하는 방법
+  - 쿼리 파라미터 : url뒤에 ?를 붙인 다음 '파라미터=값' 형식으로 넘길 데이터를 이어 붙이고, 여러개를 넘길 경우 파라미터 뒤에 &를 붙여 구분하는 방법
 
 * ex) /url?age=20&phone=01011112222
 
 * 검색, 필터, 페이징 등에서 사용
 
+```
+// 바디 없음
+GET /members?age=20&name=hyeonjae HTTP/1.1
+Host: example.com
+```
 
 #### POST - HTML Form
 
-* HTML form의 헤더 타입 - content-type: application/x-www-form-urlencoded
-
 * 메시지 바디에 쿼리 파라미터 형식으로 전달
+
+  - GET과 비슷하지만, URL이 아니라 body에 담긴다는 차이가 있음
+ 
+* HTML form의 헤더 타입 - content-type: application/x-www-form-urlencoded
 
 * 회원가입, 주문 등에서 사용
 
+```
+POST /members HTTP/1.1
+Host: example.com
+Content-Type: application/x-www-form-urlencoded
 
-#### Http message body에 데이터를 직접 담아서 요청
+// 바디
+age=20&name=hyeonjae
+```
 
-* HTTP API에서 주로 사용. JSON, XML, TEXT
 
-* 주로 JSON 형식을 사용
+#### Http message body 직접 사용
+
+* 바디에 원하는 형식(JSON, XML, 텍스트 등) 으로 데이터를 담아 보내는 방식 (주로 Json 사용)
+
+* HTTP API, REST API 에서 주로 사용
 
 * HTTP METHOD - POST, PUT, PATCH
-  
+
+```
+POST /members HTTP/1.1
+Host: example.com
+Content-Type: application/json
+
+// 바디
+{
+  "age": 20,
+  "name": "hyeonjae"
+}
+```
 
 ### 스프링에서 http Request의 데이터를 받는 방법
 
