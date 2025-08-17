@@ -4,16 +4,15 @@
 
 * @ModelAttribute에 바인딩 시 타입 오류가 발생하면 BindingResult가 없을땐 400에러가 발생하고, 있다면 오류 정보 FieldError를 BindingResult에 담아 컨트롤러를 정상 호출하게 된다
 
-* @ModelAttribute 의 객체에 타입 오류 등으로 바인딩이 실패하는 경우 스프링이 FieldError를 생성해서
-BindingResult 에 넣어준다.
+* @ModelAttribute 의 객체에 타입 오류 등으로 바인딩이 실패하는 경우 스프링이 FieldError를 생성해서 BindingResult 에 넣어준다
 
 * BindingResult 는 검증할 대상 바로 다음에 와야한다
 
-* BindingResult 는 Model에 자동으로 포함된다.
+* BindingResult 는 Model에 자동으로 포함된다
 
-* 필드에 오류가 있으면 FieldError 객체를 생성해서 bindingResult 에 담아두면 된다.
+* 필드에 오류가 있으면 FieldError 객체를 생성해서 bindingResult 에 담아두면 된다
 
-* 특정 필드를 넘어서는 오류가 있으면 ObjectError 객체를 생성해서 bindingResult 에 담아두면 된다.
+* 특정 필드를 넘어서는 오류가 있으면 ObjectError 객체를 생성해서 bindingResult 에 담아두면 된다
 
 ```
 // field error 파라미터 목록
