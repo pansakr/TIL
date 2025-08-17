@@ -9,9 +9,9 @@ spring.messages.basename=messages, errors
 
 // 예외 설정파일 - errors.properties
 // 메시지, 국제화 처럼 사용할 수 있다
-required.item.itemName=상품 이름은 필수입니다.
-range.item.price=가격은 {0} ~ {1} 까지 허용합니다.
-max.item.quantity=수량은 최대 {0} 까지 허용합니다.
+required.item.itemName=상품 이름은 필수입니다
+range.item.price=가격은 {0} ~ {1} 까지 허용합니다
+max.item.quantity=수량은 최대 {0} 까지 허용합니다
 totalPriceMin=가격 * 수량의 합은 {0}원 이상이어야 합니다. 현재 값 = {1}
 
 @Controller
@@ -97,9 +97,9 @@ defaultMessage : 오류 메시지를 찾을 수 없을 때 사용하는 기본 �
 
 ### MessageCodesResolver
 
-* 검증 오류 코드로 메시지 코드들을 생성한다.
+* 검증 오류 코드로 메시지 코드들을 생성한다
 
-* MessageCodesResolver에서 생성한 메시지 코드들이 ObjectError, FieldError 의 인자로 사용되고, rejectValue()로 ObjectError, FieldError를 생성한다.
+* MessageCodesResolver에서 생성한 메시지 코드들이 ObjectError, FieldError 의 인자로 사용되고, rejectValue()로 ObjectError, FieldError를 생성한다
 
 ```java
 ..class{
@@ -187,9 +187,9 @@ typeMismatch = 메시지4
 
 // errors.properties
 // 제일 구체적인 level1이 응답되고, level1을 주석하면 2가, 그다음은 3.. 순서대로 사용된다
-#required.item.itemName=상품 이름은 필수입니다.
-#range.item.price=가격은 {0} ~ {1} 까지 허용합니다.
-#max.item.quantity=수량은 최대 {0} 까지 허용합니다.
+#required.item.itemName=상품 이름은 필수입니다
+#range.item.price=가격은 {0} ~ {1} 까지 허용합니다
+#max.item.quantity=수량은 최대 {0} 까지 허용합니다
 #totalPriceMin=가격 * 수량의 합은 {0}원 이상이어야 합니다. 현재 값 = {1}
 
 #==ObjectError==
@@ -200,25 +200,25 @@ totalPriceMin=전체 가격은 {0}원 이상이어야 합니다. 현재 값 = {1
 
 #==FieldError==
 #Level1
-required.item.itemName=상품 이름은 필수입니다.
-range.item.price=가격은 {0} ~ {1} 까지 허용합니다.
-max.item.quantity=수량은 최대 {0} 까지 허용합니다.
+required.item.itemName=상품 이름은 필수입니다
+range.item.price=가격은 {0} ~ {1} 까지 허용합니다
+max.item.quantity=수량은 최대 {0} 까지 허용합니다
 
 #Level2 - 생략
 
 #Level3
-required.java.lang.String = 필수 문자입니다.
-required.java.lang.Integer = 필수 숫자입니다.
-min.java.lang.String = {0} 이상의 문자를 입력해주세요.
-min.java.lang.Integer = {0} 이상의 숫자를 입력해주세요.
-range.java.lang.String = {0} ~ {1} 까지의 문자를 입력해주세요.
-range.java.lang.Integer = {0} ~ {1} 까지의 숫자를 입력해주세요.
-max.java.lang.String = {0} 까지의 문자를 허용합니다.
-max.java.lang.Integer = {0} 까지의 숫자를 허용합니다.
+required.java.lang.String = 필수 문자입니다
+required.java.lang.Integer = 필수 숫자입니다
+min.java.lang.String = {0} 이상의 문자를 입력해주세요
+min.java.lang.Integer = {0} 이상의 숫자를 입력해주세요
+range.java.lang.String = {0} ~ {1} 까지의 문자를 입력해주세요
+range.java.lang.Integer = {0} ~ {1} 까지의 숫자를 입력해주세요
+max.java.lang.String = {0} 까지의 문자를 허용합니다
+max.java.lang.Integer = {0} 까지의 숫자를 허용합니다
 
 #Level4
-required = 필수 값 입니다.
-min= {0} 이상이어야 합니다.
-range= {0} ~ {1} 범위를 허용합니다.
-max= {0} 까지 허용합니다.
+required = 필수 값 입니다
+min= {0} 이상이어야 합니다
+range= {0} ~ {1} 범위를 허용합니다
+max= {0} 까지 허용합니다
 ```
