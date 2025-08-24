@@ -48,16 +48,15 @@ public class DBConnectionUtilTest {
 
 * DriverManager 는 라이브러리에 등록된 드라이버 목록을(jdbc 구현체) 자동으로 인식한다
 
-* 그리고 드라이버들에게 순서대로 접속에 필요한 정보를 넘겨서 커넥션을 획득할 수 있는지 확인한다.
+* 그리고 드라이버들에게 순서대로 접속에 필요한 정보를 넘겨서 커넥션을 획득할 수 있는지 확인한다
 
 * URL: 예) jdbc:h2:tcp://localhost/~/test, 이름, 비밀번호 등 접속에 필요한 추가 정보
 
 * 각각의 드라이버는 URL 정보를 체크해서 본인이 처리할 수 있는 요청인지 확인한다
 
-* 예를 들어서 URL이 jdbc:h2 로 시작하면 이것은 h2 데이터베이스에 접근하기 위한 규칙이다. 따라서 H2 드라이버는 본인이 처리할 수 있으므로 실제 데이터베이스에 연결해서 커넥션을 획득하고 이 커넥션을 클라이언트에 반환한다. 
+* 예를 들어서 URL이 jdbc:h2 로 시작하면 이것은 h2 데이터베이스에 접근하기 위한 규칙이다. 따라서 H2 드라이버는 본인이 처리할 수 있으므로 실제 데이터베이스에 연결해서 커넥션을 획득하고 이 커넥션을 클라이언트에 반환한다
 
-* 반면 URL이 jdbc:h2 로 시작했는데 MySQL 드라이버가 먼저 실행되면 이 경우 본인이 처리
-할 수 없다는 결과를 반환하게 되고, 다음 드라이버에게 순서가 넘어간다
+* 반면 URL이 jdbc:h2 로 시작했는데 MySQL 드라이버가 먼저 실행되면 이 경우 본인이 처리할 수 없다는 결과를 반환하게 되고, 다음 드라이버에게 순서가 넘어간다
 
 * 이렇게 찾은 커넥션 구현체가 클라이언트에 반환된다
 
@@ -116,7 +115,7 @@ public class MemberRepositoryV0 {
 
             // Statement 를 통해 준비된 SQL을 커넥션을 통해 실제 데이터베이스에 전달
             // executeUpdate() 은 int 를 반환하는데 영향받은 DB row 수를 반환한다. 
-            // 여기서는 하나의 row를 등록했으므로 1을 반환한다.
+            // 여기서는 하나의 row를 등록했으므로 1을 반환한다
             pstmt.executeUpdate();
 
             return member;
@@ -199,7 +198,7 @@ class MemberRepositoryV0Test {
             pstmt.setString(1, memberId);
 
             // 데이터 조회만 할때는 executeQuery() 사용
-            // rs 에 select 쿼리의 결과가 순서대로 들어간다. 
+            // rs 에 select 쿼리의 결과가 순서대로 들어간다
             // ex) select member_id, money 라고 지정하면 member_id , money 라는 이름으로 rs 에 데이터가 저장된다
             rs = pstmt.executeQuery();
 
