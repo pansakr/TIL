@@ -34,7 +34,9 @@
      
   - Uniform interface (일관된 인터페이스)
 
-    - URL 은 자원, HTTP 메서드는 자원에 대한 행동을 나타내야 한다
+    - 클라이언트와 서버가 통신할 때 API 는 동일한 형식/규칙을 사용해야 한다
+   
+    - 자세한 방법은 REST API 디자인 가이드에서 설명
    
   - Layered System (계층화)
  
@@ -50,37 +52,79 @@
    
     - REST 서버는 일반적으로 정적 리소스를 전송하지만, 특정 요청 시 응답에 실행 코드를 포함할 수 있어야 한다
 
-* HTTP URI을 통해 자원(Resource)을 명시하고, HTTP Method(POST, GET, PUT, DELETE)를 통해 해당 자원에 대한
-CRUD Operation을 적용하는 것을 의미한다.
-
-* 자원, 행위, 표현으로 구성되어 있다.
-
-* 자원(resource) - 모든 자원은 고유의 url을 가지며 클라이언트는 이 url을 지정해 해당 자원에 대해 crud명령을 내릴 수 있다.
-
-* 행위 - http method(GET,POST,PUT,DELETE)를 이용하여 자원을 조작하는것
-
-* 표현 - 서버의 행위에 대한 응답(json, xml)
-
 ### REST API
 
 * REST 설계 규칙에 따라 만든 API
 
-* restapi와 비동기 요청은 다른것!
+* REST API 디자인 가이드 (Uniform interface 구성 요소)
 
-### rest api설계 규칙
+  - URI 는 정보의 자원을 표현해야 한다
+ 
+  - 자원은 명사, 소문자를 사용해야 하고 URL 끝에 /를 사용하지 않는다
+ 
+    ```
+    /members/1
+    /items/10
+    ```
 
-* url에서 자원은 명사, 소문자, 복수 명사를 사용해야 한다.
-* ex) GET/Member/1 -> GET/members/1
-* 자원에 대한 행위는 http method로 표현한다.
-* url에 http method가 들어가면 안된다.
-* ex) GET/members/delete/1 -> DELETE/members/1
-* url에 행위에 대한 동사 표현이 들어가면 안된다. crud 기능을 나타내는 것은 url에 사용하지 않는다.
-* ex) GET/members/show/1 -> GET/members/1
-* ex) GET/members/insert/2 -> POST/members/2
-* 경로 부분 중 변하는 부분은 유일한 값으로 대체한다.
-* ex) student를 생성하는 route: POST /students 
-* ex) id=12인 student를 삭제하는 route: DELETE /students/12
+    - 잘못된 예시
+    ```
+    /getMember 
+    ```
 
+    - 행위에 대한 표현이 들어가면 안됨
+   
+  - 자원에 대한 행위는 HTTP Method(GET, POST, PUT, DELETE)로 표현한다
+ 
+    ```
+    GET          조회
+
+    POST         생성
+
+    PUT          전체 수정
+
+    PATCH        부분 수정
+
+    DELETE       삭제
+    ```
+
+    ```
+    GET    /members      회원 목록 조회
+    POST   /members      회원 생성
+    GET    /members/1    회원 상세 조회
+    PATCH  /members/1    회원 일부 수정
+    DELETE /members/1    회원 삭제
+    ```
+
+  - 자기 서술적 메시지 (Self-descriptive messages)
+ 
+    - 요청과 응답만 보면 어떤 의미인지 알 수 있어야 한다
+   
+    ```
+    Content-Type: application/json
+    Authorization: Bearer abcdef...
+    ```
+
+    - 모든 정보는 요청/응답에 다 들어 있어야 한다
+   
+    - 어떤 타입인지, 어떤 방법으로 인증하는지, 어떤 캐시 정책인지, 어떤 에러인지 등
+   
+  - HATEOAS
+ 
+    - 응답 안에 다음에 할 수 있는 행동의 링크를 포함
+   
+    ```json
+    {
+      "orderId": 10,
+      "status": "PAID",
+      "links": [
+        { "rel": "cancel", "href": "/orders/10/cancel", "method": "POST" },
+        { "rel": "receipt", "href": "/orders/10/receipt", "method": "GET" }
+      ]
+    }
+    ```
+
+    - 거의 사용하지 않음
 
 ### @pathVariable
 
@@ -92,4 +136,3 @@ CRUD Operation을 적용하는 것을 의미한다.
 @postMapping("/members/{id}") //15가 {id} 에 맵핑된다.
 public 반환타입 메서드이름(@pathVariable(value = "id") int id)
 ```
-
