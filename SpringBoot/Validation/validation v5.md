@@ -133,7 +133,7 @@ public String editV2(@PathVariable Long itemId, @Validated(UpdateCheck.class)
 
 ```
 // 문자열 검증
-@NotBlank	                n    ull, 빈 문자열(""), 공백(" ") 모두 허용 안됨
+@NotBlank	                    null, 빈 문자열(""), 공백(" ") 모두 허용 안됨
 
 @NotEmpty	                    null, 빈 문자열("") 불가 (공백은 허용됨)
 
