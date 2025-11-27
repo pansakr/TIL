@@ -14,7 +14,7 @@
 // Bean Validation 동작 과정
 1. 스프링 부트는 spring-boot-starter-validation 라이브러리를 추가하면 LocalValidatorFactoryBean 을 글로벌 Validator로 등록한다.
 
-2. 이 Validator는 @NotNull 같은 애노테이션을 보고 검증을 수행한다
+2. 이 Validator는 @NotNull 같은 어노테이션을 보고 검증을 수행한다
 
 3. 이렇게 글로벌 Validator가 적용되어 있기 때문에, @Valid, @Validated 만 적용하면 된다.
 
@@ -127,4 +127,54 @@ public String editV2(@PathVariable Long itemId, @Validated(UpdateCheck.class)
 
 #### 전용 요청, 응답 객체 생성
 
-* 요청마다 바인딩할 객체를 생성해준다. 실제로 주로 사용하는 방법
+* 요청마다 바인딩할 전용 클래스를 생성해준다(DTO 클래스)
+
+### 검증 어노테이션 종류와 정규식
+
+```
+// 문자열 검증
+@NotBlank	                n    ull, 빈 문자열(""), 공백(" ") 모두 허용 안됨
+
+@NotEmpty	                    null, 빈 문자열("") 불가 (공백은 허용됨)
+
+@NotNull                	    값이 null만 아니면 됨 (""도 허용됨)
+
+@Size(min, max)	                문자열 길이 제한
+
+@Pattern(regexp, message)	    정규식 패턴 매칭
+
+@Email	이메일 형식 검증
+
+@URL (Hibernate Validator)	    URL 형식 검증
+
+@Length(min, max) (Hibernate)	문자열 길이
+
+// 숫자 검증
+@Positive	                    양수만 허용 (1, 2, 3…)
+
+@PositiveOrZero	                0 이상
+
+@Negative	                    음수만 허용
+
+@NegativeOrZero	                0 이하
+
+@Min(value)	                    최소값
+
+@Max(value)	                    최대값
+
+@Digits(integer, fraction)	    정수/소수 자릿수 제한
+
+// Boolean 검증
+@AssertTrue	                    true만 허용
+
+@AssertFalse	                false만 허용
+
+// 날짜 검증
+@Past	                        과거 날짜만
+
+@PastOrPresent	                과거 또는 오늘
+
+@Future	                        미래 날짜만
+
+@FutureOrPresent	            미래 또는 오늘
+```
