@@ -194,6 +194,29 @@ public class AspectV1 {
     // ProceedingJoinPoint 인터페이스의 proceed() 는 다음 어드바이스나 타켓을 호출한다
 }
 ```
+
+* ProceedingJoinPoint
+
+    - AOP 에서 advice 를 사용할 때 전달되는 객체
+ 
+    - 원본 메서드에 대한 모든 정보를 가지고 있고, 원본 메서드를 실제로 실행하능 기능을 가지고 있다
+
+        ```
+        메서드 이름        : joinPoint.getSignature().getName()                              반환타입 : String
+
+        패키지/클래스 이름  : joinPoint.getSignature().getDeclaringType().getName();          반환타입 : String
+        (동일)             : joinPoint.getSignature().getDeclaringTypeName();                반환타입 : String
+
+        파라미터 값들      : joinPoint.getArgs()                                             반환타입 : Object[]
+
+        실제 객체          : joinPoint.getTarget()                                           반환타입 : Object
+
+        반환 타입          : ((MethodSignature) joinPoint.getSignature()).getReturnType()    반환타입 : Class<?>
+        ```
+        ```java
+        joinPoint.proceed();    // 실제 메서드 호출
+        ```
+
 ```java
 // 테스트
 @Slf4j
