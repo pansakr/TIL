@@ -1,4 +1,4 @@
-### 로깅 2
+### logback-spring.xml 설정
 
 ```xml
 <!-- logback-spring.xml-->
