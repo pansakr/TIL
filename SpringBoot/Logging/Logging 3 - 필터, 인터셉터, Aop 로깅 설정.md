@@ -27,6 +27,8 @@
 
             MDC.remove(...)
             ```
+ 
+       - 예시
 
         ```
         MDC.put("traceId", "abcd-1234");
@@ -34,44 +36,44 @@
         log.info("회원가입 처리 시작");
 
         // 결과 로그
-        [trace=abcd-1234] INFO  ... 회원가입 처리 시작
+        [abcd1234] INFO  ... 회원가입 처리 시작
         ```
 
-    - traceId = 하나의 요청 전체에 동일하게 붙는 “요청 고유 식별자(UUID)”
+        - traceId = 하나의 요청 전체에 동일하게 붙는 “요청 고유 식별자(UUID)”
 
-    ```java
-    @Slf4j
-    @Component
-    public class TraceIdFilter extends OncePerRequestFilter {
-
-        private static final String MDC_KEY_TRACE_ID = "traceId";
-
-        @Override
-        protected void doFilterInternal(HttpServletRequest request,
-                                        HttpServletResponse response,
-                                        FilterChain filterChain)
-                throws ServletException, IOException {
-
-            // 이미 traceId가 헤더로 들어온 경우(예: 다른 서비스에서 전달) 우선 사용
-            String incomingTraceId = request.getHeader("X-Trace-Id");
-            String traceId = (incomingTraceId != null && !incomingTraceId.isBlank())
-                    ? incomingTraceId
-                    : UUID.randomUUID().toString().substring(0, 8);
-
-            MDC.put(MDC_KEY_TRACE_ID, traceId);
-
-            try {
-                // 필요하다면 응답 헤더로도 넣어줌
-                response.setHeader("X-Trace-Id", traceId);
-
-                filterChain.doFilter(request, response);
-            } finally {
-                // 반드시 정리 (쓰레드 재사용 때문에)
-                MDC.remove(MDC_KEY_TRACE_ID);
+        ```java
+        @Slf4j
+        @Component
+        public class TraceIdFilter extends OncePerRequestFilter {
+    
+            private static final String MDC_KEY_TRACE_ID = "traceId";
+    
+            @Override
+            protected void doFilterInternal(HttpServletRequest request,
+                                            HttpServletResponse response,
+                                            FilterChain filterChain)
+                    throws ServletException, IOException {
+    
+                // 이미 traceId가 헤더로 들어온 경우(예: 다른 서비스에서 전달) 우선 사용
+                String incomingTraceId = request.getHeader("X-Trace-Id");
+                String traceId = (incomingTraceId != null && !incomingTraceId.isBlank())
+                        ? incomingTraceId
+                        : UUID.randomUUID().toString().substring(0, 8);
+    
+                MDC.put(MDC_KEY_TRACE_ID, traceId);
+    
+                try {
+                    // 필요하다면 응답 헤더로도 넣어줌
+                    response.setHeader("X-Trace-Id", traceId);
+    
+                    filterChain.doFilter(request, response);
+                } finally {
+                    // 반드시 정리 (쓰레드 재사용 때문에)
+                    MDC.remove(MDC_KEY_TRACE_ID);
+                }
             }
         }
-    }
-    ```
+        ```
 
     - OncePerRequestFilter
 
