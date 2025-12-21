@@ -65,7 +65,7 @@
 
     - 구글, 카카오, 네이버 등의 사용자 정보를 제공하는 서버
 
-        - Authorization Server Resource Server 가 개념적으로는 나뉘어져 있지만 같은 서비스인 경우도 있다
+        - Authorization Server, Resource Server 가 개념적으로는 나뉘어져 있지만 같은 서비스인 경우도 있다
 
     - Access Token 을 검증하고 요청을 허용
 
