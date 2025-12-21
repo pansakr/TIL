@@ -109,6 +109,31 @@
   - 클라이언트가 인증 데이터를 가지고 있기 때문에 유저의 수가 늘어도 부담이 증가하지 않는다
 
 
+### JWT 요청 흐름
+
+* 클라이언트 로그인
+
+* 서버에서 JWT Access Token , Refresh Token 발급 후 Refresh Token 을 DB 에 저장하고, Access Token, Refresh Token 을 응답과 함께 클라이언트에게 전송
+
+    - Refresh Token 은 JS 를 통한 XSS 공격을 방지하기 위해 HttpOnly 쿠키에 담아 전송
+
+    - Access Token 은 보통 Authorization: Bearer 헤더에 담아 전송
+
+* 클라이언트는 이제 요청할때마다 매번 Access Token 토큰을 함께 서버에 보냄
+
+* 서버는 Access Token 의 서명이나 만료시간 등을 검증해 인증 여부 결정
+
+* 시간이 지나 클라이언트가 만료된 Access Token 으로 API 요청
+
+* 서버는 401 Unauthorized 또는 특정 만료 에러 코드를 응답
+
+* 클라이언트는 에러 확인 즉시 저장해둔 Refresh Token 을 사용해 토큰을 재발급받기 위한 서버의 전용 엔트포인트(예 : /auth/refresh) 로 새 Access Token 요청
+
+* 새 Access Token 을 받으면 실패했던 원래의 API 요청을 재시도
+
+* 만약 Refresh Token 까지 만료됬다면 사용자를 로그인 페이지로 이동시켜 다시 인증
+
+
 ### JWT 위조/변조
 
 * 토큰 내부의 권한 정보를 조작해 일반 사용자가 관리자 권한을 획득 가능
