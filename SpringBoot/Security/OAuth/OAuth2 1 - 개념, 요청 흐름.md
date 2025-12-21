@@ -162,7 +162,7 @@
 
             - OIDC 도 활성화 했다면 Access Token 에 더해서 id_token(JWT) 이 추가로 응답됨
 
-        - 사용자 정보를 가져오기 위해 OidcUserService 인터페이스의 loadUser() 호출
+        - 사용자 정보와 최종적으로 인증 객체를 생성하기 위해 OidcUserService 인터페이스의 loadUser() 호출
 
             - Access Token 으로 리소스 서버에 사용자 정보 조회 요청(선택)
         
@@ -175,6 +175,10 @@
                 - OAuth2 만 사용하면 OAuth2UserService, OIDC 도 사용하면 OidcUserService 사용
             
                 - OIDC 가 OAuth2 보다 처리할 게 많이 때문에 전용 클래스를 사용해야 함
+             
+            - 인증이 성공하려면 Authentication 객체가 필요하고, Authentication 를 만드려면 사용자 객체가 필요함(principal)
+         
+            - loadUser() 를 호출해서 사용자 정보 조회 후 사용자 정보 객체를 생성하고, 이 객체로 Authentication 를 만들기 위한 단계
 
     - 성공
 
