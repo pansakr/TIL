@@ -162,11 +162,23 @@
 
             - OIDC 도 활성화 했다면 Access Token 에 더해서 id_token(JWT) 이 추가로 응답됨
 
-        - Access Token 으로 리소스 서버에 사용자 정보 조회 요청
+        - 사용자 정보를 가져오기 위해 OidcUserService 인터페이스의 loadUser() 호출
+
+            - Access Token 으로 리소스 서버에 사용자 정보 조회 요청(선택)
+        
+            - 조회한 정보로 비즈니스 로직 수행
+        
+                - 내 DB 를 조회해서 기존 사용자인지, 신규 사용자인지 판단
+        
+                - 신규 사용자면 가입, 기존 사용자면 로그인 성공, 중복 사용자라면 예외 등 비즈니스 로직 작성
+
+                - OAuth2 만 사용하면 OAuth2UserService, OIDC 도 사용하면 OidcUserService 사용
+            
+                - OIDC 가 OAuth2 보다 처리할 게 많이 때문에 전용 클래스를 사용해야 함
 
     - 성공
 
-        - 인증된 Authentication 객체 생성
+        - 조회한 정보로 사용자 객체를 만들고, 해당 객체로 인증된 Authentication 객체 생성
 
         ```java
         OAuth2AuthenticationToken (authenticated = true)
