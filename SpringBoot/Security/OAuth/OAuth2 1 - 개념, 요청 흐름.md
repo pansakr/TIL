@@ -110,6 +110,8 @@
     302 Redirect → https://accounts.google.com/o/oauth2/v2/auth?...
     ```
 
+    - http.oauth2Login() 설정 활성화 시 OAuth2AuthorizationRequestRedirectFilter 가 필터체인에 자동으로 등록됨
+
 * 내 서버는 인증 서버의(구글 등) 로그인 페이지로 리다이렉트하고, 사용자는 리다이렉트된 OAuth2 화면에서 로그인 진행 및 권한 제공 동의
 
     - 사용자의 구글/카카오/네이버 등의 계정 정보를 내 서버가 써도 되는지 확인
